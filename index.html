@@ -52,6 +52,8 @@
             padding: 30px 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
             margin-bottom: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
         }
 
         .menu-title {
@@ -137,7 +139,7 @@
         <div id="main-menu" class="card">
             <div class="menu-title" id="menu-status">LOADING SYSTEM DATA...</div>
             <div id="menu-buttons" class="hidden">
-                <button class="btn" onclick="startQuiz('all')">> ALL KOTOBA (<span id="total-words">0</span> WORDS)</button>
+                <!-- Tombol kategori akan muncul otomatis di sini -->
             </div>
         </div>
 
@@ -148,7 +150,7 @@
                 <span id="score-counter">SCORE: 0</span>
             </div>
 
-            <div class="card">
+            <div class="card" style="max-height: none;">
                 <div id="target-category" class="target-tag">// TARGET KOTOBA</div>
                 <div id="target-word" class="target-word">-</div>
 
@@ -166,33 +168,95 @@
         let currentQuestions = [];
         let currentIndex = 0;
         let score = 0;
+        let selectedCategoryName = "";
 
-        // Ambil data dari file kotoba_data.json secara otomatis saat web dibuka
+        // Ambil data file sebagai teks biasa untuk membaca baris komentar //
         fetch('kotoba_data.json')
-            .then(response => response.json())
-            .then(data => {
-                allData = data;
-                document.getElementById('menu-status').innerText = 'SELECT MISSION MATERI:';
-                document.getElementById('total-words').innerText = allData.length;
-                document.getElementById('menu-buttons').classList.remove('hidden');
+            .then(response => response.text())
+            .then(textData => {
+                let lines = textData.split('\n');
+                let currentCategory = "UMUM";
+                
+                lines.forEach(line => {
+                    let trimmed = line.trim();
+                    // Jika baris diawali // tangkap sebagai kategori
+                    if (trimmed.startsWith('//')) {
+                        currentCategory = trimmed.replace('//', '').trim();
+                    } 
+                    // Jika baris berisi objek data { ... }
+                    else if (trimmed.startsWith('{') && trimmed.endsWith('},')) {
+                        try {
+                            let obj = eval('(' + trimmed.replace(/,\s*$/, '') + ')');
+                            obj.category = currentCategory;
+                            allData.push(obj);
+                        } catch (e) {
+                            // Abaikan baris yang gagal di-parse
+                        }
+                    } else if (trimmed.startsWith('{') && trimmed.endsWith('}')) {
+                        try {
+                            let obj = eval('(' + trimmed + ')');
+                            obj.category = currentCategory;
+                            allData.push(obj);
+                        } catch (e) {}
+                    }
+                });
+
+                if (allData.length > 0) {
+                    document.getElementById('menu-status').innerText = 'SELECT MISSION MATERI:';
+                    generateMenu();
+                } else {
+                    document.getElementById('menu-status').innerText = 'ERROR: NO DATA PARSED';
+                }
             })
             .catch(error => {
                 console.error('Gagal memuat data:', error);
-                document.getElementById('menu-status').innerText = 'ERROR: FAILED TO LOAD JSON DATA';
+                document.getElementById('menu-status').innerText = 'ERROR: FAILED TO LOAD FILE';
             });
 
-        function startQuiz() {
-            if (allData.length === 0) return;
+        function generateMenu() {
+            const menuContainer = document.getElementById('menu-buttons');
+            menuContainer.innerHTML = '';
 
-            currentQuestions = [...allData];
-            // Acak urutan soal
+            // Ambil kategori unik
+            const categories = [...new Set(allData.map(item => item.category))];
+
+            // Tombol Semua Kotoba
+            const btnAll = document.createElement('button');
+            btnAll.className = 'btn';
+            btnAll.innerHTML = `> // ALL KOTOBA (${allData.length} WORDS)`;
+            btnAll.onclick = () => startQuiz('ALL');
+            menuContainer.appendChild(btnAll);
+
+            // Tombol per kategori berdasarkan teks // di file Anda
+            categories.forEach(cat => {
+                const count = allData.filter(item => item.category === cat).length;
+                const btn = document.createElement('button');
+                btn.className = 'btn';
+                btnAll.className = 'btn';
+                btn.innerHTML = `> // ${cat.toUpperCase()} (${count} WORDS)`;
+                btn.onclick = () => startQuiz(cat);
+                menuContainer.appendChild(btn);
+            });
+
+            menuContainer.classList.remove('hidden');
+        }
+
+        function startQuiz(category) {
+            if (category === 'ALL') {
+                currentQuestions = [...allData];
+                selectedCategoryName = "ALL KOTOBA";
+            } else {
+                currentQuestions = allData.filter(item => item.category === category);
+                selectedCategoryName = category;
+            }
+
             currentQuestions.sort(() => Math.random() - 0.5);
-
             currentIndex = 0;
             score = 0;
 
             document.getElementById('main-menu').classList.add('hidden');
             document.getElementById('quiz-section').classList.remove('hidden');
+            document.getElementById('target-category').innerText = `// TARGET (${selectedCategoryName.toUpperCase()})`;
             
             loadQuestion();
         }
@@ -210,7 +274,6 @@
             document.getElementById('score-counter').innerText = `SCORE: ${score}`;
             document.getElementById('target-word').innerText = currentObj.jp || currentObj.hiragana;
 
-            // Generate 3 pilihan salah secara acak + 1 jawaban benar
             let options = [currentObj.meaning];
             while (options.length < 4 && options.length < allData.length) {
                 let randomObj = allData[Math.floor(Math.random() * allData.length)];
@@ -219,7 +282,6 @@
                 }
             }
 
-            // Acak posisi pilihan jawaban
             options.sort(() => Math.random() - 0.5);
 
             const optionsContainer = document.getElementById('options-container');
