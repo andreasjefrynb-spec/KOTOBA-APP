@@ -315,7 +315,7 @@
             menuContainer.classList.remove('hidden');
         }
 
-        function handleSearch() {
+       function handleSearch() {
             let keyword = document.getElementById('search-input').value.toLowerCase().trim();
             const menuContainer = document.getElementById('menu-buttons');
             
@@ -325,7 +325,6 @@
                 return;
             }
 
-            // Cari kata individual yang cocok dengan arti, romaji, hiragana, atau jp
             let matchedWords = allData.filter(item => 
                 (item.meaning && item.meaning.toLowerCase().includes(keyword)) || 
                 (item.jp && item.jp.toLowerCase().includes(keyword)) || 
@@ -333,13 +332,14 @@
                 (item.romaji && item.romaji.toLowerCase().includes(keyword))
             );
 
-            // Menghilangkan duplikat berdasarkan gabungan 'jp' dan 'meaning'
+            // Menghilangkan duplikat berdasarkan 'meaning' (Arti) saja
             let uniqueWords = [];
-            let seen = new Set();
+            let seenMeanings = new Set();
+            
             matchedWords.forEach(item => {
-                let identifier = item.jp + "|" + item.meaning;
-                if (!seen.has(identifier)) {
-                    seen.add(identifier);
+                let cleanMeaning = item.meaning.toLowerCase().trim();
+                if (!seenMeanings.has(cleanMeaning)) {
+                    seenMeanings.add(cleanMeaning);
                     uniqueWords.push(item);
                 }
             });
