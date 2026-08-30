@@ -297,8 +297,6 @@ const allKotobaData = [
     { jp: "難しい", hiragana: "むずかしい", romaji: "muzukashii", meaning: "Sulit / Susah", category: "KATA SIFAT" },
     { jp: "易しい", hiragana: "やさしい", romaji: "yasashii", meaning: "Mudah / Gampang", category: "KATA SIFAT" },
     { jp: "優しい", hiragana: "やさしい", romaji: "yasashii", meaning: "Baik hati / Lembut", category: "KATA SIFAT" }
-
-  const allKotobaData = [
     // --- KATA SIFAT ---
     { jp: "痛い", hiragana: "いたい", romaji: "itai", meaning: "Sakit", category: "KATA SIFAT" },
     { jp: "欲しい", hiragana: "ほしい", romaji: "hoshii", meaning: "Ingin (benda)", category: "KATA SIFAT" },
@@ -597,7 +595,7 @@ const allKotobaData = [
     { jp: "秘密", hiragana: "ひみつ", romaji: "himitsu", meaning: "Rahasia", category: "BENDA" },
     { jp: "約束", hiragana: "やくそく", romaji: "yakusoku", meaning: "Janji", category: "BENDA" }
 
-  const allKotobaData = [
+
     // --- BENDA ---
     { jp: "計画", hiragana: "けいかく", romaji: "keikaku", meaning: "Rencana / Agenda", category: "BENDA" },
     { jp: "準備", hiragana: "じゅんび", romaji: "junbi", meaning: "Persiapan", category: "BENDA" },
@@ -806,7 +804,7 @@ const allKotobaData = [
     { jp: "生きる", hiragana: "いきる", romaji: "ikiru", meaning: "Hidup", category: "KATA KERJA" },
     { jp: "死ぬ", hiragana: "しぬ", romaji: "shinu", meaning: "Meninggal / Mati", category: "KATA KERJA" }
 
-  const allKotobaData = [
+
   // KATA KERJA
   { jp: "祝う", hiragana: "いわう", romaji: "iwau", meaning: "Merayakan / Selamat", kategori: "KATA KERJA" },
   { jp: "祈る", hiragana: "いのる", romaji: "inoru", meaning: "Berdoa", kategori: "KATA KERJA" },
@@ -1018,7 +1016,7 @@ const allKotobaData = [
   { jp: "発⾞する", hiragana: "はっしゃする", romaji: "hassha suru", meaning: "meluncur", kategori: "KATA KERJA" },
   { jp: "許す", hiragana: "ゆるす", romaji: "yurusu", meaning: "memaafkan", kategori: "KATA KERJA" }
 
-  const allKotobaData = [
+
   { jp: "理解する", hiragana: "りかいする", romaji: "rikai suru", meaning: "memahami", category: "KATA KERJA" },
   { jp: "奏でる", hiragana: "かなでる", romaji: "kanaderu", meaning: "memainkan (musik)", category: "KATA KERJA" },
   { jp: "進める", hiragana: "すすめる", romaji: "susumeru", meaning: "memajukan", category: "KATA KERJA" },
@@ -1269,7 +1267,7 @@ const allKotobaData = [
   { jp: "抜ける", hiragana: "ぬける", romaji: "nukeru", meaning: "terlepas", category: "KATA KERJA" },
   { jp: "切れる", hiragana: "きれる", romaji: "kireru", meaning: "terpotong, cakap, habis", category: "KATA KERJA" }
 
-  const allKotobaData = [
+
   { jp: "微笑む", hiragana: "ほほえむ", romaji: "hohoemu", meaning: "tersenyum", category: "KATA KERJA" },
   { jp: "残る", hiragana: "のこる", romaji: "nokoru", meaning: "tertinggal, tersisa", category: "KATA KERJA" },
   { jp: "到着する", hiragana: "とうちゃくする", romaji: "touchaku suru", meaning: "tiba", category: "KATA KERJA" },
