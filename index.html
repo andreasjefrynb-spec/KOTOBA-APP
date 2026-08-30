@@ -104,10 +104,18 @@
         .target-word {
             font-size: 2.5rem;
             font-weight: bold;
-            margin-bottom: 30px;
+            margin-bottom: 5px;
             color: #ffffff;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             word-break: break-word;
+        }
+
+        /* Styling tambahan untuk Hiragana kecil di bawah Kanji */
+        .target-hiragana {
+            font-size: 1.1rem;
+            color: #00ff66;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
         }
 
         .footer-nav {
@@ -138,9 +146,7 @@
         <!-- MENU UTAMA -->
         <div id="main-menu" class="card">
             <div class="menu-title" id="menu-status">LOADING SYSTEM DATA...</div>
-            <div id="menu-buttons" class="hidden">
-                <!-- Tombol kategori akan muncul otomatis di sini -->
-            </div>
+            <div id="menu-buttons" class="hidden"></div>
         </div>
 
         <!-- HALAMAN KUIS -->
@@ -153,10 +159,9 @@
             <div class="card" style="max-height: none;">
                 <div id="target-category" class="target-tag">// TARGET KOTOBA</div>
                 <div id="target-word" class="target-word">-</div>
+                <div id="target-hiragana" class="target-hiragana"></div>
 
-                <div id="options-container">
-                    <!-- Tombol Pilihan Jawaban -->
-                </div>
+                <div id="options-container"></div>
             </div>
 
             <div class="footer-nav" onclick="backToMenu()">[ MENU UTAMA ]</div>
@@ -170,7 +175,6 @@
         let score = 0;
         let selectedCategoryName = "";
 
-        // Ambil data file sebagai teks biasa untuk membaca baris komentar //
         fetch('kotoba_data.json')
             .then(response => response.text())
             .then(textData => {
@@ -179,22 +183,11 @@
                 
                 lines.forEach(line => {
                     let trimmed = line.trim();
-                    // Jika baris diawali // tangkap sebagai kategori
                     if (trimmed.startsWith('//')) {
                         currentCategory = trimmed.replace('//', '').trim();
-                    } 
-                    // Jika baris berisi objek data { ... }
-                    else if (trimmed.startsWith('{') && trimmed.endsWith('},')) {
+                    } else if (trimmed.startsWith('{') && (trimmed.endsWith('},') || trimmed.endsWith('}'))) {
                         try {
                             let obj = eval('(' + trimmed.replace(/,\s*$/, '') + ')');
-                            obj.category = currentCategory;
-                            allData.push(obj);
-                        } catch (e) {
-                            // Abaikan baris yang gagal di-parse
-                        }
-                    } else if (trimmed.startsWith('{') && trimmed.endsWith('}')) {
-                        try {
-                            let obj = eval('(' + trimmed + ')');
                             obj.category = currentCategory;
                             allData.push(obj);
                         } catch (e) {}
@@ -217,22 +210,18 @@
             const menuContainer = document.getElementById('menu-buttons');
             menuContainer.innerHTML = '';
 
-            // Ambil kategori unik
             const categories = [...new Set(allData.map(item => item.category))];
 
-            // Tombol Semua Kotoba
             const btnAll = document.createElement('button');
             btnAll.className = 'btn';
             btnAll.innerHTML = `> // ALL KOTOBA (${allData.length} WORDS)`;
             btnAll.onclick = () => startQuiz('ALL');
             menuContainer.appendChild(btnAll);
 
-            // Tombol per kategori berdasarkan teks // di file Anda
             categories.forEach(cat => {
                 const count = allData.filter(item => item.category === cat).length;
                 const btn = document.createElement('button');
                 btn.className = 'btn';
-                btnAll.className = 'btn';
                 btn.innerHTML = `> // ${cat.toUpperCase()} (${count} WORDS)`;
                 btn.onclick = () => startQuiz(cat);
                 menuContainer.appendChild(btn);
@@ -264,6 +253,7 @@
         function loadQuestion() {
             if (currentIndex >= currentQuestions.length) {
                 alert(`Misi Selesai! Skor akhir Anda: ${score}`);
+                backTest();
                 backToMenu();
                 return;
             }
@@ -272,7 +262,10 @@
             
             document.getElementById('node-counter').innerText = `NODE: ${currentIndex + 1} / ${currentQuestions.length}`;
             document.getElementById('score-counter').innerText = `SCORE: ${score}`;
-            document.getElementById('target-word').innerText = currentObj.jp || currentObj.hiragana;
+            
+            // Tampilkan Kanji (jp) di atas, dan Hiragana di bawahnya
+            document.getElementById('target-word').innerText = currentObj.jp || "-";
+            document.getElementById('target-hiragana').innerText = currentObj.hiragana ? `[ ${currentObj.hiragana} ]` : "";
 
             let options = [currentObj.meaning];
             while (options.length < 4 && options.length < allData.length) {
