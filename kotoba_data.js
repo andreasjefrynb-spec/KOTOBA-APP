@@ -1,3 +1,4 @@
+const allKotobaData = [
 [
     { jp: "おはようございます", hiragana: "おはようございます", romaji: "ohayou gozaimasu", meaning: "Selamat pagi" },
     { jp: "こんにちは", hiragana: "こんにちは", romaji: "konnichiwa", meaning: "Selamat siang / Halo" },
@@ -1430,3 +1431,4 @@
   { "jp": "勝ち気", "hiragana": "かちき", "romaji": "kachiki", "meaning": "tidak mau kalah" },
   { "jp": "神経質", "hiragana": "しんけいしつ", "romaji": "shinkeeshitsu", "meaning": "bersifat sensitif, khawatir berlebihan" }
 ]
+];
