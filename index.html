@@ -153,7 +153,7 @@
 <body>
 
     <div class="container">
-        <h1>日本語クラス</h1>
+        日本語クラス
         <div class="subtitle">// CYBER SYSTEM V1.0</div>
 
         <!-- MENU UTAMA -->
@@ -231,20 +231,32 @@
             btnAll.onclick = () => startQuiz('ALL');
             menuContainer.appendChild(btnAll);
 
-            // Kelompokkan kategori berdasarkan nama utamanya (membuang tulisan "- BAGIAN X")
+            // Logika Penyederhanaan & Pengelompokan Kategori Utama
             let rawCategories = [...new Set(allData.map(item => item.category))];
             let groupedCategories = {};
 
             rawCategories.forEach(cat => {
-                // Bersihkan nama kategori dari kata-kata seperti "- BAGIAN 1", " - 1", dll.
-                let baseName = cat.replace(/-?\s*BAGIAN\s*\d+/i, '').replace(/-\s*\d+$/, '').trim();
+                let baseName = cat;
+
+                // Bersihkan penamaan bagian, nomor, dan sub-kategori agar menyatu
+                if (cat.includes('Kata Kerja') || cat.toLowerCase().includes('u-verbs') || cat.toLowerCase().includes('ru-verbs')) {
+                    baseName = 'KATA KERJA (DIVERSIFIKASI)';
+                } else if (cat.includes('Kata Sifat')) {
+                    baseName = 'KATA SIFAT (I & NA)';
+                } else {
+                    // Buang tulisan "- Bagian X", "- 1", dll secara umum
+                    baseName = baseName.replace(/-?\s*BAGIAN\s*\d+/i, '')
+                                       .replace(/-\s*\d+$/, '')
+                                       .trim();
+                }
+
                 if (!groupedCategories[baseName]) {
                     groupedCategories[baseName] = [];
                 }
                 groupedCategories[baseName].push(cat);
             });
 
-            // Buat tombol untuk setiap kelompok utama
+            // Buat tombol menu yang sudah disederhanakan
             Object.keys(groupedCategories).forEach(baseName => {
                 let subCategories = groupedCategories[baseName];
                 let totalWords = allData.filter(item => subCategories.includes(item.category)).length;
@@ -252,7 +264,6 @@
                 const btn = document.createElement('button');
                 btn.className = 'btn';
                 btn.innerHTML = `> // ${baseName.toUpperCase()} (${totalWords} WORDS)`;
-                // Kirim array sub-kategori agar digabung saat kuis dimulai
                 btn.onclick = () => startQuizGroup(baseName, subCategories);
                 menuContainer.appendChild(btn);
             });
