@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>日本語クラス - Sakura Edition</title>
+    <title>Nihongo Quest - Sakura Edition</title>
     <!-- Google Fonts: Plus Jakarta Sans & Noto Sans JP -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -121,7 +121,6 @@
             text-transform: uppercase;
         }
 
-        /* Tampilan tombol ringkas (grid/list efisien) */
         .menu-grid {
             display: flex;
             flex-direction: column;
@@ -262,13 +261,13 @@
 
     <div class="container">
         <h1>🌸 Nihongo Quest</h1>
-        <div class="subtitle">Belajar Kotoba Ringkas & Elegan</div>
+        <div class="subtitle">Belajar 1500+ Kotoba secara Ringkas</div>
 
         <!-- MENU UTAMA -->
         <div id="main-menu">
-            <input type="text" id="search-input" class="search-box" placeholder="🔍 Cari kata, arti, atau romaji..." oninput="handleSearch()">
+            <input type="text" id="search-input" class="search-box" placeholder="🔍 Cari dari 1500+ kata, arti, atau romaji..." oninput="handleSearch()">
             <div class="card">
-                <div class="menu-title" id="menu-status">MEMUAT MATERI...</div>
+                <div class="menu-title" id="menu-status">MEMUAT 1500+ DATA KOTOBA...</div>
                 <div id="menu-buttons" class="hidden menu-grid"></div>
             </div>
         </div>
@@ -321,7 +320,7 @@
                     }
                 });
 
-                // Membersihkan duplikat data persis
+                // Pembersihan data duplikat masal secara efisien menggunakan Set
                 let seenKeys = new Set();
                 allData = [];
                 rawData.forEach(item => {
@@ -333,8 +332,8 @@
                 });
 
                 if (allData.length > 0) {
-                    document.getElementById('menu-status').innerText = 'PILIH KATEGORI MATERI:';
-                    processCategories();
+                    document.getElementById('menu-status').innerText = `PILIH KATEGORI (${allData.length} KATA TERSEDIA):`;
+                    processMassCategories();
                     renderMenuButtons(groupedCategories);
                 } else {
                     document.getElementById('menu-status').innerText = 'DATA KOSONG';
@@ -342,36 +341,39 @@
             })
             .catch(error => {
                 console.error('Gagal memuat data:', error);
-                document.getElementById('menu-status').innerText = 'GAGAL MEMUAT FILE';
+                document.getElementById('menu-status').innerText = 'GAGAL MEMUAT FILE JSON';
             });
 
-        function processCategories() {
-            let rawCategories = [...new Set(allData.map(item => item.category))];
+        // FUNGSI PENGELOMPOKKAN MASAL OTOMATIS (MACRO-CATEGORIES)
+        function processMassCategories() {
             groupedCategories = {};
 
-            rawCategories.forEach(cat => {
-                let baseName = cat;
-                
-                // Meringkas dan menyatukan kategori yang mirip agar menu lebih bersih
-                let upperCat = cat.toUpperCase();
-                if (upperCat.includes('KATA KERJA') || upperCat.includes('VERB')) {
-                    baseName = 'KATA KERJA (VERBS)';
-                } else if (upperCat.includes('KATA SIFAT') || upperCat.includes('ADJECTIVE')) {
-                    baseName = 'KATA SIFAT (ADJECTIVES)';
-                } else if (upperCat.includes('BENDA') || upperCat.includes('OBJEK') || upperCat.includes('MAKANAN') || upperCat.includes('RUMAH')) {
-                    baseName = 'BENDA & BENDA SEKELILING';
-                } else if (upperCat.includes('WAKTU') || upperCat.includes('TANGGAL') || upperCat.includes('BULAN')) {
-                    baseName = 'WAKTU & KETERANGAN';
+            allData.forEach(item => {
+                let cat = (item.category || "UMUM").toUpperCase();
+                let macroGroup = "LAIN-LAIN / UMUM";
+
+                // Aturan pengelompokan masal berdasarkan kata kunci di dalam komentar kategori JSON
+                if (cat.includes('KERJA') || cat.includes('VERB') || cat.includes('U-VERBS') || cat.includes('RU-VERBS')) {
+                    macroGroup = '⚡ KATA KERJA (VERBS)';
+                } else if (cat.includes('SIFAT') || cat.includes('ADJECTIVE')) {
+                    macroGroup = '✨ KATA SIFAT (ADJECTIVES)';
+                } else if (cat.includes('BENDA') || cat.includes('ALAT') || cat.includes('RUMAH') || cat.includes('MAKANAN') || cat.includes('MINUMAN') || cat.includes('PAKAIAN') || cat.includes('TUBUH') || cat.includes('OBJEK') || cat.includes('TEMPAT') || cat.includes('KOTA')) {
+                    macroGroup = '📦 BENDA & OBJEK SEKITAR';
+                } else if (macroGroup === "LAIN-LAIN / UMUM" && (cat.includes('WAKTU') || cat.includes('HARI') || cat.includes('BULAN') || cat.includes('TANGGAL') || cat.includes('ANGKA') || cat.includes('JUMLAH') || cat.includes('KETERANGAN'))) {
+                    macroGroup = '⏳ WAKTU, ANGKA & KETERANGAN';
+                } else if (cat.includes('SOSIAL') || cat.includes('KELUARGA') || cat.includes('ORANG') || cat.includes('SIFAT') || cat.includes('PERASAAN') || cat.includes('EMOSI') || cat.includes('PROFESI') || cat.includes('PEKERJAAN')) {
+                    macroGroup = '👥 SOSIAL, ORANG & PERASAAN';
                 } else {
-                    // Membersihkan nomor bagian agar tidak membuat banyak baris menu pecah
-                    baseName = baseName.replace(/-?\s*BAGIAN\s*\d+/i, '').replace(/-\s*\d+$/, '').trim();
+                    // Jika tidak masuk grup utama di atas, bersihkan nama kategori aslinya agar tetap rapi
+                    macroGroup = cat.replace(/-?\s*BAGIAN\s*\d+/i, '').replace(/-\s*\d+$/, '').trim();
+                    if (macroGroup === "") macroGroup = "KOTOBA UMUM";
                 }
 
-                if (!groupedCategories[baseName]) {
-                    groupedCategories[baseName] = [];
+                if (!groupedCategories[macroGroup]) {
+                    groupedCategories[macroGroup] = [];
                 }
-                if (!groupedCategories[baseName].includes(cat)) {
-                    groupedCategories[baseName].push(cat);
+                if (!groupedCategories[macroGroup].includes(item.category)) {
+                    groupedCategories[macroGroup].push(item.category);
                 }
             });
         }
@@ -380,21 +382,21 @@
             const menuContainer = document.getElementById('menu-buttons');
             menuContainer.innerHTML = '';
 
-            // Tombol utama akses semua data
+            // Tombol Akses Semua Data (1500+ kata)
             const btnAll = document.createElement('button');
             btnAll.className = 'btn';
-            btnAll.innerHTML = `<span>🌸 SEMUA KOTOBA</span> <span style="font-size: 0.7rem; background: rgba(255, 183, 197, 0.15); color: var(--sakura-pink); padding: 2px 6px; border-radius: 6px;">${allData.length}</span>`;
+            btnAll.innerHTML = `<span>🌸 SEMUA KOTOBA (TOTAL)</span> <span style="font-size: 0.7rem; background: rgba(255, 183, 197, 0.2); color: var(--sakura-pink); padding: 2px 7px; border-radius: 6px; font-weight: 700;">${allData.length}</span>`;
             btnAll.onclick = () => startQuiz('ALL');
             menuContainer.appendChild(btnAll);
 
-            Object.keys(categoriesToRender).forEach(baseName => {
-                let subCategories = categoriesToRender[baseName];
+            Object.keys(categoriesToRender).sort().forEach(groupName => {
+                let subCategories = categoriesToRender[groupName];
                 let totalWords = allData.filter(item => subCategories.includes(item.category)).length;
 
                 const btn = document.createElement('button');
                 btn.className = 'btn';
-                btn.innerHTML = `<span>🌿 ${baseName}</span> <span style="font-size: 0.7rem; background: rgba(255, 183, 197, 0.1); color: var(--sakura-pink); padding: 2px 6px; border-radius: 6px;">${totalWords}</span>`;
-                btn.onclick = () => startQuizGroup(baseName, subCategories);
+                btn.innerHTML = `<span>📂 ${groupName}</span> <span style="font-size: 0.7rem; background: rgba(255, 183, 197, 0.1); color: var(--sakura-pink); padding: 2px 6px; border-radius: 6px;">${totalWords}</span>`;
+                btn.onclick = () => startQuizGroup(groupName, subCategories);
                 menuContainer.appendChild(btn);
             });
 
@@ -406,7 +408,7 @@
             const menuContainer = document.getElementById('menu-buttons');
             
             if (keyword === "") {
-                document.getElementById('menu-status').innerText = 'PILIH KATEGORI MATERI:';
+                document.getElementById('menu-status').innerText = `PILIH KATEGORI (${allData.length} KATA TERSEDIA):`;
                 renderMenuButtons(groupedCategories);
                 return;
             }
@@ -429,7 +431,7 @@
                 }
             });
 
-            document.getElementById('menu-status').innerText = `HASIL PENCARIAN (${uniqueWords.length}):`;
+            document.getElementById('menu-status').innerText = `HASIL PENCARIAN (${uniqueWords.length} KATA):`;
             menuContainer.innerHTML = '';
 
             if (uniqueWords.length === 0) {
@@ -522,7 +524,7 @@
             });
         }
 
-            function checkAnswer(buttonElement, selected, correct) {
+        function checkAnswer(buttonElement, selected, correct) {
             if (isAnswered) return;
             isAnswered = true;
 
@@ -552,7 +554,7 @@
             document.getElementById('quiz-section').classList.add('hidden');
             document.getElementById('main-menu').classList.remove('hidden');
             document.getElementById('search-input').value = "";
-            document.getElementById('menu-status').innerText = 'PILIH KATEGORI MATERI:';
+            document.getElementById('menu-status').innerText = `PILIH KATEGORI (${allData.length} KATA TERSEDIA):`;
             renderMenuButtons(groupedCategories);
         }
     </script>
