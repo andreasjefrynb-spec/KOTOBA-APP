@@ -148,7 +148,7 @@
     { jp: "箱", hiragana: "はこ", romaji: "hako", meaning: "Kotak / Box" },
     { jp: "袋", hiragana: "ふくろ", romaji: "fukuro", meaning: "Kantong / Tas plastik" },
     { jp: "紙", hiragana: "かみ", romaji: "kami", meaning: "Kertas" },
-    { jp: "鉛筆", hiragana: "えんぴつ", romaji: "enpitsu", meaning: "Pensil" }
+    { "jp": "鉛筆", "hiragana": "えんぴつ", "romaji": "enpitsu", "meaning": "Pensil" },
     { jp: "飲む", hiragana: "のむ", romaji: "nomu", meaning: "Minum" },
     { jp: "読む", hiragana: "よむ", romaji: "yomu", meaning: "Membaca" },
     { jp: "書く", hiragana: "かく", romaji: "kaku", meaning: "Menulis" },
