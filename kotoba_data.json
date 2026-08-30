@@ -1131,3 +1131,38 @@
     { jp: "歓迎する", hiragana: "かんげいする", romaji: "kangei suru", meaning: "Menyambut dengan hangat" },
     { jp: "完成する", hiragana: "かんせいする", romaji: "kansei suru", meaning: "Menyelesaikan / Rampung" },
     { jp: "完了する", hiragana: "かんりょうする", romaji: "kanryou suru", meaning: "Selesai secara tuntas" }
+// Kata Keterangan & Penegas (Fukushi) - N4
+    { jp: "ずっと", hiragana: "ずっと", romaji: "zutto", meaning: "Terus / Selama / Jauh (lebih)" },
+    { jp: "初めて", hiragana: "はじめて", romaji: "hajimete", meaning: "Pertama kali" },
+    { jp: "結構", hiragana: "けっこう", romaji: "kekkou", meaning: "Lumayan / Cukup" },
+    { jp: "かなり", hiragana: "かなり", romaji: "kanari", meaning: "Cukup / Lumayan banyak" },
+    { jp: "特に", hiragana: "とくに", romaji: "toku ni", meaning: "Terutama / Khususnya" },
+    { jp: "すぐ", hiragana: "すぐ", romaji: "sugu", meaning: "Segera / Langsung" },
+    { jp: "そろそろ", hiragana: "そろそろ", romaji: "sorosoro", meaning: "Sebentar lagi / Waktunya untuk..." },
+    { jp: "たぶん", hiragana: "たぶん", romaji: "tabun", meaning: "Mungkin" },
+    { jp: "きっと", hiragana: "きっと", romaji: "kitto", meaning: "Pasti" },
+    { jp: "本当に", hiragana: "ほんとうに", romaji: "hontou ni", meaning: "Sungguh-sungguh / Benar-benar" },
+
+    // Kata Sambung & Konjungsi (Setsuzokushi) - N4
+    { jp: "それで", hiragana: "それで", romaji: "sorede", meaning: "Oleh karena itu / Jadi" },
+    { jp: "ですから", hiragana: "ですから", romaji: "desukara", meaning: "Oleh sebab itu" },
+    { jp: "しかし", hiragana: "しかし", romaji: "shikashi", meaning: "Namun / Akan tetapi" },
+    { jp: "ところで", hiragana: "ところで", romaji: "tokoro de", meaning: "Ngomong-ngomong" },
+    { jp: "または", hiragana: "または", romaji: "mataha", meaning: "Atau" },
+
+    // Rumah Sakit, Kesehatan & Darurat - N4
+    { jp: "病院", hiragana: "びょういん", romaji: "byouin", meaning: "Rumah sakit" },
+    { jp: "医者", hiragana: "いしゃ", romaji: "isha", meaning: "Dokter" },
+    { jp: "薬", hiragana: "くすり", romaji: "kusuri", meaning: "Obat" },
+    { jp: "熱", hiragana: "ねつ", romaji: "netsu", meaning: "Demam / Suhu tinggi" },
+    { jp: "病気", hiragana: "びょうき", romaji: "byouki", meaning: "Penyakit / Sakit" },
+    { jp: "痛い", hiragana: "いたい", romaji: "itai", meaning: "Sakit / Nyeri" },
+    { jp: "けが", hiragana: "けが", romaji: "kega", meaning: "Luka / Cedera" },
+
+    // Bank, Kantor Pos & Administrasi - N4
+    { jp: "銀行", hiragana: "ぎんこう", romaji: "ginkou", meaning: "Bank" },
+    { jp: "お金", hiragana: "おかね", romaji: "okane", meaning: "Uang" },
+    { jp: "口座", hiragana: "こうざ", romaji: "kouza", meaning: "Rekening bank" },
+    { jp: "切手", hiragana: "きって", romaji: "kitte", meaning: "Prangko" },
+    { jp: "荷物", hiragana: "にもつ", romaji: "nimotsu", meaning: "Barang / Bagasi / Paket" },
+    { jp: "住所", hiragana: "じゅうしょ", romaji: "juusho", meaning: "Alamat" }
