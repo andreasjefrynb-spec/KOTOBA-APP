@@ -52,6 +52,8 @@
             padding: 30px 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
             margin-bottom: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
         }
 
         .menu-title {
@@ -82,7 +84,6 @@
             box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
         }
 
-        /* Kelas untuk Indikator Benar / Salah */
         .btn.correct {
             background-color: #00ff66 !important;
             color: #0b0f0d !important;
@@ -168,7 +169,7 @@
                 <span id="score-counter">SCORE: 0</span>
             </div>
 
-            <div class="card">
+            <div class="card" style="max-height: none;">
                 <div id="target-category" class="target-tag">// TARGET KOTOBA</div>
                 <div id="target-word" class="target-word">-</div>
                 <div id="target-hiragana" class="target-hiragana"></div>
@@ -186,7 +187,7 @@
         let currentIndex = 0;
         let score = 0;
         let selectedCategoryName = "";
-        let isAnswered = false; // Mencegah klik ganda saat jeda
+        let isAnswered = false;
 
         fetch('kotoba_data.json')
             .then(response => response.text())
@@ -223,33 +224,61 @@
             const menuContainer = document.getElementById('menu-buttons');
             menuContainer.innerHTML = '';
 
-            const categories = [...new Set(allData.map(item => item.category))];
-
+            // Tombol Semua Kotoba
             const btnAll = document.createElement('button');
             btnAll.className = 'btn';
             btnAll.innerHTML = `> // ALL KOTOBA (${allData.length} WORDS)`;
             btnAll.onclick = () => startQuiz('ALL');
             menuContainer.appendChild(btnAll);
 
-            categories.forEach(cat => {
-                const count = allData.filter(item => item.category === cat).length;
+            // Kelompokkan kategori berdasarkan nama utamanya (membuang tulisan "- BAGIAN X")
+            let rawCategories = [...new Set(allData.map(item => item.category))];
+            let groupedCategories = {};
+
+            rawCategories.forEach(cat => {
+                // Bersihkan nama kategori dari kata-kata seperti "- BAGIAN 1", " - 1", dll.
+                let baseName = cat.replace(/-?\s*BAGIAN\s*\d+/i, '').replace(/-\s*\d+$/, '').trim();
+                if (!groupedCategories[baseName]) {
+                    groupedCategories[baseName] = [];
+                }
+                groupedCategories[baseName].push(cat);
+            });
+
+            // Buat tombol untuk setiap kelompok utama
+            Object.keys(groupedCategories).forEach(baseName => {
+                let subCategories = groupedCategories[baseName];
+                let totalWords = allData.filter(item => subCategories.includes(item.category)).length;
+
                 const btn = document.createElement('button');
                 btn.className = 'btn';
-                btn.innerHTML = `> // ${cat.toUpperCase()} (${count} WORDS)`;
-                btn.onclick = () => startQuiz(cat);
+                btn.innerHTML = `> // ${baseName.toUpperCase()} (${totalWords} WORDS)`;
+                // Kirim array sub-kategori agar digabung saat kuis dimulai
+                btn.onclick = () => startQuizGroup(baseName, subCategories);
                 menuContainer.appendChild(btn);
             });
 
             menuContainer.classList.remove('hidden');
         }
 
+        function startQuizGroup(groupName, subCategories) {
+            currentQuestions = allData.filter(item => subCategories.includes(item.category));
+            selectedCategoryName = groupName;
+
+            currentQuestions.sort(() => Math.random() - 0.5);
+            currentIndex = 0;
+            score = 0;
+
+            document.getElementById('main-menu').classList.add('hidden');
+            document.getElementById('quiz-section').classList.remove('hidden');
+            document.getElementById('target-category').innerText = `// TARGET (${selectedCategoryName.toUpperCase()})`;
+            
+            loadQuestion();
+        }
+
         function startQuiz(category) {
             if (category === 'ALL') {
                 currentQuestions = [...allData];
                 selectedCategoryName = "ALL KOTOBA";
-            } else {
-                currentQuestions = allData.filter(item => item.category === category);
-                selectedCategoryName = category;
             }
 
             currentQuestions.sort(() => Math.random() - 0.5);
@@ -301,17 +330,16 @@
         }
 
         function checkAnswer(buttonElement, selected, correct) {
-            if (isAnswered) return; // Cegah klik dobel
+            if (isAnswered) return;
             isAnswered = true;
 
             const allButtons = document.querySelectorAll('#options-container .btn');
 
             if (selected === correct) {
                 score += 10;
-                buttonElement.classList.add('correct'); // Berubah jadi hijau terang
+                buttonElement.classList.add('correct');
             } else {
-                buttonElement.classList.add('wrong'); // Berubah jadi merah
-                // Tunjukkan juga mana jawaban yang benar
+                buttonElement.classList.add('wrong');
                 allButtons.forEach(btn => {
                     if (btn.innerText === correct) {
                         btn.classList.add('correct');
@@ -321,7 +349,6 @@
 
             document.getElementById('score-counter').innerText = `SCORE: ${score}`;
 
-            // Beri jeda 800 milidetik (0.8 detik) sebelum pindah ke soal berikutnya
             setTimeout(() => {
                 currentIndex++;
                 loadQuestion();
