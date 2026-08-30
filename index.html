@@ -3,163 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Tebak Kotoba</title>
+    <title>日本語クラス - CYBER SYSTEM V1.0</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f9;
+        * {
+            box-sizing: border-box;
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
         }
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            width: 90%;
-            max-width: 450px;
-            text-align: center;
-        }
-        h2 { color: #333; margin-bottom: 20px; }
-        .question-box {
-            font-size: 28px;
-            font-weight: bold;
-            color: #2c3e50;
-            margin: 25px 0;
-            min-height: 40px;
-        }
-        .options-container {
+
+        body {
+            background-color: #0b0f0d;
+            color: #00ff66;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle, #112216 10%, #0b0f0d 90%);
         }
-        .btn-option {
-            background-color: #ffffff;
-            border: 2px solid #3498db;
-            color: #3498db;
-            padding: 12px;
-            font-size: 16px;
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #00cc55;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* Card Box */
+        .card {
+            background-color: #121814;
+            border: 1px solid #1e3323;
             border-radius: 8px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px;
+        }
+
+        .menu-title {
+            font-size: 1rem;
+            color: #00ff66;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: transparent;
+            color: #00ff66;
+            border: 1px solid #00ff66;
+            padding: 15px 20px;
+            width: 100%;
+            border-radius: 4px;
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 600;
+            margin-bottom: 15px;
+            transition: all 0.2s ease-in-out;
+            text-align: left;
+            letter-spacing: 1px;
         }
-        .btn-option:hover {
-            background-color: #3498db;
-            color: white;
+
+        .btn:hover {
+            background-color: #00ff66;
+            color: #0b0f0d;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
         }
-        .btn-option.correct {
-            background-color: #2ecc71 !important;
-            border-color: #2ecc71 !important;
-            color: white !important;
+
+        /* Quiz Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #00cc55;
+            margin-bottom: 15px;
+            padding: 0 5px;
+            letter-spacing: 1px;
         }
-        .btn-option.wrong {
-            background-color: #e74c3c !important;
-            border-color: #e74c3c !important;
-            color: white !important;
+
+        /* Target Word */
+        .target-tag {
+            font-size: 0.8rem;
+            color: #008833;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
         }
-        #score {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #7f8c8d;
+
+        .target-word {
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Footer Link / Back */
+        .footer-nav {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #00aa55;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+
+        .footer-nav:hover {
+            color: #00ff66;
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h2>Tebak Arti Kotoba</h2>
-        <div id="question" class="question-box">Memuat data...</div>
-        <div id="options" class="options-container"></div>
-        <div id="score">Skor: 0</div>
+    <div class="container">
+        <h1>日本語クラス</h1>
+        <div class="subtitle">// CYBER SYSTEM V1.0</div>
+
+        <div id="main-menu" class="card">
+            <div class="menu-title">SELECT MISSION MATERI:</div>
+            <button class="btn" onclick="startQuiz('na')">> KATA SIFAT NA (な)</button>
+            <button class="btn" onclick="startQuiz('i')">> KATA SIFAT I (い)</button>
+            <button class="btn" onclick="startQuiz('all')">> ALL ADJECTIVES (173 WORDS)</button>
+        </div>
+
+        <div id="quiz-section" class="hidden">
+            <div class="stats-bar">
+                <span id="node-counter">NODE: 1 / 64</span>
+                <span id="score-counter">SCORE: 0</span>
+            </div>
+
+            <div class="card">
+                <div id="target-category" class="target-tag">// TARGET (Kata Sifat NA)</div>
+                <div id="target-word" class="target-word">わがまま(な)</div>
+
+                <div id="options-container">
+                    </div>
+            </div>
+
+            <div class="footer-nav" onclick="backToMenu()">[ MENU UTAMA ]</div>
+        </div>
     </div>
 
     <script>
-        let kotobaList = [];
-        let currentQuestion = {};
+        // Contoh Database Kosakata (Bisa Anda tambah sesuai kebutuhan)
+        const database = {
+            na: [
+                { word: "わがまま(な)", meaning: "Egois", options: ["Menyayangkan", "Asam", "Praktis", "Egois"] },
+                { word: "べんり(な)", meaning: "Praktis", options: ["Praktis", "Egois", "Tenang", "Ramai"] },
+                { word: "しずか(な)", meaning: "Tenang", options: ["Tenang", "Berisik", "Indah", "Bersih"] },
+                { word: "きれい(な)", meaning: "Indah/Cantik", options: ["Indah/Cantik", "Kotor", "Luas", "Sempit"] }
+            ],
+            i: [
+                { word: "おいしい", meaning: "Enak", options: ["Enak", "Pahit", "Manis", "Asam"] },
+                { word: "たかい", meaning: "Mahal/Tinggi", options: ["Murah", "Mahal/Tinggi", "Pendek", "Luas"] },
+                { word: "あつい", meaning: "Panas", options: ["Dingin", "Hangat", "Panas", "Sejuk"] }
+            ]
+        };
+
+        // Gabungkan untuk pilihan 'all'
+        database.all = [...database.na, ...database.i];
+
+        let currentQuestions = [];
+        let currentIndex = 0;
         let score = 0;
+        let currentCategoryName = "";
 
-        async function loadData() {
-            try {
-                let response = await fetch('kotoba_data.json');
-                if (!response.ok) throw new Error('Gagal mengambil file JSON');
-                kotobaList = await response.json();
-                nextQuestion();
-            } catch (error) {
-                document.getElementById('question').innerText = "Gagal memuat data kotoba!";
-                console.error(error);
+        function startQuiz(category) {
+            currentCategoryName = category;
+            currentQuestions = [...database[category]];
+            
+            // Acak urutan soal (Opsional)
+            currentQuestions.sort(() => Math.random() - 0.5);
+
+            currentIndex = 0;
+            score = 0;
+
+            document.getElementById('main-menu').classList.add('hidden');
+            document.getElementById('quiz-section').classList.remove('hidden');
+
+            document.getElementById('target-category').innerText = `// TARGET (Kata Sifat ${category.toUpperCase()})`;
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentIndex >= currentQuestions.length) {
+                alert(`Misi Selesai! Skor akhir Anda: ${score}`);
+                backToMenu();
+                return;
             }
-        }
 
-        function shuffle(array) {
-            return array.sort(() => Math.random() - 0.5);
-        }
-
-        function nextQuestion() {
-            if (kotobaList.length === 0) return;
-
-            // Ambil soal secara acak
-            currentQuestion = kotobaList[Math.floor(Math.random() * kotobaList.length)];
+            const currentObj = currentQuestions[currentIndex];
             
-            // Tampilkan teks Jepang (utamakan 'jp', jika tidak ada pakai 'hiragana' atau 'kanji')
-            let displayWord = currentQuestion.jp || currentQuestion.hiragana || currentQuestion.kanji;
-            document.getElementById('question').innerText = displayWord;
+            // Perbarui UI Statistik
+            document.getElementById('node-counter').innerText = `NODE: ${currentIndex + 1} / ${currentQuestions.length}`;
+            document.getElementById('score-counter').innerText = `SCORE: ${score}`;
+            document.getElementById('target-word').innerText = currentObj.word;
 
-            // Ambil 3 pilihan jawaban salah secara acak
-            let wrongOptions = kotobaList
-                .filter(item => (item.meaning || item.arti) !== (currentQuestion.meaning || currentQuestion.arti))
-                .map(item => item.meaning || item.arti);
-            
-            shuffle(wrongOptions);
-
-            let choices = [currentQuestion.meaning || currentQuestion.arti, wrongOptions[0], wrongOptions[1], wrongOptions[2]];
-            shuffle(choices);
-
-            // Tampilkan pilihan ke tombol
-            let optionsContainer = document.getElementById('options');
+            // Render Pilihan Jawaban
+            const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
 
-            choices.forEach(choice => {
-                let btn = document.createElement('button');
-                btn.className = 'btn-option';
-                btn.innerText = choice;
-                btn.onclick = () => checkAnswer(btn, choice);
+            // Acak pilihan jawaban agar posisi jawaban benar tidak selalu sama
+            let shuffledOptions = [...currentObj.options].sort(() => Math.random() - 0.5);
+
+            shuffledOptions.forEach(optionText => {
+                const btn = document.createElement('button');
+                btn.className = 'btn';
+                btn.innerText = optionText;
+                btn.onclick = () => checkAnswer(optionText, currentObj.meaning);
                 optionsContainer.appendChild(btn);
             });
         }
 
-        function checkAnswer(button, selectedChoice) {
-            let correctMeaning = currentQuestion.meaning || currentQuestion.arti;
-            let buttons = document.querySelectorAll('.btn-option');
-            
-            // Matikan semua tombol setelah diklik
-            buttons.forEach(btn => btn.disabled = true);
-
-            if (selectedChoice === correctMeaning) {
-                button.classList.add('correct');
+        function checkAnswer(selected, correct) {
+            if (selected === correct) {
                 score += 10;
-                document.getElementById('score').innerText = "Skor: " + score;
-            } else {
-                button.classList.add('wrong');
-                // Tunjukkan mana jawaban yang benar
-                buttons.forEach(btn => {
-                    if (btn.innerText === correctMeaning) {
-                        btn.classList.add('correct');
-                    }
-                });
             }
-
-            // Lanjut ke soal berikutnya setelah 1.2 detik
-            setTimeout(() => {
-                nextQuestion();
-            }, 1200);
+            currentIndex++;
+            loadQuestion();
         }
 
-        loadData();
+        function backToMenu() {
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('main-menu').classList.remove('hidden');
+        }
     </script>
 </body>
 </html>
