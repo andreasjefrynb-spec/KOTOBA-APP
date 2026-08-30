@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nihongo Quest - Sakura Edition</title>
+    <title>Nihongo Quest - Cyber White Edition</title>
     <!-- Google Fonts: Plus Jakarta Sans & Noto Sans JP -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #1a1528 0%, #2a1b3d 50%, #3d1b35 100%);
-            --sakura-pink: #ffb7c5;
-            --sakura-light: #fff0f3;
-            --sakura-dark: #d45d79;
-            --accent: #ff8fa3;
-            --card-bg: rgba(45, 30, 50, 0.75);
-            --border-color: rgba(255, 183, 197, 0.25);
-            --text-main: #fcf6f7;
-            --text-muted: #d1b3be;
+            --bg-main: #f4f7fc;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(0, 122, 255, 0.2);
+            --border-focus: rgba(0, 122, 255, 0.6);
+            --accent-blue: #007aff;
+            --accent-blue-glow: rgba(0, 122, 255, 0.25);
+            --text-main: #1d1d1f;
+            --text-muted: #6e6e73;
+            --gaming-glow: 0 0 20px rgba(0, 122, 255, 0.12), inset 0 0 15px rgba(0, 122, 255, 0.03);
         }
 
         * {
@@ -27,7 +27,11 @@
         }
 
         body {
-            background: var(--bg-gradient);
+            background-color: var(--bg-main);
+            /* Efek lampu ambient biru ala setup gaming minimalis bersih */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 122, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 198, 255, 0.08) 0%, transparent 40%);
             color: var(--text-main);
             display: flex;
             flex-direction: column;
@@ -55,48 +59,50 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 4px;
-            color: #ffffff;
+            color: #0f172a;
+            text-shadow: 0 2px 10px rgba(0, 122, 255, 0.15);
         }
 
         .subtitle {
             font-size: 0.8rem;
-            color: var(--sakura-pink);
+            color: var(--accent-blue);
             margin-bottom: 20px;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
 
         .search-box {
             width: 100%;
-            background: rgba(25, 15, 25, 0.8);
-            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border: 2px solid var(--border-color);
             color: var(--text-main);
-            padding: 12px 16px;
-            border-radius: 12px;
+            padding: 13px 18px;
+            border-radius: 14px;
             font-size: 0.9rem;
             margin-bottom: 16px;
             outline: none;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
         }
 
         .search-box:focus {
-            border-color: var(--sakura-pink);
-            box-shadow: 0 0 12px rgba(255, 183, 197, 0.2);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 15px var(--accent-blue-glow);
         }
 
         .search-box::placeholder {
-            color: #8c737d;
+            color: #94a3b8;
         }
 
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(14px);
-            border: 1px solid var(--border-color);
-            border-radius: 18px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
             padding: 20px 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: var(--gaming-glow), 0 10px 30px rgba(0, 0, 0, 0.05);
             margin-bottom: 15px;
             max-height: 52vh;
             overflow-y: auto;
@@ -104,16 +110,16 @@
         }
 
         .card::-webkit-scrollbar {
-            width: 5px;
+            width: 6px;
         }
         .card::-webkit-scrollbar-thumb {
-            background: rgba(255, 183, 197, 0.3);
+            background: rgba(0, 122, 255, 0.2);
             border-radius: 10px;
         }
 
         .menu-title {
             font-size: 0.75rem;
-            color: var(--sakura-pink);
+            color: var(--accent-blue);
             margin-bottom: 12px;
             font-weight: 700;
             letter-spacing: 1px;
@@ -128,47 +134,51 @@
         }
 
         .btn {
-            background: rgba(255, 255, 255, 0.04);
+            background: #ffffff;
             color: var(--text-main);
-            border: 1px solid var(--border-color);
-            padding: 11px 14px;
+            border: 1.5px solid rgba(0, 122, 255, 0.15);
+            padding: 12px 16px;
             width: 100%;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 0.88rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             text-align: left;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
         }
 
         .btn::after {
-            content: '🌸';
-            font-size: 0.7rem;
-            opacity: 0.5;
+            content: '⚡';
+            font-size: 0.75rem;
+            color: var(--accent-blue);
+            opacity: 0.6;
             transition: transform 0.2s;
         }
 
         .btn:hover {
-            background: rgba(255, 183, 197, 0.12);
-            border-color: var(--sakura-pink);
-            transform: translateX(2px);
-            color: #ffffff;
+            background: rgba(0, 122, 255, 0.04);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 12px var(--accent-blue-glow);
+            transform: translateX(3px);
+            color: #0f172a;
         }
 
         .btn:hover::after {
             opacity: 1;
-            transform: scale(1.1);
+            transform: scale(1.2);
         }
 
         .result-item {
-            background: rgba(20, 12, 20, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 10px 12px;
+            background: #ffffff;
+            border: 1px solid rgba(0, 122, 255, 0.1);
+            padding: 10px 14px;
             margin-bottom: 6px;
-            border-radius: 8px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
         }
 
         .result-info {
@@ -178,26 +188,28 @@
         }
 
         .result-info strong {
-            color: #ffffff;
+            color: #0f172a;
             font-size: 1rem;
         }
 
         .result-info span {
-            color: var(--sakura-pink);
+            color: var(--accent-blue);
         }
 
         .btn.correct {
-            background: rgba(46, 204, 113, 0.2) !important;
-            color: #ffffff !important;
-            border-color: #2ecc71 !important;
+            background: rgba(16, 185, 129, 0.1) !important;
+            color: #065f46 !important;
+            border-color: #10b981 !important;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.2) !important;
         }
 
         .btn.correct::after { content: '✨'; opacity: 1; }
 
         .btn.wrong {
-            background: rgba(231, 76, 60, 0.2) !important;
-            color: #ffffff !important;
-            border-color: #e74c3c !important;
+            background: rgba(239, 68, 68, 0.1) !important;
+            color: #991b1b !important;
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.2) !important;
         }
 
         .btn.wrong::after { content: '✕'; opacity: 1; }
@@ -206,7 +218,7 @@
             display: flex;
             justify-content: space-between;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-muted);
             margin-bottom: 10px;
             padding: 0 4px;
@@ -214,7 +226,7 @@
 
         .target-tag {
             font-size: 0.7rem;
-            color: var(--sakura-pink);
+            color: var(--accent-blue);
             margin-bottom: 6px;
             font-weight: 700;
             letter-spacing: 1.5px;
@@ -226,30 +238,32 @@
             font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 4px;
-            color: #ffffff;
+            color: #0f172a;
             text-align: center;
+            text-shadow: 0 2px 8px rgba(0, 122, 255, 0.1);
         }
 
         .target-hiragana {
             font-size: 1rem;
-            color: var(--sakura-pink);
+            color: var(--accent-blue);
             margin-bottom: 16px;
-            font-weight: 500;
+            font-weight: 600;
             text-align: center;
         }
 
         .footer-nav {
-            margin-top: 12px;
+            margin-top: 14px;
             font-size: 0.8rem;
             color: var(--text-muted);
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             transition: color 0.2s;
             text-align: center;
+            letter-spacing: 0.5px;
         }
 
         .footer-nav:hover {
-            color: var(--sakura-pink);
+            color: var(--accent-blue);
         }
 
         .hidden {
@@ -260,8 +274,8 @@
 <body>
 
     <div class="container">
-        <h1>🌸 Nihongo Quest</h1>
-        <div class="subtitle">Belajar 1500+ Kotoba secara Ringkas</div>
+        <h1>⚡ Nihongo Quest</h1>
+        <div class="subtitle">Cyber White Edition • 1500+ Kotoba</div>
 
         <!-- MENU UTAMA -->
         <div id="main-menu">
@@ -352,7 +366,6 @@
                 let cat = (item.category || "UMUM").toUpperCase();
                 let macroGroup = "LAIN-LAIN / UMUM";
 
-                // Aturan pengelompokan masal berdasarkan kata kunci di dalam komentar kategori JSON
                 if (cat.includes('KERJA') || cat.includes('VERB') || cat.includes('U-VERBS') || cat.includes('RU-VERBS')) {
                     macroGroup = '⚡ KATA KERJA (VERBS)';
                 } else if (cat.includes('SIFAT') || cat.includes('ADJECTIVE')) {
@@ -364,7 +377,6 @@
                 } else if (cat.includes('SOSIAL') || cat.includes('KELUARGA') || cat.includes('ORANG') || cat.includes('SIFAT') || cat.includes('PERASAAN') || cat.includes('EMOSI') || cat.includes('PROFESI') || cat.includes('PEKERJAAN')) {
                     macroGroup = '👥 SOSIAL, ORANG & PERASAAN';
                 } else {
-                    // Jika tidak masuk grup utama di atas, bersihkan nama kategori aslinya agar tetap rapi
                     macroGroup = cat.replace(/-?\s*BAGIAN\s*\d+/i, '').replace(/-\s*\d+$/, '').trim();
                     if (macroGroup === "") macroGroup = "KOTOBA UMUM";
                 }
@@ -382,10 +394,9 @@
             const menuContainer = document.getElementById('menu-buttons');
             menuContainer.innerHTML = '';
 
-            // Tombol Akses Semua Data (1500+ kata)
             const btnAll = document.createElement('button');
             btnAll.className = 'btn';
-            btnAll.innerHTML = `<span>🌸 SEMUA KOTOBA (TOTAL)</span> <span style="font-size: 0.7rem; background: rgba(255, 183, 197, 0.2); color: var(--sakura-pink); padding: 2px 7px; border-radius: 6px; font-weight: 700;">${allData.length}</span>`;
+            btnAll.innerHTML = `<span>🎮 SEMUA KOTOBA (TOTAL)</span> <span style="font-size: 0.7rem; background: rgba(0, 122, 255, 0.1); color: var(--accent-blue); padding: 2px 7px; border-radius: 6px; font-weight: 700;">${allData.length}</span>`;
             btnAll.onclick = () => startQuiz('ALL');
             menuContainer.appendChild(btnAll);
 
@@ -395,7 +406,7 @@
 
                 const btn = document.createElement('button');
                 btn.className = 'btn';
-                btn.innerHTML = `<span>📂 ${groupName}</span> <span style="font-size: 0.7rem; background: rgba(255, 183, 197, 0.1); color: var(--sakura-pink); padding: 2px 6px; border-radius: 6px;">${totalWords}</span>`;
+                btn.innerHTML = `<span>📂 ${groupName}</span> <span style="font-size: 0.7rem; background: rgba(0, 122, 255, 0.08); color: var(--accent-blue); padding: 2px 6px; border-radius: 6px;">${totalWords}</span>`;
                 btn.onclick = () => startQuizGroup(groupName, subCategories);
                 menuContainer.appendChild(btn);
             });
@@ -435,7 +446,7 @@
             menuContainer.innerHTML = '';
 
             if (uniqueWords.length === 0) {
-                menuContainer.innerHTML = `<div style="color: var(--sakura-pink); text-align: center; padding: 12px; font-size: 0.85rem;">KATA TIDAK DITEMUKAN</div>`;
+                menuContainer.innerHTML = `<div style="color: var(--accent-blue); text-align: center; padding: 12px; font-size: 0.85rem; font-weight: 600;">KATA TIDAK DITEMUKAN</div>`;
                 return;
             }
 
@@ -445,8 +456,8 @@
                 div.innerHTML = `
                     <div class="result-info">
                         <strong>${item.jp}</strong> [ ${item.hiragana || '-'} ]<br>
-                        <span style="color: var(--sakura-pink);">Romaji:</span> ${item.romaji || '-'}<br>
-                        <span style="color: #a8e6cf; font-weight: 600;">Arti:</span> ${item.meaning}
+                        <span style="color: var(--accent-blue);">Romaji:</span> ${item.romaji || '-'}<br>
+                        <span style="color: #059669; font-weight: 600;">Arti:</span> ${item.meaning}
                     </div>
                 `;
                 menuContainer.appendChild(div);
@@ -482,7 +493,7 @@
         function loadQuestion() {
             isAnswered = false;
             if (currentIndex >= currentQuestions.length) {
-                alert(`🌸 Latihan Selesai!\nSkor Akhir Anda: ${score}`);
+                alert(`🎮 Latihan Selesai!\nSkor Akhir Anda: ${score}`);
                 backToMenu();
                 return;
             }
