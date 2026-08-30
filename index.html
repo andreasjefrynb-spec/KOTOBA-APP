@@ -28,7 +28,6 @@
 
         body {
             background-color: var(--bg-main);
-            /* Efek lampu ambient biru ala setup gaming minimalis bersih */
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(0, 122, 255, 0.08) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(0, 198, 255, 0.08) 0%, transparent 40%);
@@ -274,8 +273,9 @@
 <body>
 
     <div class="container">
-        <h1>⚡ Nihongo Quest</h1>
-        <div class="subtitle">Cyber White Edition • 1500+ Kotoba</div>
+        <h1>日本語クラス</h1>
+        <div class="kalo ga belajar sekarang
+sampe jepang langsung pulang</div>
 
         <!-- MENU UTAMA -->
         <div id="main-menu">
@@ -315,33 +315,37 @@
         let groupedCategories = {};
 
         fetch('kotoba_data.json')
-            .then(response => response.text())
-            .then(textData => {
-                let lines = textData.split('\n');
-                let currentCategory = "UMUM";
+            .then(response => response.json())
+            .then(jsonData => {
                 let rawData = [];
                 
-                lines.forEach(line => {
-                    let trimmed = line.trim();
-                    if (trimmed.startsWith('//')) {
-                        currentCategory = trimmed.replace('//', '').trim();
-                    } else if (trimmed.startsWith('{') && (trimmed.endsWith('},') || trimmed.endsWith('}'))) {
-                        try {
-                            let obj = eval('(' + trimmed.replace(/,\s*$/, '') + ')');
-                            obj.category = currentCategory;
-                            rawData.push(obj);
-                        } catch (e) {}
-                    }
-                });
+                // Mendukung format JSON murni ataupun file teks berisi objek/baris
+                if (Array.isArray(jsonData)) {
+                    rawData = jsonData;
+                } else {
+                    // Jika format file berupa barisan teks/komentar kategori
+                    rawData = Object.values(jsonData).flat();
+                }
 
-                // Pembersihan data duplikat masal secara efisien menggunakan Set
+                // Bersihkan dan mapping data dengan aman
                 let seenKeys = new Set();
                 allData = [];
                 rawData.forEach(item => {
-                    let uniqueKey = `${(item.jp || '').trim()}_${(item.meaning || '').toLowerCase().trim()}`;
-                    if (!seenKeys.has(uniqueKey)) {
+                    if (!item) return;
+                    let jp = (item.jp || item.kanji || '').trim();
+                    let meaning = (item.meaning || item.arti || '').trim();
+                    let category = (item.category || item.kategori || 'UMUM').trim();
+                    
+                    let uniqueKey = `${jp}_${meaning.toLowerCase()}`;
+                    if (jp && meaning && !seenKeys.has(uniqueKey)) {
                         seenKeys.add(uniqueKey);
-                        allData.push(item);
+                        allData.push({
+                            jp: jp,
+                            hiragana: item.hiragana || item.read || '',
+                            romaji: item.romaji || '',
+                            meaning: meaning,
+                            category: category
+                        });
                     }
                 });
 
@@ -350,12 +354,12 @@
                     processMassCategories();
                     renderMenuButtons(groupedCategories);
                 } else {
-                    document.getElementById('menu-status').innerText = 'DATA KOSONG';
+                    document.getElementById('menu-status').innerText = 'DATA KOSONG / FORMAT TIDAK SESUAI';
                 }
             })
             .catch(error => {
                 console.error('Gagal memuat data:', error);
-                document.getElementById('menu-status').innerText = 'GAGAL MEMUAT FILE JSON';
+                document.getElementById('menu-status').innerText = 'GAGAL MEMUAT FILE JSON (CEK PATH KOTOBA_DATA.JSON)';
             });
 
         // FUNGSI PENGELOMPOKKAN MASAL OTOMATIS (MACRO-CATEGORIES)
@@ -372,9 +376,9 @@
                     macroGroup = '✨ KATA SIFAT (ADJECTIVES)';
                 } else if (cat.includes('BENDA') || cat.includes('ALAT') || cat.includes('RUMAH') || cat.includes('MAKANAN') || cat.includes('MINUMAN') || cat.includes('PAKAIAN') || cat.includes('TUBUH') || cat.includes('OBJEK') || cat.includes('TEMPAT') || cat.includes('KOTA')) {
                     macroGroup = '📦 BENDA & OBJEK SEKITAR';
-                } else if (macroGroup === "LAIN-LAIN / UMUM" && (cat.includes('WAKTU') || cat.includes('HARI') || cat.includes('BULAN') || cat.includes('TANGGAL') || cat.includes('ANGKA') || cat.includes('JUMLAH') || cat.includes('KETERANGAN'))) {
+                } else if (cat.includes('WAKTU') || cat.includes('HARI') || cat.includes('BULAN') || cat.includes('TANGGAL') || cat.includes('ANGKA') || cat.includes('JUMLAH') || cat.includes('KETERangan')) {
                     macroGroup = '⏳ WAKTU, ANGKA & KETERANGAN';
-                } else if (cat.includes('SOSIAL') || cat.includes('KELUARGA') || cat.includes('ORANG') || cat.includes('SIFAT') || cat.includes('PERASAAN') || cat.includes('EMOSI') || cat.includes('PROFESI') || cat.includes('PEKERJAAN')) {
+                } else if (cat.includes('SOSIAL') || cat.includes('KELUARGA') || cat.includes('ORANG') || cat.includes('PERASAAN') || cat.includes('EMOSI') || cat.includes('PROFESI') || cat.includes('PEKERJAAN')) {
                     macroGroup = '👥 SOSIAL, ORANG & PERASAAN';
                 } else {
                     macroGroup = cat.replace(/-?\s*BAGIAN\s*\d+/i, '').replace(/-\s*\d+$/, '').trim();
