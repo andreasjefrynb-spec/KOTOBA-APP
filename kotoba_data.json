@@ -651,7 +651,7 @@
     { jp: "台風", hiragana: "たいふう", romaji: "taifuu", meaning: "Topan / Badai" },
     { jp: "地震", hiragana: "じしん", romaji: "jishin", meaning: "Gempa bumi" },
     { jp: "火事", hiragana: "かじ", romaji: "kaji", meaning: "Kebakaran" }
-    // Kata Kerja Gerakan Dasar - Bagian 1
+    // Kata Kerja
     { jp: "飛ぶ", hiragana: "とぶ", romaji: "tobu", meaning: "Terbang / Melompat" },
     { jp: "登る", hiragana: "のぼる", romaji: "noboru", meaning: "Mendaki / Memanjat" },
     { jp: "降りる", hiragana: "おりる", romaji: "oriru", meaning: "Turun (dari kendaraan/tangga)" },
@@ -659,7 +659,6 @@
     { jp: "曲がる", hiragana: "まがる", romaji: "magaru", meaning: "Berbelok" },
     { jp: "渡る", hiragana: "わたる", romaji: "wataru", meaning: "Menyeberang" },
     { jp: "動く", hiragana: "うごく", romaji: "ugoku", meaning: "Bergerak" },
-    // Kata Kerja Aktivitas Fisik & Posisi - Bagian 2
     { jp: "寝る", hiragana: "ねる", romaji: "neru", meaning: "Tidur / Berbaring" },
     { jp: "起きる", hiragana: "おきる", romaji: "okiru", meaning: "Bangun tidur / Terbit" },
     { jp: "起き上がる", hiragana: "おきあがる", romaji: "okiagaru", meaning: "Bangkit / Bangun" },
@@ -670,7 +669,6 @@
     { jp: "降りる", hiragana: "おりる", romaji: "oriru", meaning: "Turun" },
     { jp: "引っ越す", hiragana: "ひっこす", romaji: "hikkosu", meaning: "Pindah rumah" },
     { jp: "散歩する", hiragana: "さんぽする", romaji: "sanpo suru", meaning: "Berjalan-jalan santai" },
-    // Kata Kerja Rutinitas Harian - Bagian 1
     { jp: "噛む", hiragana: "かむ", romaji: "kamu", meaning: "Mengunyah / Menggigit" },
     { jp: "味わう", hiragana: "あじわう", romaji: "ajiwau", meaning: "Menikmati rasa / Merasakan" },
     { jp: "磨く", hiragana: "みがく", romaji: "migaku", meaning: "Menggosok / Menyikat" },
@@ -680,7 +678,6 @@
     { jp: "持つ", hiragana: "もつ", romaji: "motsu", meaning: "Membawa / Memegang" },
     { jp: "持ってくる", hiragana: "もってくる", romaji: "motte kuru", meaning: "Membawa (sesuatu ke sini)" },
     { jp: "連れて行く", hiragana: "つれていく", romaji: "tsurete iku", meaning: "Mengajak / Membawa (makhluk hidup)" },
-    // Kata Kerja Transaksi & Kehidupan Sosial - Bagian 1
     { jp: "払う", hiragana: "はらう", romaji: "harau", meaning: "Membayar" },
     { jp: "もらう", hiragana: "もらう", romaji: "morau", meaning: "Menerima / Mendapatkan" },
     { jp: "あげる", hiragana: "あげる", romaji: "ageru", meaning: "Memberi" },
@@ -689,7 +686,6 @@
     { jp: "出会う", hiragana: "であう", romaji: "deau", meaning: "Menjumpai / Berpapasan" },
     { jp: "話す", hiragana: "はなし", romaji: "hanasu", meaning: "Berbicara" },
     { jp: "言う", hiragana: "いう", romaji: "iu", meaning: "Mengatakan / Bilang" },
-    // Kata Kerja Komunikasi & Bahasa - Bagian 1
     { jp: "尋ねる", hiragana: "たずねる", romaji: "tazuneru", meaning: "Menanyakan / Mengunjungi" },
     { jp: "答える", hiragana: "こたえる", romaji: "kotaeru", meaning: "Menjawab" },
     { jp: "叫ぶ", hiragana: "さけぶ", romaji: "sakebu", meaning: "Berteriak" },
@@ -701,7 +697,6 @@
     { jp: "連絡する", hiragana: "れんらくする", romaji: "renraku suru", meaning: "Menghubungi" },
     { jp: "発表する", hiragana: "はっぴょうする", romaji: "happyou suru", meaning: "Mempresentasikan / Mengumumkan" },
     { jp: "喧嘩する", hiragana: "けんかする", romaji: "kenka suru", meaning: "Bertengkar" }
-    // Kata Kerja Pikiran & Proses Mental - Bagian 1
     { jp: "分かる", hiragana: "わかる", romaji: "wakaru", meaning: "Mengerti / Paham" },
     { jp: "考える", hiragana: "かんがえる", romaji: "kangaeru", meaning: "Berpikir / Memikirkan" },
     { jp: "思う", hiragana: "おもう", romaji: "omou", meaning: "Berpikir / Merasa / Mengira" },
@@ -714,7 +709,6 @@
     { jp: "安心する", hiragana: "あんしんする", romaji: "anshin suru", meaning: "Merasa tenang / Lega" },
     { jp: "感動する", hiragana: "かんどうする", romaji: "kandou suru", meaning: "Merasa terharu / Tersentuh" },
     { jp: "驚く", hiragana: "おどろく", romaji: "odoroku", meaning: "Terkejut / Kaget" },
-    // Kata Kerja Emosi, Perasaan & Ekspresi - Bagian 1
     { jp: "喜ぶ", hiragana: "よろこぶ", romaji: "yorokobu", meaning: "Bergirang hati / Senang" },
     { jp: "笑う", hiragana: "わらう", romaji: "warau", meaning: "Tertawa / Tersenyum" },
     { jp: "泣く", hiragana: "なく", romaji: "naku", meaning: "Menangis" },
@@ -730,7 +724,6 @@
     { jp: "恐れる", hiragana: "おそれる", romaji: "osoreru", meaning: "Takut / Mengkhawatirkan" },
     { jp: "恥ずかしがる", hiragana: "はずかしがる", romaji: "hazukashigaru", meaning: "Merasa malu" },
     { jp: "安心させる", hiragana: "あんしんさせる", romaji: "anshin saseru", meaning: "Menenangkan (orang lain)" },
-    // Kata Kerja Keterampilan, Belajar & Bekerja - Bagian 1
     { jp: "習う", hiragana: "ならう", romaji: "narau", meaning: "Mempelajari (dari guru)" },
     { jp: "復習する", hiragana: "ふくしゅうする", romaji: "fukushuu suru", meaning: "Mengulang pelajaran (review)" },
     { jp: "予習する", hiragana: "よしゅうする", romaji: "yoshuu suru", meaning: "Mempersiapkan pelajaran (preview)" },
@@ -741,7 +734,6 @@
     { jp: "休む", hiragana: "やすむ", romaji: "yasumu", meaning: "Beristirahat / Libur / Absen" },
     { jp: "サボる", hiragana: "サボる", romaji: "saboru", meaning: "Membolos / Malas-malasan kerja/sekolah" },
     { jp: "成功する", hiragana: "せいこうする", romaji: "seikou suru", meaning: "Berhasil / Sukses" },
-    // Kata Kerja Pencapaian & Kreativitas - Bagian 1
     { jp: "失敗する", hiragana: "しっぱいする", romaji: "shippai suru", meaning: "Gagal" },
     { jp: "作る", hiragana: "つくる", romaji: "tsukuru", meaning: "Membuat / Menciptakan" },
     { jp: "建てる", hiragana: "たてる", romaji: "tateru", meaning: "Membangun (gedung/rumah)" },
@@ -753,7 +745,6 @@
     { jp: "続ける", hiragana: "つづける", romaji: "tsuzukeru", meaning: "Melanjutkan" },
     { jp: "止める", hiragana: "やめる", romaji: "yameru", meaning: "Berhenti / Menyudahi (kebiasaan/kegiatan)" },
     { jp: "変える", hiragana: "かえる", romaji: "kaeru", meaning: "Mengubah" },
-    // Kata Kerja Perubahan & Keadaan - Bagian 1
     { jp: "増える", hiragana: "ふえる", romaji: "fueru", meaning: "Bertambah banyak" },
     { jp: "減る", hiragana: "へる", romaji: "heru", meaning: "Berkurang" },
     { jp: "増やす", hiragana: "ふやす", romaji: "fuyasu", meaning: "Menambah jumlah" },
@@ -766,7 +757,6 @@
     { jp: "高まる", hiragana: "たかまる", romaji: "takamaru", meaning: "Meningkat / Meninggi" },
     { jp: "弱まる", hiragana: "よわまる", romaji: "yowamaru", meaning: "Menjadi lemah" },
     { jp: "強まる", hiragana: "つよまる", romaji: "tsuyomaru", meaning: "Menjadi kuat" }
-    // Kata Kerja Penggunaan Alat & Teknologi - Bagian 1
     { jp: "使う", hiragana: "つかう", romaji: "tsukau", meaning: "Menggunakan / Memakai" },
     { jp: "利用する", hiragana: "りようする", romaji: "riyou suru", meaning: "Memanfaatkan / Menggunakan" },
     { jp: "動かす", hiragana: "うごかす", romaji: "ugokasu", meaning: "Menggerakkan / Menjalankan" },
@@ -781,7 +771,6 @@
     { jp: "点く", hiragana: "つく", romaji: "tsuku", meaning: "Menyala (lampu)" },
     { jp: "消える", hiragana: "きえる", romaji: "kieru", meaning: "Padam / Hilang / Padam (api/lampu)" },
     { jp: "壊す", hiragana: "こわす", romaji: "kowasu", meaning: "Merusak / Memecahkan" },
-    // Kata Kerja Perawatan & Kerusakan - Bagian 2
     { jp: "壊れる", hiragana: "こわれる", romaji: "kowareru", meaning: "Rusak / Pecah" },
     { jp: "割る", hiragana: "わる", romaji: "waru", meaning: "Membagi / Memecahkan (gelas/piring)" },
     { jp: "割れる", hiragana: "われる", romaji: "wareru", meaning: "Pecah / Retak" },
@@ -796,7 +785,6 @@
     { jp: "縛る", hiragana: "しばる", romaji: "shibaru", meaning: "Mengikat" },
     { jp: "結ぶ", hiragana: "むすぶ", romaji: "musubu", meaning: "Menyimpul / Menghubungkan" },
     { jp: "解く", hiragana: "とく", romaji: "toku", meaning: "Melepaskan (ikatan) / Menyelesaikan (soal)" },
-    // Kata Kerja Interaksi Fisik & Sentuhan - Bagian 1
     { jp: "触る", hiragana: "さわる", romaji: "sawaru", meaning: "Menyentuh" },
     { jp: "触れる", hiragana: "ふれる", romaji: "fureru", meaning: "Menyinggung / Tersentuh / Berpapasan" },
     { jp: "掴む", hiragana: "つかむ", romaji: "tsukamu", meaning: "Menggenggam / Meraih" },
@@ -811,7 +799,6 @@
     { jp: "積む", hiragana: "つむ", romaji: "tsumu", meaning: "Menumpuk / Memuat" },
     { jp: "重ねる", hiragana: "かさねる", romaji: "kasaneru", meaning: "Menumpuk / Melipat (di atas yang lain)" },
     { jp: "分ける", hiragana: "わける", romaji: "wakeru", meaning: "Membagi / Memisahkan" },
-    // Kata Kerja Keadaan Indrawi & Fenomena - Bagian 1
     { jp: "見える", hiragana: "みえる", romaji: "mieru", meaning: "Terlihat / Kelihatan" },
     { jp: "見せる", hiragana: "みせる", romaji: "miseru", meaning: "Memperlihatkan / Menunjukkan" },
     { jp: "聴こえる", hiragana: "きこえる", romaji: "kikoeru", meaning: "Terdengar" },
@@ -826,7 +813,6 @@
     { jp: "乾く", hiragana: "かわく", romaji: "kawaku", meaning: "Kering" },
     { jp: "燃える", hiragana: "もえる", romaji: "moeru", meaning: "Terbakar / Menyala" },
     { jp: "沸く", hiragana: "わく", romaji: "waku", meaning: "Mendidih / Meluap" },
-    // Kata Kerja Kehidupan Sosial Lanjutan & Keamanan - Bagian 1
     { jp: "暮らす", hiragana: "くらす", romaji: "kurasu", meaning: "Menjalani hidup / Bertempat tinggal" },
     { jp: "生活する", hiragana: "せいかつする", romaji: "seikatsu suru", meaning: "Berkehidupan / Hidup sehari-hari" },
     { jp: "育てる", hiragana: "そだてる", romaji: "sodateru", meaning: "Memelihara / Membesarkan (anak/tanaman)" },
@@ -841,7 +827,6 @@
     { jp: "救う", hiragana: "すくう", romaji: "sukuu", meaning: "Menyelamatkan" },
     { jp: "防ぐ", hiragana: "ふせぐ", romaji: "fusegu", meaning: "Mencegah / Menangkis" },
     { jp: "隠す", hiragana: "かくす", romaji: "kakusu", meaning: "Menyembunyikan" }
-    // Kata Kerja Eksistensi, Hubungan & Status - Bagian 1
     { jp: "ある", hiragana: "ある", romaji: "aru", meaning: "Ada (untuk benda mati)" },
     { jp: "いる", hiragana: "いる", romaji: "iru", meaning: "Ada / Berada (untuk makhluk hidup)" },
     { jp: "なる", hiragana: "なる", romaji: "naru", meaning: "Menjadi" },
@@ -856,7 +841,6 @@
     { jp: "当たる", hiragana: "あたる", romaji: "ataru", meaning: "Mengenai / Tepat / Menang (undian)" },
     { jp: "外れる", hiragana: "はずれる", romaji: "hazureru", meaning: "Meleset / Lepas / Copot" },
     { jp: "決まる", hiragana: "きまる", romaji: "kimaru", meaning: "Diputuskan / Tetap" },
-    // Kata Kerja Pernyataan, Pendapat & Aturan - Bagian 1
     { jp: "言う", hiragana: "いう", romaji: "iu", meaning: "Mengatakan / Berkata" },
     { jp: "話す", hiragana: "はなし", romaji: "hanasu", meaning: "Berbicara / Berbincang" },
     { jp: "語る", hiragana: "かたる", romaji: "kataru", meaning: "Menceritakan / Berpidato" },
@@ -870,7 +854,6 @@
     { jp: "賛成する", hiragana: "さんせいする", romaji: "sansei suru", meaning: "Setuju" },
     { jp: "従う", hiragana: "したがう", romaji: "shitagau", meaning: "Mematuhi / Mengikuti" },
     { jp: "逆らう", hiragana: "さからう", romaji: "sakarau", meaning: "Menentang / Melawan" },
-    // Kata Kerja Transaksi, Bisnis & Ekonomi Lanjutan - Bagian 1
     { jp: "支払う", hiragana: "しはらう", romaji: "shiharau", meaning: "Membayar" },
     { jp: "払う", hiragana: "はらう", romaji: "harau", meaning: "Membayar / Mengibaskan" },
     { jp: "もらう", hiragana: "もらう", romaji: "morau", meaning: "Menerima / Diberi" },
@@ -879,7 +862,6 @@
     { jp: "届ける", hiragana: "とどける", romaji: "todokeru", meaning: "Mengantar / Melaporkan" },
     { jp: "預ける", hiragana: "あずける", romaji: "azukeru", meaning: "Menitipkan" },
     { jp: "預かる", hiragana: "あずかる", romaji: "azukaru", meaning: "Menjaga / Menerima titipan" },
-    // Kata Kerja Fenomena Sosial & Kompleks - Bagian 1
     { jp: "流行る", hiragana: "はやる", romaji: "hayaru", meaning: "Ngetren / Mewabah / Ramai (toko)" },
     { jp: "流行する", hiragana: "りゅうこうする", romaji: "ryuukou suru", meaning: "Menjadi mode / Mewabah" },
     { jp: "味わう", hiragana: "あじわう", romaji: "ajiwau", meaning: "Menikmati rasa / Menghayati" },
@@ -895,7 +877,6 @@
     { jp: "入学する", hiragana: "にゅうがくする", romaji: "nyuugaku suru", meaning: "Masuk sekolah/universitas" },
     { jp: "就職する", hiragana: "しゅうしょくする", romaji: "shuushoku suru", meaning: "Mendapat pekerjaan / Mulai bekerja" },
     { jp: "退職する", hiragana: "たいしょくする", romaji: "taishoku suru", meaning: "Berhenti bekerja / Pensiun" },
-    // Kata Kerja Akhir & Pemungkas Eksistensi - Bagian 1
     { jp: "迷う", hiragana: "まよう", romaji: "mayou", meaning: "Bimbang / Tersesat" },
     { jp: "諦める", hiragana: "あきらめる", romaji: "akirameru", meaning: "Menyerah / Berputus asa" },
     { jp: "我慢する", hiragana: "がまんする", romaji: "gaman suru", meaning: "Bersabar / Menahan diri" },
@@ -908,9 +889,7 @@
     { jp: "歓迎する", hiragana: "かんげいする", romaji: "kangei suru", meaning: "Menyambut dengan hangat" },
     { jp: "完成する", hiragana: "かんせいする", romaji: "kansei suru", meaning: "Menyelesaikan / Rampung" },
     { jp: "完了する", hiragana: "かんりょうする", romaji: "kanryou suru", meaning: "Selesai secara tuntas" }
-]// Kata Kerja Eksistensi, Hubungan & Status - Bagian 1
-    // Kata Kerja Akhir & Pemungkus Eksistensi - Bagian 1
-// Kata Keterangan & Penegas (Fukushi) - N4
+    // Kata Keterangan & Penegas (Fukushi) - N4
     { jp: "ずっと", hiragana: "ずっと", romaji: "zutto", meaning: "Terus / Selama / Jauh (lebih)" },
     { jp: "初めて", hiragana: "はじめて", romaji: "hajimete", meaning: "Pertama kali" },
     { jp: "結構", hiragana: "けっこう", romaji: "kekkou", meaning: "Lumayan / Cukup" },
@@ -970,7 +949,7 @@
     { jp: "好き", hiragana: "すき", romaji: "suki", meaning: "Suka" },
     { jp: "嫌い", hiragana: "きらい", romaji: "kirai", meaning: "Benci / Tidak suka" },
     { jp: "上手", hiragana: "じょうず", romaji: "jouzu", meaning: "Pandai / Mahir" }
- 
+     // Kata Kerja
     { "jp": "有る", "hiragana": "ある", "romaji": "aru", "meaning": "ada" },
     { "jp": "居る", "hiragana": "いる", "romaji": "oru/iru", "meaning": "ada" },
     { "jp": "作業する", "hiragana": "さぎょうする", "romaji": "sagyou suru", "meaning": "bekerja" },
@@ -1368,13 +1347,12 @@
   { "jp": "薄い", "hiragana": "うすい", "romaji": "usui", "meaning": "tipis, encer (rasanya)" },
   { "jp": "おいしい", "hiragana": "", "romaji": "oishii", "meaning": "enak" },
   { "jp": "まずい", "hiragana": "", "romaji": "mazui", "meaning": "tidak enak" },
-  // KATA SIFAT - SUHU & CUACA
+  // KATA SIFAT
   { "jp": "暑い", "hiragana": "あつい", "romaji": "atsui", "meaning": "panas (suhu)" },
   { "jp": "寒い", "hiragana": "さむい", "romaji": "samui", "meaning": "dingin (suhu)" },
   { "jp": "暖かい", "hiragana": "あたたかい", "romaji": "atatakai", "meaning": "hangat (suhu)" },
   { "jp": "涼しい", "hiragana": "すずしい", "romaji": "suzushii", "meaning": "sejuk (suhu)" },
   { "jp": "蒸暑い", "hiragana": "むしあつい", "romaji": "mushiatsui", "meaning": "panas gerah (suhu)" },
-  // KATA SIFAT - KEADAAN & SIFAT UMUM
   { "jp": "明るい", "hiragana": "あかるい", "romaji": "akarui", "meaning": "terang, riang" },
   { "jp": "暗い", "hiragana": "くらい", "romaji": "kurai", "meaning": "gelap, suram" },
   { "jp": "汚い", "hiragana": "きたない", "romaji": "kitanai", "meaning": "kotor" },
@@ -1403,7 +1381,6 @@
   { "jp": "美しい", "hiragana": "うつくしい", "romaji": "utsukushii", "meaning": "indah" },
   { "jp": "厳しい", "hiragana": "きびしい", "romaji": "kibishii", "meaning": "tegas" },
   { "jp": "大人しい", "hiragana": "おとなしい", "romaji": "otonashii", "meaning": "bersifat lemah lembut dan tidak keras" },
-  // KATA SIFAT - PERASAAN & EMOSI
   { "jp": "楽しい", "hiragana": "たのしい", "romaji": "tanoshii", "meaning": "menyenangkan" },
   { "jp": "面白い", "hiragana": "おもしろい", "romaji": "omoshiroi", "meaning": "menarik, lucu" },
   { "jp": "つまらない", "hiragana": "", "romaji": "tsumaranai", "meaning": "membosankan, tidak menarik" },
@@ -1425,7 +1402,6 @@
   { "jp": "嫌い", "hiragana": "きらい", "romaji": "kirai", "meaning": "tidak suka, benci" },
   { "jp": "大好き", "hiragana": "だいすき", "romaji": "daisuki", "meaning": "suka sekali" },
   { "jp": "大嫌い", "hiragana": "だいきらい", "romaji": "daikirai", "meaning": "benci sekali" },
-  // KATA SIFAT - NA (NA-ADJECTIVES)
   { "jp": "きれい", "hiragana": "", "romaji": "kiree", "meaning": "cantik, bersih" },
   { "jp": "にぎやか", "hiragana": "", "romaji": "nigiyaka", "meaning": "ramai" },
   { "jp": "静か", "hiragana": "しずか", "romaji": "shizuka", "meaning": "tenang" },
