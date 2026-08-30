@@ -16,7 +16,7 @@
     { jp: "いらっしゃいませ", hiragana: "いらっしゃいませ", romaji: "irasshaimase", meaning: "Selamat datang (toko)" },
     { jp: "ただいま", hiragana: "ただいま", romaji: "tadaima", meaning: "Aku pulang" },
     { jp: "おかえりなさい", hiragana: "おかえりなさい", romaji: "okaerinasai", meaning: "Selamat datang kembali" },
-    { jp: "行ってきます", romaji: "いってきます", romaji: "itte kimasu", meaning: "Saya berangkat" },
+    { jp: "行ってきます", hiragana: "いってきます", romaji: "itte kimasu", meaning: "Saya berangkat" },
     { jp: "行っていらっしゃい", romaji: "いっていらっしゃい", romaji: "itte irasshai", meaning: "Hati-hati di jalan" },
     { jp: "いただきます", hiragana: "いただきます", romaji: "itadakimasu", meaning: "Selamat makan" },
     { jp: "ごちそうさまでした", hiragana: "ごちそうさまでした", romaji: "gochisousama deshita", meaning: "Terima kasih atas makanannya" },
