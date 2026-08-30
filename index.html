@@ -325,7 +325,7 @@
                     }
                 });
 
-                // FILTER DUPLIKAT BERDASARKAN KATA & ARTI
+                // PEMBERSIHAN DUPLIKAT DATA UTAMA
                 let seenKeys = new Set();
                 allData = [];
 
@@ -356,18 +356,24 @@
 
             rawCategories.forEach(cat => {
                 let baseName = cat;
+                
+                // Normalisasi nama kategori agar tidak pecah/duplikat berlebihan
                 if (cat.includes('Kata Kerja') || cat.toLowerCase().includes('u-verbs') || cat.toLowerCase().includes('ru-verbs')) {
                     baseName = 'KATA KERJA (VERBS)';
-                } else if (cat.includes('Kata Sifat')) {
+                } else if (cat.includes('Kata Sifat') || cat.toUpperCase().includes('KATA SIFAT')) {
                     baseName = 'KATA SIFAT (ADJECTIVES)';
                 } else {
+                    // Membersihkan nomor bagian atau kata "BAGIAN" berlebih di akhir teks kategori
                     baseName = baseName.replace(/-?\s*BAGIAN\s*\d+/i, '').replace(/-\s*\d+$/, '').trim();
                 }
 
                 if (!groupedCategories[baseName]) {
                     groupedCategories[baseName] = [];
                 }
-                groupedCategories[baseName].push(cat);
+                // Mencegah sub-kategori duplikat masuk ke dalam grup yang sama
+                if (!groupedCategories[baseName].includes(cat)) {
+                    groupedCategories[baseName].push(cat);
+                }
             });
         }
 
