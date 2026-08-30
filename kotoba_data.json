@@ -1,5 +1,4 @@
 [
-    // Sapaan & Ungkapan
     { jp: "おはようございます", hiragana: "おはようございます", romaji: "ohayou gozaimasu", meaning: "Selamat pagi" },
     { jp: "こんにちは", hiragana: "こんにちは", romaji: "konnichiwa", meaning: "Selamat siang / Halo" },
     { jp: "こんばんは", hiragana: "こんばんは", romaji: "konbanwa", meaning: "Selamat malam" },
@@ -25,8 +24,6 @@
     { jp: "気をつけて", hiragana: "きをつけて", romaji: "ki o tsukete", meaning: "Hati-hatilah" },
     { jp: "なるほど", hiragana: "なるほど", romaji: "naruhodo", meaning: "Begitu ya / Oh begitu" },
     { jp: "どうして", hiragana: "どうして", romaji: "doushite", meaning: "Mengapa / Kenapa" },
-
-    // Keluarga & Hubungan
     { jp: "家族", hiragana: "かぞく", romaji: "kazoku", meaning: "Keluarga" },
     { jp: "父", hiragana: "ちち", romaji: "chichi", meaning: "Ayah (sendiri)" },
     { jp: "お父さん", hiragana: "おとうさん", romaji: "otousan", meaning: "Ayah (orang lain / panggilan)" },
@@ -67,7 +64,6 @@
     { jp: "男の子", hiragana: "おとこのこ", romaji: "otokonoko", meaning: "Anak laki-laki" },
     { jp: "女の子", hiragana: "おんなのこ", romaji: "onnanoko", meaning: "Anak perempuan" },
     { jp: "外国人", hiragana: "がいこくじん", romaji: "gaikokujin", meaning: "Orang asing" },
-    // Anggota Tubuh Dasar
     { jp: "体", hiragana: "からだ", romaji: "karada", meaning: "Tubuh / Badan" },
     { jp: "頭", hiragana: "あたま", romaji: "atama", meaning: "Kepala" },
     { jp: "顔", hiragana: "かお", romaji: "kao", meaning: "Wajah" },
@@ -83,7 +79,6 @@
     { jp: "心", hiragana: "こころ", romaji: "kokoro", meaning: "Hati / Perasaan / Jiwa" },
     { jp: "血", hiragana: "ち", romaji: "chi", meaning: "Darah" },
     { jp: "骨", hiragana: "ほね", romaji: "hone", meaning: "Tulang" },
-    // Makanan & Minuman Pokok
     { jp: "ご飯", hiragana: "ごはん", romaji: "gohan", meaning: "Nasi / Makanan" },
     { jp: "水", hiragana: "みず", romaji: "mizu", meaning: "Air (dingin/tawar)" },
     { jp: "お湯", hiragana: "おゆ", romaji: "oyu", meaning: "Air panas" },
@@ -109,7 +104,6 @@
     { jp: "晩ご飯", hiragana: "ばんごはん", romaji: "bangohan", meaning: "Makan malam" },
     { jp: "食堂", hiragana: "しょくどう", romaji: "shokudou", meaning: "Kantin / Rumah makan kecil" },
     { jp: "レストラン", hiragana: "レストラン", romaji: "resutoran", meaning: "Restoran" },
-    // Pakaian & Aksesoris
     { jp: "服", hiragana: "ふく", romaji: "fuku", meaning: "Pakaian / Baju" },
     { jp: "シャツ", hiragana: "シャツ", romaji: "shatsu", meaning: "Kemeja / Kaos" },
     { jp: "ズボン", hiragana: "ズボン", romaji: "zubon", meaning: "Celana" },
@@ -125,7 +119,6 @@
     { jp: "時計", hiragana: "とけい", romaji: "tokei", meaning: "Jam" },
     { jp: "着物", hiragana: "きもの", romaji: "kimono", meaning: "Kimono" },
     { jp: "制服", hiragana: "せいふく", romaji: "seifuku", meaning: "Seragam" },
-    // Tempat Tinggal & Ruangan
     { jp: "家", hiragana: "いえ", romaji: "ie", meaning: "Rumah" },
     { jp: "部屋", hiragana: "へや", romaji: "heya", meaning: "Kamar / Ruangan" },
     { jp: "台所", hiragana: "だいどころ", romaji: "daidokoro", meaning: "Dapur" },
@@ -141,7 +134,6 @@
     { jp: "ベッド", hiragana: "ベッド", romaji: "beddo", meaning: "Tempat tidur" },
     { jp: "布団", hiragana: "ふとん", romaji: "futon", meaning: "Kasur tradisional Jepang" },
     { jp: "本棚", hiragana: "ほんだな", romaji: "hondana", meaning: "Rak buku" },
-    // Peralatan Rumah Tangga
     { jp: "テレビ", hiragana: "テレビ", romaji: "terebi", meaning: "Televisi" },
     { jp: "ラジオ", hiragana: "ラジオ", romaji: "rajio", meaning: "Radio" },
     { jp: "カメラ", hiragana: "カメラ", romaji: "kamera", meaning: "Kamera" },
@@ -158,7 +150,6 @@
     { jp: "紙", hiragana: "かみ", romaji: "kami", meaning: "Kertas" },
     { jp: "鉛筆", hiragana: "えんぴつ", romaji: "enpitsu", meaning: "Pensil" }
 ];[
-    // Kata Kerja
     { jp: "飲む", hiragana: "のむ", romaji: "nomu", meaning: "Minum" },
     { jp: "読む", hiragana: "よむ", romaji: "yomu", meaning: "Membaca" },
     { jp: "書く", hiragana: "かく", romaji: "kaku", meaning: "Menulis" },
@@ -259,7 +250,6 @@
     { jp: "見つける", hiragana: "みつける", romaji: "mitsukeru", meaning: "Menemukan" },
     { jp: "落とする", hiragana: "おとす", romaji: "otosu", meaning: "Menjatuhkan" },
     { jp: "落ちる", hiragana: "おちる", romaji: "ochiru", meaning: "Jatuh" }
-    // Kata Sifat-I
     { jp: "大きい", hiragana: "おおきい", romaji: "ookii", meaning: "Besar" },
     { jp: "小さい", hiragana: "ちいさい", romaji: "chiisai", meaning: "Kecil" },
     { jp: "高い", hiragana: "たかい", romaji: "takai", meaning: "Mahal / Tinggi" },
@@ -320,7 +310,6 @@
     { jp: "うるさい", hiragana: "うるさい", romaji: "urusai", meaning: "Bising / Berisik" },
     { jp: "きたない", hiragana: "きたない", romaji: "kitanai", meaning: "Kotor" },
     { jp: "眠い", hiragana: "ねむい", romaji: "nemui", meaning: "Mengantuk" },
-    // Kata Sifat-Na
     { jp: "静かな", hiragana: "しずかな", romaji: "shizuka na", meaning: "Tenang / Sunyi" },
     { jp: "賑やかな", hiragana: "にぎやかな", romaji: "nigiyaka na", meaning: "Ramai / Rame" },
     { jp: "綺麗な", hiragana: "きれいな", romaji: "kirei na", meaning: "Cantik / Bersih" },
@@ -361,7 +350,6 @@
     { jp: "熱心な", hiragana: "ねっしんな", romaji: "nesshin na", meaning: "Tekun / Semangat" },
     { jp: "不親切な", hiragana: "ふしんせつな", romaji: "fushinsetsu na", meaning: "Tidak ramah" },
     { jp: "平和な", hiragana: "へいわな", romaji: "heiwa na", meaning: "Damai" }
-    // Sekolah & Pendidikan
     { jp: "学校", hiragana: "がっこう", romaji: "gakkou", meaning: "Sekolah" },
     { jp: "小学校", hiragana: "しょうがっこう", romaji: "shougakkou", meaning: "Sekolah Dasar (SD)" },
     { jp: "中学校", hiragana: "ちゅうがっこう", romaji: "chuugakkou", meaning: "Sekolah Menengah Pertama (SMP)" },
@@ -395,7 +383,6 @@
     { jp: "ローマ字", hiragana: "ローマじ", romaji: "roomaji", meaning: "Huruf Latin / Romaji" },
     { jp: "文字", hiragana: "もじ", romaji: "moji", meaning: "Karakter / Huruf" },
     { jp: "言葉", hiragana: "ことば", romaji: "kotoba", meaning: "Kata / Bahasa" },
-    // Kantor, Bisnis & Pekerjaan
     { jp: "会社", hiragana: "かいしゃ", romaji: "kaisha", meaning: "Perusahaan" },
     { jp: "会社員", hiragana: "かいしゃいん", romaji: "kaishain", meaning: "Karyawan perusahaan" },
     { jp: "社員", hiragana: "しゃいん", romaji: "shain", meaning: "Pegawai / Karyawan" },
@@ -426,7 +413,6 @@
     { jp: "事務所", hiragana: "じむしょ", romaji: "jimusho", meaning: "Kantor / Ruang administrasi" },
     { jp: "経済", hiragana: "けいざい", romaji: "keizai", meaning: "Ekonomi" },
     { jp: "政治", hiragana: "せいじ", romaji: "seiji", meaning: "Politik" },
-    // Tempat Umum & Lingkungan
     { jp: "病院", hiragana: "びょういん", romaji: "byouin", meaning: "Rumah sakit" },
     { jp: "薬局", hiragana: "やっきょく", romaji: "yakkyoku", meaning: "Apotek" },
     { jp: "銀行", hiragana: "ぎんこう", romaji: "ginkou", meaning: "Bank" },
@@ -457,7 +443,6 @@
     { jp: "神社", hiragana: "じんじゃ", romaji: "jinja", meaning: "Kuil Shinto" },
     { jp: "教会", hiragana: "きょうかい", romaji: "kyoukai", meaning: "Gereja" },
     { jp: "建物", hiragana: "たてもの", romaji: "tatemono", meaning: "Bangunan / Gedung" },
-    // Lingkungan Jalan & Alam Sekitar
     { jp: "道", hiragana: "みち", romaji: "michi", meaning: "Jalan" },
     { jp: "通り", hiragana: "とおり", romaji: "toori", meaning: "Jalan raya / Jalur" },
     { jp: "角", hiragana: "かど", romaji: "kado", meaning: "Tikungan / Sudut jalan" },
@@ -503,7 +488,6 @@
     { jp: "パスポート", hiragana: "パスポート", romaji: "pasupooto", meaning: "Paspor" },
     { jp: "ビザ", hiragana: "ビザ", romaji: "biza", meaning: "Visa" },
     { jp: "荷物", hiragana: "にもつ", romaji: "nimotsu", meaning: "Bagasi / Barang bawaan" },
-    // Waktu, Jam & Bagian Hari
     { jp: "時間", hiragana: "じかん", romaji: "jikan", meaning: "Waktu / Jam (durasi)" },
     { jp: "時", hiragana: "じ", romaji: "ji", meaning: "Pukul / Jam" },
     { jp: "分", hiragana: "ふん / ぷん", romaji: "fun / pun", meaning: "Menit" },
@@ -534,7 +518,6 @@
     { jp: "年", hiragana: "とし", romaji: "toshi", meaning: "Tahun / Usia" },
     { jp: "年齢", hiragana: "ねんれい", romaji: "nenrei", meaning: "Umur / Usia" },
     { jp: "将来", hiragana: "しょうらい", romaji: "shourai", meaning: "Masa depan" },
-    // Hari,Bulan,Tahun
     { jp: "月曜日", hiragana: "げつようび", romaji: "getsuyoubi", meaning: "Hari Senin" },
     { jp: "火曜日", hiragana: "かようび", romaji: "kayoubi", meaning: "Hari Selasa" },
     { jp: "水曜日", hiragana: "すいようび", romaji: "suiyoubi", meaning: "Hari Rabu" },
@@ -560,7 +543,6 @@
     { jp: "今年", hiragana: "ことし", romaji: "kotoshi", meaning: "Tahun ini" },
     { jp: "去年", hiragana: "きょねん", romaji: "kyonen", meaning: "Tahun lalu" },
     { jp: "来年", hiragana: "らいねん", romaji: "rainen", meaning: "Tahun depan" }
-    // Hobi,Seni,Kreativitas,Olahraga,Aktivitas Fisik
     { jp: "趣味", hiragana: "しゅみ", romaji: "shumi", meaning: "Hobi / Kegemaran" },
     { jp: "音楽", hiragana: "おんがく", romaji: "ongaku", meaning: "Musik" },
     { jp: "歌", hiragana: "うた", romaji: "uta", meaning: "Lagu / Nyanyian" },
@@ -590,7 +572,6 @@
     { jp: "勝つ", hiragana: "かつ", romaji: "katsu", meaning: "Menang" },
     { jp: "負ける", hiragana: "まける", romaji: "makeru", meaning: "Kalah" },
     { jp: "引き分け", hiragana: "ひきわけ", romaji: "hikiwake", meaning: "Seri / Imbang" },
-    // Permainan, Media & Hiburan - Bagian 1
     { jp: "ゲーム", hiragana: "ゲーム", romaji: "geemu", meaning: "Permainan / Game" },
     { jp: "おもちゃ", hiragana: "おもちゃ", romaji: "omocha", meaning: "Mainan anak-anak" },
     { jp: "カード", hiragana: "カード", romaji: "kaado", meaning: "Kartu" },
@@ -604,7 +585,6 @@
     { jp: "新聞", hiragana: "しんぶん", romaji: "shinbun", meaning: "Koran / Surat kabar" },
     { jp: "インターネット", hiragana: "インターネット", romaji: "intaanetto", meaning: "Internet" },
     { jp: "パソコン", hiragana: "パソコン", romaji: "pasokon", meaning: "Komputer pribadi / Laptop" },
-    // Perasaan, Keadaan Jiwa & Pengalaman - Bagian 1
     { jp: "夢", hiragana: "ゆめ", romaji: "yume", meaning: "Mimpi" },
     { jp: "希望", hiragana: "きぼう", romaji: "kibou", meaning: "Harapan" },
     { jp: "心配", hiragana: "しんぱい", romaji: "shinpai", meaning: "Kekhawatiran / Kecemasan" },
@@ -620,7 +600,6 @@
     { jp: "準備", hiragana: "じゅんび", romaji: "junbi", meaning: "Persiapan" },
     { jp: "経験", hiragana: "けいけん", romaji: "keiken", meaning: "Pengalaman" },
     { jp: "意見", hiragana: "いけん", romaji: "iken", meaning: "Pendapat / Opini" },
-    // Kehidupan Sosial & Keseharian - Bagian 1
     { jp: "生活", hiragana: "せいかつ", romaji: "seikatsu", meaning: "Kehidupan sehari-hari" },
     { jp: "人生", hiragana: "じんせい", romaji: "jinsei", meaning: "Kehidupan manusia" },
     { jp: "社会", hiragana: "しゃかい", romaji: "shakai", meaning: "Masyarakat / Sosial" },
@@ -635,7 +614,6 @@
     { jp: "地域", hiragana: "ちいき", romaji: "chiiki", meaning: "Wilayah / Daerah" },
     { jp: "場所", hiragana: "ばしょ", romaji: "basho", meaning: "Tempat / Lokasi" },
     { jp: "空間", hiragana: "くうかん", romaji: "kuukan", meaning: "Ruang" },
-    // Alam Bebas & Lingkungan Luas - Bagian 1
     { jp: "自然", hiragana: "しぜん", romaji: "shizen", meaning: "Alam" },
     { jp: "環境", hiragana: "かんきょう", romaji: "kankyou", meaning: "Lingkungan" },
     { jp: "天気", hiragana: "てんき", romaji: "tenki", meaning: "Cuaca" },
@@ -651,7 +629,6 @@
     { jp: "台風", hiragana: "たいふう", romaji: "taifuu", meaning: "Topan / Badai" },
     { jp: "地震", hiragana: "じしん", romaji: "jishin", meaning: "Gempa bumi" },
     { jp: "火事", hiragana: "かじ", romaji: "kaji", meaning: "Kebakaran" }
-    // Kata Kerja
     { jp: "飛ぶ", hiragana: "とぶ", romaji: "tobu", meaning: "Terbang / Melompat" },
     { jp: "登る", hiragana: "のぼる", romaji: "noboru", meaning: "Mendaki / Memanjat" },
     { jp: "降りる", hiragana: "おりる", romaji: "oriru", meaning: "Turun (dari kendaraan/tangga)" },
@@ -889,7 +866,6 @@
     { jp: "歓迎する", hiragana: "かんげいする", romaji: "kangei suru", meaning: "Menyambut dengan hangat" },
     { jp: "完成する", hiragana: "かんせいする", romaji: "kansei suru", meaning: "Menyelesaikan / Rampung" },
     { jp: "完了する", hiragana: "かんりょうする", romaji: "kanryou suru", meaning: "Selesai secara tuntas" }
-    // Kata Keterangan & Penegas (Fukushi) - N4
     { jp: "ずっと", hiragana: "ずっと", romaji: "zutto", meaning: "Terus / Selama / Jauh (lebih)" },
     { jp: "初めて", hiragana: "はじめて", romaji: "hajimete", meaning: "Pertama kali" },
     { jp: "結構", hiragana: "けっこう", romaji: "kekkou", meaning: "Lumayan / Cukup" },
@@ -900,34 +876,28 @@
     { jp: "たぶん", hiragana: "たぶん", romaji: "tabun", meaning: "Mungkin" },
     { jp: "きっと", hiragana: "きっと", romaji: "kitto", meaning: "Pasti" },
     { jp: "本当に", hiragana: "ほんとうに", romaji: "hontou ni", meaning: "Sungguh-sungguh / Benar-benar" },
-    // Kata Sambung & Konjungsi (Setsuzokushi) - N4
     { jp: "それで", hiragana: "それで", romaji: "sorede", meaning: "Oleh karena itu / Jadi" },
     { jp: "ですから", hiragana: "ですから", romaji: "desukara", meaning: "Oleh sebab itu" },
     { jp: "しかし", hiragana: "しかし", romaji: "shikashi", meaning: "Namun / Akan tetapi" },
     { jp: "ところで", hiragana: "ところで", romaji: "tokoro de", meaning: "Ngomong-ngomong" },
     { jp: "または", hiragana: "または", romaji: "mataha", meaning: "Atau" },
-    // Rumah Sakit, Kesehatan & Darurat - N4
     { jp: "医者", hiragana: "いしゃ", romaji: "isha", meaning: "Dokter" },
     { jp: "薬", hiragana: "くすり", romaji: "kusuri", meaning: "Obat" },
     { jp: "熱", hiragana: "ねつ", romaji: "netsu", meaning: "Demam / Suhu tinggi" },
     { jp: "病気", hiragana: "びょうき", romaji: "byouki", meaning: "Penyakit / Sakit" },
     { jp: "痛い", hiragana: "いたい", romaji: "itai", meaning: "Sakit / Nyeri" },
     { jp: "けが", hiragana: "けが", romaji: "kega", meaning: "Luka / Cedera" },
-    // Bank, Kantor Pos & Administrasi - N4
     { jp: "お金", hiragana: "おかね", romaji: "okane", meaning: "Uang" },
     { jp: "口座", hiragana: "こうざ", romaji: "kouza", meaning: "Rekening bank" },
     { jp: "荷物", hiragana: "にもつ", romaji: "nimotsu", meaning: "Barang / Bagasi / Paket" },
     { jp: "住所", hiragana: "じゅうしょ", romaji: "juusho", meaning: "Alamat" }
-// Cuaca, Alam & Bencana
     { jp: "晴れ", hiragana: "はれ", romaji: "hare", meaning: "Cerah" },
     { jp: "曇り", hiragana: "くもり", romaji: "kumori", meaning: "Berawan" },
     { jp: "台風", hiragana: "たいふう", romaji: "taifuu", meaning: "Badai / Taifun" },
     { jp: "海", hiragana: "うみ", romaji: "umi", meaning: "Laut" },
-    // Sekolah, Ujian & Belajar
     { jp: "先生", hiragana: "せんせい", romaji: "sensei", meaning: "Guru / Dosen" },
     { jp: "試験", hiragana: "しけん", romaji: "shiken", meaning: "Ujian" },
     { jp: "問題", hiragana: "もんだい", romaji: "mondai", meaning: "Soal / Masalah" },
-    // Frekuensi & Keterangan Waktu
     { jp: "いつも", hiragana: "いつも", romaji: "itsumo", meaning: "Selalu" },
     { jp: "時々", hiragana: "ときどき", romaji: "tokidoki", meaning: "Kadang-kadang" },
     { jp: "あまり", hiragana: "あまり", romaji: "amari", meaning: "Jarang / Tidak begitu (untuk kalimat negatif)" },
@@ -938,7 +908,6 @@
     { jp: "最後", hiragana: "さいご", romaji: "saigo", meaning: "Terakhir" },
     { jp: "最初", hiragana: "さいしょ", romaji: "saisho", meaning: "Pertama / Awal" },
     { jp: "突然", hiragana: "とつぜん", romaji: "totsuzen", meaning: "Tiba-tiba" },
-    // Sifat & Karakter Personal
     { jp: "親切", hiragana: "しんせつ", romaji: "shinsetsu", meaning: "Ramah / Baik hati" },
     { jp: "元気", hiragana: "げんき", romaji: "genki", meaning: "Sehat / Bersemangat" },
     { jp: "有名", hiragana: "ゆうめい", romaji: "yuumei", meaning: "Terkenal" },
@@ -949,7 +918,6 @@
     { jp: "好き", hiragana: "すき", romaji: "suki", meaning: "Suka" },
     { jp: "嫌い", hiragana: "きらい", romaji: "kirai", meaning: "Benci / Tidak suka" },
     { jp: "上手", hiragana: "じょうず", romaji: "jouzu", meaning: "Pandai / Mahir" }
-     // Kata Kerja
     { "jp": "有る", "hiragana": "ある", "romaji": "aru", "meaning": "ada" },
     { "jp": "居る", "hiragana": "いる", "romaji": "oru/iru", "meaning": "ada" },
     { "jp": "作業する", "hiragana": "さぎょうする", "romaji": "sagyou suru", "meaning": "bekerja" },
@@ -1347,7 +1315,6 @@
   { "jp": "薄い", "hiragana": "うすい", "romaji": "usui", "meaning": "tipis, encer (rasanya)" },
   { "jp": "おいしい", "hiragana": "", "romaji": "oishii", "meaning": "enak" },
   { "jp": "まずい", "hiragana": "", "romaji": "mazui", "meaning": "tidak enak" },
-  // KATA SIFAT
   { "jp": "暑い", "hiragana": "あつい", "romaji": "atsui", "meaning": "panas (suhu)" },
   { "jp": "寒い", "hiragana": "さむい", "romaji": "samui", "meaning": "dingin (suhu)" },
   { "jp": "暖かい", "hiragana": "あたたかい", "romaji": "atatakai", "meaning": "hangat (suhu)" },
