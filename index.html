@@ -7,139 +7,159 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
+            background-color: #f4f6f9;
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
         }
         .card {
             background: white;
-            padding: 25px;
+            padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            width: 380px;
+            width: 90%;
+            max-width: 450px;
             text-align: center;
         }
-        .meaning { font-size: 16px; color: #666; margin-bottom: 10px; font-weight: bold; }
-        .kanji-display { font-size: 50px; margin: 15px 0 25px 0; color: #d9534f; font-weight: bold; word-break: break-all; }
-        .options-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .btn-option {
-            background-color: #ffffff; color: #333; border: 2px solid #0275d8;
-            padding: 12px 8px; font-size: 15px; border-radius: 8px; cursor: pointer; font-weight: bold;
-            word-break: break-word;
+        h2 { color: #333; margin-bottom: 20px; }
+        .question-box {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 25px 0;
+            min-height: 40px;
         }
-        .btn-option:hover { background-color: #0275d8; color: white; }
-        .btn-option:disabled { cursor: not-allowed; opacity: 0.8; }
-        .correct { background-color: #5cb85c !important; color: white !important; border-color: #5cb85c !important; }
-        .wrong { background-color: #d9534f !important; color: white !important; border-color: #d9534f !important; }
-        .feedback { margin-top: 10px; font-weight: bold; font-size: 16px; min-height: 24px; }
-        .score { margin-top: 15px; font-size: 14px; color: #888; }
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .btn-option {
+            background-color: #ffffff;
+            border: 2px solid #3498db;
+            color: #3498db;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+        .btn-option:hover {
+            background-color: #3498db;
+            color: white;
+        }
+        .btn-option.correct {
+            background-color: #2ecc71 !important;
+            border-color: #2ecc71 !important;
+            color: white !important;
+        }
+        .btn-option.wrong {
+            background-color: #e74c3c !important;
+            border-color: #e74c3c !important;
+            color: white !important;
+        }
+        #score {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <h2>Tebak Cara Baca Kotoba</h2>
-        <div class="meaning" id="meaning">Memuat data...</div>
-        <div class="kanji-display" id="kanji">--</div>
-        <div class="options-container" id="optionsContainer"></div>
-        <div class="feedback" id="feedback"></div>
-        <div class="score" id="score">Skor: 0</div>
+        <h2>Tebak Arti Kotoba</h2>
+        <div id="question" class="question-box">Memuat data...</div>
+        <div id="options" class="options-container"></div>
+        <div id="score">Skor: 0</div>
     </div>
 
     <script>
-        let allKotoba = [];
-        let currentIndex = 0;
+        let kotobaList = [];
+        let currentQuestion = {};
         let score = 0;
-        let currentQuestion = null;
 
-        const kanjiEl = document.getElementById("kanji");
-        const meaningEl = document.getElementById("meaning");
-        const optionsContainer = document.getElementById("optionsContainer");
-        const feedbackEl = document.getElementById("feedback");
-        const scoreEl = document.getElementById("score");
+        async function loadData() {
+            try {
+                let response = await fetch('kotoba_data.json');
+                if (!response.ok) throw new Error('Gagal mengambil file JSON');
+                kotobaList = await response.json();
+                nextQuestion();
+            } catch (error) {
+                document.getElementById('question').innerText = "Gagal memuat data kotoba!";
+                console.error(error);
+            }
+        }
 
-        // Ambil data dari file kotoba_data.json
-        fetch('kotoba_data.json')
-            .then(response => response.json())
-            .then(data => {
-                allKotoba = shuffleArray(data); // Acak urutan soal
-                loadQuestion();
-            })
-            .catch(error => {
-                meaningEl.textContent = "Gagal memuat data kotoba!";
-                console.error("Error:", error);
+        function shuffle(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+
+        function nextQuestion() {
+            if (kotobaList.length === 0) return;
+
+            // Ambil soal secara acak
+            currentQuestion = kotobaList[Math.floor(Math.random() * kotobaList.length)];
+            
+            // Tampilkan teks Jepang (utamakan 'jp', jika tidak ada pakai 'hiragana' atau 'kanji')
+            let displayWord = currentQuestion.jp || currentQuestion.hiragana || currentQuestion.kanji;
+            document.getElementById('question').innerText = displayWord;
+
+            // Ambil 3 pilihan jawaban salah secara acak
+            let wrongOptions = kotobaList
+                .filter(item => (item.meaning || item.arti) !== (currentQuestion.meaning || currentQuestion.arti))
+                .map(item => item.meaning || item.arti);
+            
+            shuffle(wrongOptions);
+
+            let choices = [currentQuestion.meaning || currentQuestion.arti, wrongOptions[0], wrongOptions[1], wrongOptions[2]];
+            shuffle(choices);
+
+            // Tampilkan pilihan ke tombol
+            let optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+
+            choices.forEach(choice => {
+                let btn = document.createElement('button');
+                btn.className = 'btn-option';
+                btn.innerText = choice;
+                btn.onclick = () => checkAnswer(btn, choice);
+                optionsContainer.appendChild(btn);
             });
+        }
 
-        function loadQuestion() {
-            if (currentIndex < allKotoba.length) {
-                currentQuestion = allKotoba[currentIndex];
-                
-                kanjiEl.textContent = currentQuestion.kanji;
-                meaningEl.textContent = "Arti: " + currentQuestion.meaning;
-                feedbackEl.textContent = "";
-                scoreEl.textContent = `Skor: ${score} | Soal: ${currentIndex + 1}/${allKotoba.length}`;
+        function checkAnswer(button, selectedChoice) {
+            let correctMeaning = currentQuestion.meaning || currentQuestion.arti;
+            let buttons = document.querySelectorAll('.btn-option');
+            
+            // Matikan semua tombol setelah diklik
+            buttons.forEach(btn => btn.disabled = true);
 
-                // Buat 4 pilihan (1 jawaban benar + 3 pengecoh acak dari data lain)
-                let options = [currentQuestion.romaji];
-                while (options.length < 4 && options.length < allKotoba.length) {
-                    let randomItem = allKotoba[Math.floor(Math.random() * allKotoba.length)].romaji;
-                    if (!options.includes(randomItem)) {
-                        options.push(randomItem);
+            if (selectedChoice === correctMeaning) {
+                button.classList.add('correct');
+                score += 10;
+                document.getElementById('score').innerText = "Skor: " + score;
+            } else {
+                button.classList.add('wrong');
+                // Tunjukkan mana jawaban yang benar
+                buttons.forEach(btn => {
+                    if (btn.innerText === correctMeaning) {
+                        btn.classList.add('correct');
                     }
-                }
-                options = shuffleArray(options); // Acak posisi tombol
-
-                // Tampilkan ke tombol pilihan ganda
-                optionsContainer.innerHTML = "";
-                options.forEach(option => {
-                    const btn = document.createElement("button");
-                    btn.classList.add("btn-option");
-                    btn.textContent = option;
-                    btn.onclick = () => selectAnswer(btn, option, currentQuestion.romaji);
-                    optionsContainer.appendChild(btn);
-                });
-            } else {
-                kanjiEl.textContent = "Selesai! 🎉";
-                meaningEl.textContent = `Skor Akhir Anda: ${score} dari ${allKotoba.length}`;
-                optionsContainer.innerHTML = "";
-                feedbackEl.textContent = "Hebat! Semua kotoba sudah diselesaikan.";
-            }
-        }
-
-        function selectAnswer(selectedBtn, selectedRomaji, correctRomaji) {
-            const allButtons = document.querySelectorAll(".btn-option");
-            allButtons.forEach(btn => btn.disabled = true);
-
-            if (selectedRomaji === correctRomaji) {
-                selectedBtn.classList.add("correct");
-                feedbackEl.style.color = "green";
-                feedbackEl.textContent = "Benar! 🎉";
-                score++;
-            } else {
-                selectedBtn.classList.add("wrong");
-                feedbackEl.style.color = "red";
-                feedbackEl.textContent = `Salah! Yang benar: ${correctRomaji}`;
-                allButtons.forEach(btn => {
-                    if (btn.textContent === correctRomaji) btn.classList.add("correct");
                 });
             }
 
-            currentIndex++;
-            setTimeout(loadQuestion, 1500); // Jeda 1.5 detik sebelum lanjut ke soal berikutnya
+            // Lanjut ke soal berikutnya setelah 1.2 detik
+            setTimeout(() => {
+                nextQuestion();
+            }, 1200);
         }
 
-        // Fungsi bantu untuk mengacak urutan
-        function shuffleArray(array) {
-            let arr = [...array];
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
-        }
+        loadData();
     </script>
 </body>
 </html>
