@@ -161,36 +161,60 @@
         }
 
         window.onload = initApp;
+// FUNGSI PENGELOMPOKKAN OTOMATIS BERDASARKAN ARTI & KATA
+function processMassCategories() {
+    groupedCategories = {};
 
-        function processMassCategories() {
-            groupedCategories = {};
+    allData.forEach(item => {
+        let cat = (item.category || "").toUpperCase();
+        let meaning = (item.meaning || "").toLowerCase();
+        let jp = (item.jp || "");
+        let macroGroup = "📦 KOTOBA UMUM";
 
-            allData.forEach(item => {
-                let cat = (item.category || "UMUM").toUpperCase();
-                let macroGroup = "LAIN-LAIN / UMUM";
+        // 1. Jika data dari file memiliki kategori asli dan valid
+        if (cat && cat !== "UMUM" && cat !== "") {
+            if (cat.includes('KERJA') || cat.includes('VERB') || cat.includes('U-VERBS') || cat.includes('RU-VERBS')) {
+                macroGroup = '⚡ KATA KERJA (VERBS)';
+            } else if (cat.includes('SIFAT') || cat.includes('ADJECTIVE')) {
+                macroGroup = '✨ KATA SIFAT (ADJECTIVES)';
+            } else if (cat.includes('BENDA') || cat.includes('ALAT') || cat.includes('RUMAH') || cat.includes('MAKANAN') || cat.includes('MINUMAN') || cat.includes('PAKAIAN') || cat.includes('TUBUH') || cat.includes('OBJEK') || cat.includes('TEMPAT') || cat.includes('KOTA')) {
+                macroGroup = '📦 BENDA & OBJEK SEKITAR';
+            } else if (cat.includes('WAKTU') || cat.includes('HARI') || cat.includes('BULAN') || cat.includes('TANGGAL') || cat.includes('ANGKA') || cat.includes('JUMLAH') || cat.includes('KETERANGAN')) {
+                macroGroup = '⏳ WAKTU, ANGKA & KETERANGAN';
+            } else if (cat.includes('SOSIAL') || cat.includes('KELUARGA') || cat.includes('ORANG') || cat.includes('PERASAAN') || cat.includes('EMOSI') || cat.includes('PROFESI') || cat.includes('PEKERJAAN')) {
+                macroGroup = '👥 SOSIAL, ORANG & PERASAAN';
+            } else {
+                macroGroup = cat.replace(/-?\s*BAGIAN\s*\d+/i, '').replace(/-\s*\d+$/, '').trim();
+            }
+        } 
+        // 2. Jika kategori kosong, deteksi otomatis lewat kata kunci Arti Bahasa Indonesia
+        else {
+            if (meaning.match(/(makan|minum|tidur|pergi|datang|melihat|membaca|menulis|beli|jual|pulang|berbicara|belajar|kerja|jalan|bangun|duduk|berdiri)/)) {
+                macroGroup = '⚡ KATA KERJA (VERBS)';
+            } else if (meaning.match(/(besar|kecil|panjang|pendek|baik|buruk|mahal|murah|panas|dingin|baru|lama|cantik|pintar|sulit|mudah)/)) {
+                macroGroup = '✨ KATA SIFAT (ADJECTIVES)';
+            } else if (meaning.match(/(hari|bulan|tahun|jam|menit|detik|senin|selasa|rabu|kamis|jumat|sabtu|minggu|pagi|siang|malam|satu|dua|tiga|empat|lima)/)) {
+                macroGroup = '⏳ WAKTU, ANGKA & KETERANGAN';
+            } else if (meaning.match(/(ayah|ibu|kakak|adik|orang|teman|guru|dokter|polisi|keluarga|anak|laki|perempuan)/)) {
+                macroGroup = '👥 SOSIAL, ORANG & PERASAAN';
+            } else if (meaning.match(/(rumah|sekolah|kantor|jalan|kota|kamar|buku|meja|kursi|air|nasi|baju|sepatu|uang|telepon|mobil)/)) {
+                macroGroup = '📦 BENDA & OBJEK SEKITAR';
+            } else {
+                macroGroup = '📦 KOTOBA UMUM';
+            }
+            
+            // Simpan kembali hasil deteksi otomatis ke item data
+            item.category = macroGroup;
+        }
 
-                if (cat.includes('KERJA') || cat.includes('VERB') || cat.includes('U-VERBS') || cat.includes('RU-VERBS')) {
-                    macroGroup = '⚡ KATA KERJA (VERBS)';
-                } else if (cat.includes('SIFAT') || cat.includes('ADJECTIVE')) {
-                    macroGroup = '✨ KATA SIFAT (ADJECTIVES)';
-                } else if (cat.includes('BENDA') || cat.includes('ALAT') || cat.includes('RUMAH') || cat.includes('MAKANAN') || cat.includes('MINUMAN') || cat.includes('PAKAIAN') || cat.includes('TUBUH') || cat.includes('OBJEK') || cat.includes('TEMPAT') || cat.includes('KOTA')) {
-                    macroGroup = '📦 BENDA & OBJEK SEKITAR';
-                } else if (cat.includes('WAKTU') || cat.includes('HARI') || cat.includes('BULAN') || cat.includes('TANGGAL') || cat.includes('ANGKA') || cat.includes('JUMLAH') || cat.includes('KETERANGAN')) {
-                    macroGroup = '⏳ WAKTU, ANGKA & KETERANGAN';
-                } else if (cat.includes('SOSIAL') || cat.includes('KELUARGA') || cat.includes('ORANG') || cat.includes('PERASAAN') || cat.includes('EMOSI') || cat.includes('PROFESI') || cat.includes('PEKERJAAN')) {
-                    macroGroup = '👥 SOSIAL, ORANG & PERASAAN';
-                } else {
-                    macroGroup = cat.replace(/-?\s*BAGIAN\s*\d+/i, '').replace(/-\s*\d+$/, '').trim();
-                    if (macroGroup === "") macroGroup = "KOTOBA UMUM";
-                }
-
-                if (!groupedCategories[macroGroup]) {
-                    groupedCategories[macroGroup] = [];
-                }
-                if (!groupedCategories[macroGroup].includes(item.category)) {
-                    groupedCategories[macroGroup].push(item.category);
-                }
-            });
+        if (!groupedCategories[macroGroup]) {
+            groupedCategories[macroGroup] = [];
+        }
+        if (!groupedCategories[macroGroup].includes(item.category)) {
+            groupedCategories[macroGroup].push(item.category);
+        }
+    });
+}
         }
 
         function renderMenuButtons(categoriesToRender) {
