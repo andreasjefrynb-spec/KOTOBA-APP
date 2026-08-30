@@ -153,7 +153,7 @@
 <body>
 
     <div class="container">
-        日本語クラス
+        <h1>日本語クラス</h1>
         <div class="subtitle">// CYBER SYSTEM V1.0</div>
 
         <!-- MENU UTAMA -->
@@ -224,30 +224,23 @@
             const menuContainer = document.getElementById('menu-buttons');
             menuContainer.innerHTML = '';
 
-            // Tombol Semua Kotoba
             const btnAll = document.createElement('button');
             btnAll.className = 'btn';
             btnAll.innerHTML = `> // ALL KOTOBA (${allData.length} WORDS)`;
             btnAll.onclick = () => startQuiz('ALL');
             menuContainer.appendChild(btnAll);
 
-            // Logika Penyederhanaan & Pengelompokan Kategori Utama
             let rawCategories = [...new Set(allData.map(item => item.category))];
             let groupedCategories = {};
 
             rawCategories.forEach(cat => {
                 let baseName = cat;
-
-                // Bersihkan penamaan bagian, nomor, dan sub-kategori agar menyatu
                 if (cat.includes('Kata Kerja') || cat.toLowerCase().includes('u-verbs') || cat.toLowerCase().includes('ru-verbs')) {
                     baseName = 'KATA KERJA (DIVERSIFIKASI)';
                 } else if (cat.includes('Kata Sifat')) {
                     baseName = 'KATA SIFAT (I & NA)';
                 } else {
-                    // Buang tulisan "- Bagian X", "- 1", dll secara umum
-                    baseName = baseName.replace(/-?\s*BAGIAN\s*\d+/i, '')
-                                       .replace(/-\s*\d+$/, '')
-                                       .trim();
+                    baseName = baseName.replace(/-?\s*BAGIAN\s*\d+/i, '').replace(/-\s*\d+$/, '').trim();
                 }
 
                 if (!groupedCategories[baseName]) {
@@ -256,7 +249,6 @@
                 groupedCategories[baseName].push(cat);
             });
 
-            // Buat tombol menu yang sudah disederhanakan
             Object.keys(groupedCategories).forEach(baseName => {
                 let subCategories = groupedCategories[baseName];
                 let totalWords = allData.filter(item => subCategories.includes(item.category)).length;
@@ -318,11 +310,26 @@
             document.getElementById('target-word').innerText = currentObj.jp || "-";
             document.getElementById('target-hiragana').innerText = currentObj.hiragana ? `[ ${currentObj.hiragana} ]` : "";
 
+            // PILIHAN JAWABAN: Prioritaskan dari kelompok/kategori yang sama
             let options = [currentObj.meaning];
-            while (options.length < 4 && options.length < allData.length) {
-                let randomObj = allData[Math.floor(Math.random() * allData.length)];
-                if (!options.includes(randomObj.meaning)) {
-                    options.push(randomObj.meaning);
+            
+            // Ambil kandidat dari array soal aktif saat ini (kategori yang sedang dimainkan)
+            let poolSameCategory = currentQuestions.filter(item => item.meaning !== currentObj.meaning);
+            
+            // Acak pool kategori yang sama
+            poolSameCategory.sort(() => Math.random() - 0.5);
+
+            // Masukkan pilihan dari kategori yang sama sampai maksimal 4 pilihan
+            for (let i = 0; i < poolSameCategory.length && options.length < 4; i++) {
+                options.push(poolSameCategory[i].meaning);
+            }
+
+            // Jika kategori tersebut punya sedikit kata (kurang dari 4 pilihan), lengkapi dari allData umum
+            if (options.length < 4) {
+                let poolGeneral = allData.filter(item => !options.includes(item.meaning));
+                poolGeneral.sort(() => Math.random() - 0.5);
+                for (let i = 0; i < poolGeneral.length && options.length < 4; i++) {
+                    options.push(poolGeneral[i].meaning);
                 }
             }
 
