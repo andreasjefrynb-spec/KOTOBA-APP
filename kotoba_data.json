@@ -1166,3 +1166,50 @@
     { jp: "切手", hiragana: "きって", romaji: "kitte", meaning: "Prangko" },
     { jp: "荷物", hiragana: "にもつ", romaji: "nimotsu", meaning: "Barang / Bagasi / Paket" },
     { jp: "住所", hiragana: "じゅうしょ", romaji: "juusho", meaning: "Alamat" }
+// Cuaca, Alam & Bencana
+    { jp: "雨", hiragana: "あめ", romaji: "ame", meaning: "Hujan" },
+    { jp: "雪", hiragana: "ゆき", romaji: "yuki", meaning: "Salju" },
+    { jp: "風", hiragana: "かぜ", romaji: "kaze", meaning: "Angin" },
+    { jp: "天気", hiragana: "てんき", romaji: "tenki", meaning: "Cuaca" },
+    { jp: "晴れ", hiragana: "はれ", romaji: "hare", meaning: "Cerah" },
+    { jp: "曇り", hiragana: "くもり", romaji: "kumori", meaning: "Berawan" },
+    { jp: "地震", hiragana: "じしん", romaji: "jishin", meaning: "Gempa bumi" },
+    { jp: "台風", hiragana: "たいふう", romaji: "taifuu", meaning: "Badai / Taifun" },
+    { jp: "海", hiragana: "うみ", romaji: "umi", meaning: "Laut" },
+    { jp: "山", hiragana: "やま", romaji: "yama", meaning: "Gunung" },
+
+    // Sekolah, Ujian & Belajar
+    { jp: "学校", hiragana: "がっこう", romaji: "gakkou", meaning: "Sekolah" },
+    { jp: "学生", hiragana: "がくせい", romaji: "gakusei", meaning: "Pelajar / Mahasiswa" },
+    { jp: "先生", hiragana: "せんせい", romaji: "sensei", meaning: "Guru / Dosen" },
+    { jp: "試験", hiragana: "しけん", romaji: "shiken", meaning: "Ujian" },
+    { jp: "宿題", hiragana: "しゅくだい", romaji: "shukudai", meaning: "Pekerjaan rumah (PR)" },
+    { jp: "教室", hiragana: "きょうしつ", romaji: "kyoushitsu", meaning: "Ruang kelas" },
+    { jp: "問題", hiragana: "もんだい", romaji: "mondai", meaning: "Soal / Masalah" },
+    { jp: "答え", hiragana: "こたえ", romaji: "kotae", meaning: "Jawaban" },
+    { jp: "辞書", hiragana: "じしょ", romaji: "jisho", meaning: "Kamus" },
+    { jp: "鉛筆", hiragana: "えんぴつ", romaji: "enpitsu", meaning: "Pensil" },
+
+    // Frekuensi & Keterangan Waktu
+    { jp: "いつも", hiragana: "いつも", romaji: "itsumo", meaning: "Selalu" },
+    { jp: "時々", hiragana: "ときどき", romaji: "tokidoki", meaning: "Kadang-kadang" },
+    { jp: "あまり", hiragana: "あまり", romaji: "amari", meaning: "Jarang / Tidak begitu (untuk kalimat negatif)" },
+    { jp: "全然", hiragana: "ぜんぜん", romaji: "zenzen", meaning: "Sama sekali tidak" },
+    { jp: "もう", hiragana: "もう", romaji: "mou", meaning: "Sudah" },
+    { jp: "まだ", hiragana: "まだ", romaji: "mada", meaning: "Belum / Masih" },
+    { jp: "次", hiragana: "つぎ", romaji: "tsugi", meaning: "Berikutnya / Selanjutnya" },
+    { jp: "最後", hiragana: "さいご", romaji: "saigo", meaning: "Terakhir" },
+    { jp: "最初", hiragana: "さいしょ", romaji: "saisho", meaning: "Pertama / Awal" },
+    { jp: "突然", hiragana: "とつぜん", romaji: "totsuzen", meaning: "Tiba-tiba" },
+
+    // Sifat & Karakter Personal
+    { jp: "親切", hiragana: "しんせつ", romaji: "shinsetsu", meaning: "Ramah / Baik hati" },
+    { jp: "元気", hiragana: "げんき", romaji: "genki", meaning: "Sehat / Bersemangat" },
+    { jp: "有名", hiragana: "ゆうめい", romaji: "yuumei", meaning: "Terkenal" },
+    { jp: "静か", hiragana: "しずか", romaji: "shizuka", meaning: "Tenang / Sunyi" },
+    { jp: "賑やか", hiragana: "にぎやか", romaji: "nigiyaka", meaning: "Ramai / Rame" },
+    { jp: "暇", hiragana: "ひま", romaji: "hima", meaning: "Luang / Senggang" },
+    { jp: "綺麗", hiragana: "きれい", romaji: "kirei", meaning: "Indah / Cantik / Bersih" },
+    { jp: "好き", hiragana: "すき", romaji: "suki", meaning: "Suka" },
+    { jp: "嫌い", hiragana: "きらい", romaji: "kirai", meaning: "Benci / Tidak suka" },
+    { jp: "上手", hiragana: "じょうず", romaji: "jouzu", meaning: "Pandai / Mahir" }
