@@ -333,15 +333,26 @@
                 (item.romaji && item.romaji.toLowerCase().includes(keyword))
             );
 
-            document.getElementById('menu-status').innerText = `HASIL PENCARIAN (${matchedWords.length} KATA):`;
+            // Menghilangkan duplikat berdasarkan gabungan 'jp' dan 'meaning'
+            let uniqueWords = [];
+            let seen = new Set();
+            matchedWords.forEach(item => {
+                let identifier = item.jp + "|" + item.meaning;
+                if (!seen.has(identifier)) {
+                    seen.add(identifier);
+                    uniqueWords.push(item);
+                }
+            });
+
+            document.getElementById('menu-status').innerText = `HASIL PENCARIAN (${uniqueWords.length} KATA):`;
             menuContainer.innerHTML = '';
 
-            if (matchedWords.length === 0) {
+            if (uniqueWords.length === 0) {
                 menuContainer.innerHTML = `<div style="color: #ff3333; text-align: center; padding: 15px;">KATA TIDAK DITEMUKAN</div>`;
                 return;
             }
 
-            matchedWords.forEach(item => {
+            uniqueWords.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'result-item';
                 div.innerHTML = `
