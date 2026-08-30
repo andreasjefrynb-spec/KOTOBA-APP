@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nihongo Quest - Sakura Edition</title>
+    <title>日本語クラス - Sakura Edition</title>
     <!-- Google Fonts: Plus Jakarta Sans & Noto Sans JP -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -41,28 +41,27 @@
 
         .container {
             width: 100%;
-            max-width: 620px;
+            max-width: 600px;
             text-align: center;
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn 0.4s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             color: #ffffff;
         }
 
         .subtitle {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--sakura-pink);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -73,10 +72,10 @@
             background: rgba(25, 15, 25, 0.8);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 14px 18px;
+            padding: 12px 16px;
             border-radius: 12px;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
             outline: none;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -84,7 +83,7 @@
 
         .search-box:focus {
             border-color: var(--sakura-pink);
-            box-shadow: 0 0 15px rgba(255, 183, 197, 0.2);
+            box-shadow: 0 0 12px rgba(255, 183, 197, 0.2);
         }
 
         .search-box::placeholder {
@@ -95,17 +94,17 @@
             background: var(--card-bg);
             backdrop-filter: blur(14px);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 24px 20px;
+            border-radius: 18px;
+            padding: 20px 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            margin-bottom: 20px;
-            max-height: 55vh;
+            margin-bottom: 15px;
+            max-height: 52vh;
             overflow-y: auto;
             text-align: left;
         }
 
         .card::-webkit-scrollbar {
-            width: 6px;
+            width: 5px;
         }
         .card::-webkit-scrollbar-thumb {
             background: rgba(255, 183, 197, 0.3);
@@ -113,26 +112,32 @@
         }
 
         .menu-title {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--sakura-pink);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: 700;
             letter-spacing: 1px;
             text-align: center;
             text-transform: uppercase;
         }
 
+        /* Tampilan tombol ringkas (grid/list efisien) */
+        .menu-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
         .btn {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             color: var(--text-main);
             border: 1px solid var(--border-color);
-            padding: 13px 16px;
+            padding: 11px 14px;
             width: 100%;
-            border-radius: 12px;
-            font-size: 0.92rem;
+            border-radius: 10px;
+            font-size: 0.88rem;
             font-weight: 600;
             cursor: pointer;
-            margin-bottom: 10px;
             transition: all 0.2s ease;
             text-align: left;
             display: flex;
@@ -142,45 +147,40 @@
 
         .btn::after {
             content: '🌸';
-            font-size: 0.75rem;
-            opacity: 0.6;
+            font-size: 0.7rem;
+            opacity: 0.5;
             transition: transform 0.2s;
         }
 
         .btn:hover {
-            background: rgba(255, 183, 197, 0.15);
+            background: rgba(255, 183, 197, 0.12);
             border-color: var(--sakura-pink);
-            transform: translateY(-1px);
+            transform: translateX(2px);
             color: #ffffff;
         }
 
         .btn:hover::after {
             opacity: 1;
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
 
         .result-item {
             background: rgba(20, 12, 20, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 12px 14px;
-            margin-bottom: 8px;
-            border-radius: 10px;
-            transition: border-color 0.2s;
-        }
-
-        .result-item:hover {
-            border-color: var(--border-color);
+            padding: 10px 12px;
+            margin-bottom: 6px;
+            border-radius: 8px;
         }
 
         .result-info {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .result-info strong {
             color: #ffffff;
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
 
         .result-info span {
@@ -206,18 +206,17 @@
         .stats-bar {
             display: flex;
             justify-content: space-between;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: var(--text-muted);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             padding: 0 4px;
-            letter-spacing: 0.5px;
         }
 
         .target-tag {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--sakura-pink);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-align: center;
@@ -225,30 +224,27 @@
         }
 
         .target-word {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             color: #ffffff;
-            word-break: break-word;
             text-align: center;
         }
 
         .target-hiragana {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--sakura-pink);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             font-weight: 500;
-            letter-spacing: 1px;
             text-align: center;
         }
 
         .footer-nav {
-            margin-top: 15px;
-            font-size: 0.85rem;
+            margin-top: 12px;
+            font-size: 0.8rem;
             color: var(--text-muted);
             cursor: pointer;
             font-weight: 600;
-            letter-spacing: 0.5px;
             transition: color 0.2s;
             text-align: center;
         }
@@ -266,14 +262,14 @@
 
     <div class="container">
         <h1>🌸 Nihongo Quest</h1>
-        <div class="subtitle">Belajar Kotoba dengan Tenang & Elegan</div>
+        <div class="subtitle">Belajar Kotoba Ringkas & Elegan</div>
 
         <!-- MENU UTAMA -->
         <div id="main-menu">
             <input type="text" id="search-input" class="search-box" placeholder="🔍 Cari kata, arti, atau romaji..." oninput="handleSearch()">
             <div class="card">
                 <div class="menu-title" id="menu-status">MEMUAT MATERI...</div>
-                <div id="menu-buttons" class="hidden"></div>
+                <div id="menu-buttons" class="hidden menu-grid"></div>
             </div>
         </div>
 
@@ -289,7 +285,7 @@
                 <div id="target-word" class="target-word">-</div>
                 <div id="target-hiragana" class="target-hiragana"></div>
 
-                <div id="options-container"></div>
+                <div id="options-container" class="menu-grid"></div>
             </div>
 
             <div class="footer-nav" onclick="backToMenu()">← KEMBALI KE MENU UTAMA</div>
@@ -325,10 +321,9 @@
                     }
                 });
 
-                // PEMBERSIHAN DUPLIKAT DATA UTAMA
+                // Membersihkan duplikat data persis
                 let seenKeys = new Set();
                 allData = [];
-
                 rawData.forEach(item => {
                     let uniqueKey = `${(item.jp || '').trim()}_${(item.meaning || '').toLowerCase().trim()}`;
                     if (!seenKeys.has(uniqueKey)) {
@@ -338,7 +333,7 @@
                 });
 
                 if (allData.length > 0) {
-                    document.getElementById('menu-status').innerText = 'PILIH MATERI BELAJAR:';
+                    document.getElementById('menu-status').innerText = 'PILIH KATEGORI MATERI:';
                     processCategories();
                     renderMenuButtons(groupedCategories);
                 } else {
@@ -357,20 +352,24 @@
             rawCategories.forEach(cat => {
                 let baseName = cat;
                 
-                // Normalisasi nama kategori agar tidak pecah/duplikat berlebihan
-                if (cat.includes('Kata Kerja') || cat.toLowerCase().includes('u-verbs') || cat.toLowerCase().includes('ru-verbs')) {
+                // Meringkas dan menyatukan kategori yang mirip agar menu lebih bersih
+                let upperCat = cat.toUpperCase();
+                if (upperCat.includes('KATA KERJA') || upperCat.includes('VERB')) {
                     baseName = 'KATA KERJA (VERBS)';
-                } else if (cat.includes('Kata Sifat') || cat.toUpperCase().includes('KATA SIFAT')) {
+                } else if (upperCat.includes('KATA SIFAT') || upperCat.includes('ADJECTIVE')) {
                     baseName = 'KATA SIFAT (ADJECTIVES)';
+                } else if (upperCat.includes('BENDA') || upperCat.includes('OBJEK') || upperCat.includes('MAKANAN') || upperCat.includes('RUMAH')) {
+                    baseName = 'BENDA & BENDA SEKELILING';
+                } else if (upperCat.includes('WAKTU') || upperCat.includes('TANGGAL') || upperCat.includes('BULAN')) {
+                    baseName = 'WAKTU & KETERANGAN';
                 } else {
-                    // Membersihkan nomor bagian atau kata "BAGIAN" berlebih di akhir teks kategori
+                    // Membersihkan nomor bagian agar tidak membuat banyak baris menu pecah
                     baseName = baseName.replace(/-?\s*BAGIAN\s*\d+/i, '').replace(/-\s*\d+$/, '').trim();
                 }
 
                 if (!groupedCategories[baseName]) {
                     groupedCategories[baseName] = [];
                 }
-                // Mencegah sub-kategori duplikat masuk ke dalam grup yang sama
                 if (!groupedCategories[baseName].includes(cat)) {
                     groupedCategories[baseName].push(cat);
                 }
@@ -381,9 +380,10 @@
             const menuContainer = document.getElementById('menu-buttons');
             menuContainer.innerHTML = '';
 
+            // Tombol utama akses semua data
             const btnAll = document.createElement('button');
             btnAll.className = 'btn';
-            btnAll.innerHTML = `<span>🌸 SEMUA KOTOBA (${allData.length} KATA)</span>`;
+            btnAll.innerHTML = `<span>🌸 SEMUA KOTOBA</span> <span style="font-size: 0.7rem; background: rgba(255, 183, 197, 0.15); color: var(--sakura-pink); padding: 2px 6px; border-radius: 6px;">${allData.length}</span>`;
             btnAll.onclick = () => startQuiz('ALL');
             menuContainer.appendChild(btnAll);
 
@@ -393,7 +393,7 @@
 
                 const btn = document.createElement('button');
                 btn.className = 'btn';
-                btn.innerHTML = `<span>🌿 ${baseName.toUpperCase()}</span> <span style="font-size: 0.75rem; background: rgba(255, 183, 197, 0.1); color: var(--sakura-pink); padding: 2px 8px; border-radius: 6px;">${totalWords} kata</span>`;
+                btn.innerHTML = `<span>🌿 ${baseName}</span> <span style="font-size: 0.7rem; background: rgba(255, 183, 197, 0.1); color: var(--sakura-pink); padding: 2px 6px; border-radius: 6px;">${totalWords}</span>`;
                 btn.onclick = () => startQuizGroup(baseName, subCategories);
                 menuContainer.appendChild(btn);
             });
@@ -406,7 +406,7 @@
             const menuContainer = document.getElementById('menu-buttons');
             
             if (keyword === "") {
-                document.getElementById('menu-status').innerText = 'PILIH MATERI BELAJAR:';
+                document.getElementById('menu-status').innerText = 'PILIH KATEGORI MATERI:';
                 renderMenuButtons(groupedCategories);
                 return;
             }
@@ -429,11 +429,11 @@
                 }
             });
 
-            document.getElementById('menu-status').innerText = `HASIL PENCARIAN (${uniqueWords.length} KATA):`;
+            document.getElementById('menu-status').innerText = `HASIL PENCARIAN (${uniqueWords.length}):`;
             menuContainer.innerHTML = '';
 
             if (uniqueWords.length === 0) {
-                menuContainer.innerHTML = `<div style="color: var(--sakura-pink); text-align: center; padding: 15px; font-weight: 500;">KATA TIDAK DITEMUKAN</div>`;
+                menuContainer.innerHTML = `<div style="color: var(--sakura-pink); text-align: center; padding: 12px; font-size: 0.85rem;">KATA TIDAK DITEMUKAN</div>`;
                 return;
             }
 
@@ -522,7 +522,7 @@
             });
         }
 
-        function checkAnswer(buttonElement, selected, correct) {
+            function checkAnswer(buttonElement, selected, correct) {
             if (isAnswered) return;
             isAnswered = true;
 
@@ -552,7 +552,7 @@
             document.getElementById('quiz-section').classList.add('hidden');
             document.getElementById('main-menu').classList.remove('hidden');
             document.getElementById('search-input').value = "";
-            document.getElementById('menu-status').innerText = 'PILIH MATERI BELAJAR:';
+            document.getElementById('menu-status').innerText = 'PILIH KATEGORI MATERI:';
             renderMenuButtons(groupedCategories);
         }
     </script>
