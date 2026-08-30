@@ -105,6 +105,26 @@
             box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
         }
 
+        .result-item {
+            background-color: #0b0f0d;
+            border: 1px solid #00ff66;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .result-info {
+            font-size: 0.9rem;
+            color: #ffffff;
+        }
+
+        .result-info span {
+            color: #00ff66;
+        }
+
         .btn.correct {
             background-color: #00ff66 !important;
             color: #0b0f0d !important;
@@ -183,7 +203,7 @@
 
         <!-- MENU UTAMA -->
         <div id="main-menu">
-            <input type="text" id="search-input" class="search-box" placeholder="[ KETIK UNTUK CARI KATA / KATEGORI ]..." oninput="filterMenu()">
+            <input type="text" id="search-input" class="search-box" placeholder="[ KETIK KATA / MEANING / ROMAJI ]..." oninput="handleSearch()">
             <div class="card">
                 <div class="menu-title" id="menu-status">LOADING SYSTEM DATA...</div>
                 <div id="menu-buttons" class="hidden"></div>
@@ -275,7 +295,6 @@
             const menuContainer = document.getElementById('menu-buttons');
             menuContainer.innerHTML = '';
 
-            // Tombol All Kotoba selalu di atas
             const btnAll = document.createElement('button');
             btnAll.className = 'btn';
             btnAll.innerHTML = `> // ALL KOTOBA (${allData.length} WORDS)`;
@@ -296,31 +315,44 @@
             menuContainer.classList.remove('hidden');
         }
 
-        function filterMenu() {
-            let keyword = document.getElementById('search-input').value.toLowerCase();
-            if (keyword.trim() === "") {
+        function handleSearch() {
+            let keyword = document.getElementById('search-input').value.toLowerCase().trim();
+            const menuContainer = document.getElementById('menu-buttons');
+            
+            if (keyword === "") {
+                document.getElementById('menu-status').innerText = 'SELECT MISSION MATERI:';
                 renderMenuButtons(groupedCategories);
                 return;
             }
 
-            // Filter kategori yang cocok dengan ketikan judul atau isi artinya
-            let filteredGroups = {};
-            Object.keys(groupedCategories).forEach(baseName => {
-                let subCategories = groupedCategories[baseName];
-                let matchedWords = allData.filter(item => 
-                    subCategories.includes(item.category) && 
-                    (item.meaning.toLowerCase().includes(keyword) || 
-                     item.jp.toLowerCase().includes(keyword) || 
-                     (item.hiragana && item.hiragana.toLowerCase().includes(keyword)) ||
-                     baseName.toLowerCase().includes(keyword))
-                );
+            // Cari kata individual yang cocok dengan arti, romaji, hiragana, atau jp
+            let matchedWords = allData.filter(item => 
+                (item.meaning && item.meaning.toLowerCase().includes(keyword)) || 
+                (item.jp && item.jp.toLowerCase().includes(keyword)) || 
+                (item.hiragana && item.hiragana.toLowerCase().includes(keyword)) ||
+                (item.romaji && item.romaji.toLowerCase().includes(keyword))
+            );
 
-                if (matchedWords.length > 0 || baseName.toLowerCase().includes(keyword)) {
-                    filteredGroups[baseName] = subCategories;
-                }
+            document.getElementById('menu-status').innerText = `HASIL PENCARIAN (${matchedWords.length} KATA):`;
+            menuContainer.innerHTML = '';
+
+            if (matchedWords.length === 0) {
+                menuContainer.innerHTML = `<div style="color: #ff3333; text-align: center; padding: 15px;">KATA TIDAK DITEMUKAN</div>`;
+                return;
+            }
+
+            matchedWords.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'result-item';
+                div.innerHTML = `
+                    <div class="result-info">
+                        <strong>${item.jp}</strong> [ ${item.hiragana || '-'} ]<br>
+                        <span style="color: #00cc55;">Romaji:</span> ${item.romaji || '-'}<br>
+                        <span style="color: #00cc55; font-weight: bold;">Arti:</span> ${item.meaning}
+                    </div>
+                `;
+                menuContainer.appendChild(div);
             });
-
-            renderMenuButtons(filteredGroups);
         }
 
         function startQuizGroup(groupName, subCategories) {
@@ -424,6 +456,7 @@
             document.getElementById('quiz-section').classList.add('hidden');
             document.getElementById('main-menu').classList.remove('hidden');
             document.getElementById('search-input').value = "";
+            document.getElementById('menu-status').innerText = 'SELECT MISSION MATERI:';
             renderMenuButtons(groupedCategories);
         }
     </script>
