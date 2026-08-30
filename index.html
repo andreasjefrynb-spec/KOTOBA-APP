@@ -315,9 +315,11 @@ sampe jepang langsung pulang</div>
         let groupedCategories = {};
 
         fetch('kotoba_data.json')
-            .then(response => response.json())
-            .then(jsonData => {
-                let rawData = [];
+    .then(response => response.text())
+    .then(textData => {
+        let cleanedText = textData.replace(/([{,]\s*)([a-zA-Z0-9_]+)(\s*:\s*)/g, '$1"$2"$3').replace(/'/g, '"');
+        let jsonData = JSON.parse(cleanedText);
+        let rawData = [];
                 
                 // Mendukung format JSON murni ataupun file teks berisi objek/baris
                 if (Array.isArray(jsonData)) {
