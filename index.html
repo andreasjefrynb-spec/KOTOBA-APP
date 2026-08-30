@@ -321,6 +321,7 @@
             .then(textData => {
                 let lines = textData.split('\n');
                 let currentCategory = "UMUM";
+                let rawData = [];
                 
                 lines.forEach(line => {
                     let trimmed = line.trim();
@@ -330,8 +331,20 @@
                         try {
                             let obj = eval('(' + trimmed.replace(/,\s*$/, '') + ')');
                             obj.category = currentCategory;
-                            allData.push(obj);
+                            rawData.push(obj);
                         } catch (e) {}
+                    }
+                });
+
+                // FILTER DUPLIKAT BERDASARKAN KATA & ARTI
+                let seenKeys = new Set();
+                allData = [];
+
+                rawData.forEach(item => {
+                    let uniqueKey = `${(item.jp || '').trim()}_${(item.meaning || '').toLowerCase().trim()}`;
+                    if (!seenKeys.has(uniqueKey)) {
+                        seenKeys.add(uniqueKey);
+                        allData.push(item);
                     }
                 });
 
@@ -343,6 +356,10 @@
                     document.getElementById('menu-status').innerText = 'ERROR: DATA KOSONG';
                 }
             })
+            .catch(error => {
+                console.error('Gagal memuat data:', error);
+                document.getElementById('menu-status').innerText = 'ERROR: GAGAL MEMUAT FILE';
+            });
             .catch(error => {
                 console.error('Gagal memuat data:', error);
                 document.getElementById('menu-status').innerText = 'ERROR: GALAL MEMUAT FILE';
