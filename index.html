@@ -274,8 +274,7 @@
 
     <div class="container">
         <h1>日本語クラス</h1>
-        <div class="kalo ga belajar sekarang
-sampe jepang langsung pulang</div>
+        <div class="subtitle">Kalo ga belajar sekarang sampe jepang langsung pulang</div>
 
         <!-- MENU UTAMA -->
         <div id="main-menu">
@@ -315,17 +314,16 @@ sampe jepang langsung pulang</div>
         let groupedCategories = {};
 
         fetch('kotoba_data.json')
-    .then(response => response.text())
-    .then(textData => {
-        let cleanedText = textData.replace(/([{,]\s*)([a-zA-Z0-9_]+)(\s*:\s*)/g, '$1"$2"$3').replace(/'/g, '"');
-        let jsonData = JSON.parse(cleanedText);
-        let rawData = [];
-                
+            .then(response => response.text())
+            .then(textData => {
+                let cleanedText = textData.replace(/([{,]\s*)([a-zA-Z0-9_]+)(\s*:\s*)/g, '$1"$2"$3').replace(/'/g, '"');
+                let jsonData = JSON.parse(cleanedText);
+                let rawData = [];
+                    
                 // Mendukung format JSON murni ataupun file teks berisi objek/baris
                 if (Array.isArray(jsonData)) {
                     rawData = jsonData;
                 } else {
-                    // Jika format file berupa barisan teks/komentar kategori
                     rawData = Object.values(jsonData).flat();
                 }
 
@@ -378,7 +376,7 @@ sampe jepang langsung pulang</div>
                     macroGroup = '✨ KATA SIFAT (ADJECTIVES)';
                 } else if (cat.includes('BENDA') || cat.includes('ALAT') || cat.includes('RUMAH') || cat.includes('MAKANAN') || cat.includes('MINUMAN') || cat.includes('PAKAIAN') || cat.includes('TUBUH') || cat.includes('OBJEK') || cat.includes('TEMPAT') || cat.includes('KOTA')) {
                     macroGroup = '📦 BENDA & OBJEK SEKITAR';
-                } else if (cat.includes('WAKTU') || cat.includes('HARI') || cat.includes('BULAN') || cat.includes('TANGGAL') || cat.includes('ANGKA') || cat.includes('JUMLAH') || cat.includes('KETERangan')) {
+                } else if (cat.includes('WAKTU') || cat.includes('HARI') || cat.includes('BULAN') || cat.includes('TANGGAL') || cat.includes('ANGKA') || cat.includes('JUMLAH') || cat.includes('KETERANGAN')) {
                     macroGroup = '⏳ WAKTU, ANGKA & KETERANGAN';
                 } else if (cat.includes('SOSIAL') || cat.includes('KELUARGA') || cat.includes('ORANG') || cat.includes('PERASAAN') || cat.includes('EMOSI') || cat.includes('PROFESI') || cat.includes('PEKERJAAN')) {
                     macroGroup = '👥 SOSIAL, ORANG & PERASAAN';
