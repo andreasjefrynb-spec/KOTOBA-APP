@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Tebak Kotoba</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 380px;
+            text-align: center;
+        }
+        .meaning { font-size: 16px; color: #666; margin-bottom: 10px; font-weight: bold; }
+        .kanji-display { font-size: 50px; margin: 15px 0 25px 0; color: #d9534f; font-weight: bold; word-break: break-all; }
+        .options-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        .btn-option {
+            background-color: #ffffff; color: #333; border: 2px solid #0275d8;
+            padding: 12px 8px; font-size: 15px; border-radius: 8px; cursor: pointer; font-weight: bold;
+            word-break: break-word;
+        }
+        .btn-option:hover { background-color: #0275d8; color: white; }
+        .btn-option:disabled { cursor: not-allowed; opacity: 0.8; }
+        .correct { background-color: #5cb85c !important; color: white !important; border-color: #5cb85c !important; }
+        .wrong { background-color: #d9534f !important; color: white !important; border-color: #d9534f !important; }
+        .feedback { margin-top: 10px; font-weight: bold; font-size: 16px; min-height: 24px; }
+        .score { margin-top: 15px; font-size: 14px; color: #888; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Tebak Cara Baca Kotoba</h2>
+        <div class="meaning" id="meaning">Memuat data...</div>
+        <div class="kanji-display" id="kanji">--</div>
+        <div class="options-container" id="optionsContainer"></div>
+        <div class="feedback" id="feedback"></div>
+        <div class="score" id="score">Skor: 0</div>
+    </div>
+
+    <script>
+        let allKotoba = [];
+        let currentIndex = 0;
+        let score = 0;
+        let currentQuestion = null;
+
+        const kanjiEl = document.getElementById("kanji");
+        const meaningEl = document.getElementById("meaning");
+        const optionsContainer = document.getElementById("optionsContainer");
+        const feedbackEl = document.getElementById("feedback");
+        const scoreEl = document.getElementById("score");
+
+        // Ambil data dari file kotoba_data.json
+        fetch('kotoba_data.json')
+            .then(response => response.json())
+            .then(data => {
+                allKotoba = shuffleArray(data); // Acak urutan soal
+                loadQuestion();
+            })
+            .catch(error => {
+                meaningEl.textContent = "Gagal memuat data kotoba!";
+                console.error("Error:", error);
+            });
+
+        function loadQuestion() {
+            if (currentIndex < allKotoba.length) {
+                currentQuestion = allKotoba[currentIndex];
+                
+                kanjiEl.textContent = currentQuestion.kanji;
+                meaningEl.textContent = "Arti: " + currentQuestion.meaning;
+                feedbackEl.textContent = "";
+                scoreEl.textContent = `Skor: ${score} | Soal: ${currentIndex + 1}/${allKotoba.length}`;
+
+                // Buat 4 pilihan (1 jawaban benar + 3 pengecoh acak dari data lain)
+                let options = [currentQuestion.romaji];
+                while (options.length < 4 && options.length < allKotoba.length) {
+                    let randomItem = allKotoba[Math.floor(Math.random() * allKotoba.length)].romaji;
+                    if (!options.includes(randomItem)) {
+                        options.push(randomItem);
+                    }
+                }
+                options = shuffleArray(options); // Acak posisi tombol
+
+                // Tampilkan ke tombol pilihan ganda
+                optionsContainer.innerHTML = "";
+                options.forEach(option => {
+                    const btn = document.createElement("button");
+                    btn.classList.add("btn-option");
+                    btn.textContent = option;
+                    btn.onclick = () => selectAnswer(btn, option, currentQuestion.romaji);
+                    optionsContainer.appendChild(btn);
+                });
+            } else {
+                kanjiEl.textContent = "Selesai! 🎉";
+                meaningEl.textContent = `Skor Akhir Anda: ${score} dari ${allKotoba.length}`;
+                optionsContainer.innerHTML = "";
+                feedbackEl.textContent = "Hebat! Semua kotoba sudah diselesaikan.";
+            }
+        }
+
+        function selectAnswer(selectedBtn, selectedRomaji, correctRomaji) {
+            const allButtons = document.querySelectorAll(".btn-option");
+            allButtons.forEach(btn => btn.disabled = true);
+
+            if (selectedRomaji === correctRomaji) {
+                selectedBtn.classList.add("correct");
+                feedbackEl.style.color = "green";
+                feedbackEl.textContent = "Benar! 🎉";
+                score++;
+            } else {
+                selectedBtn.classList.add("wrong");
+                feedbackEl.style.color = "red";
+                feedbackEl.textContent = `Salah! Yang benar: ${correctRomaji}`;
+                allButtons.forEach(btn => {
+                    if (btn.textContent === correctRomaji) btn.classList.add("correct");
+                });
+            }
+
+            currentIndex++;
+            setTimeout(loadQuestion, 1500); // Jeda 1.5 detik sebelum lanjut ke soal berikutnya
+        }
+
+        // Fungsi bantu untuk mengacak urutan
+        function shuffleArray(array) {
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+    </script>
+</body>
+</html>
