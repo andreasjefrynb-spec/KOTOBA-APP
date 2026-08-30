@@ -41,38 +41,58 @@
         .subtitle {
             font-size: 0.9rem;
             color: #00cc55;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             letter-spacing: 1px;
+        }
+
+        .search-box {
+            width: 100%;
+            background-color: #121814;
+            border: 1px solid #00ff66;
+            color: #00ff66;
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            outline: none;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.1);
+        }
+
+        .search-box::placeholder {
+            color: #008833;
         }
 
         .card {
             background-color: #121814;
             border: 1px solid #1e3323;
             border-radius: 8px;
-            padding: 30px 20px;
+            padding: 25px 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
             margin-bottom: 20px;
-            max-height: 70vh;
+            max-height: 60vh;
             overflow-y: auto;
+            text-align: left;
         }
 
         .menu-title {
-            font-size: 1rem;
-            color: #00ff66;
-            margin-bottom: 25px;
+            font-size: 0.9rem;
+            color: #00cc55;
+            margin-bottom: 15px;
             letter-spacing: 1px;
+            text-align: center;
         }
 
         .btn {
             background-color: transparent;
             color: #00ff66;
-            border: 1px solid #00ff66;
-            padding: 15px 20px;
+            border: 1px solid #1e3323;
+            padding: 12px 15px;
             width: 100%;
             border-radius: 4px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             transition: all 0.2s ease-in-out;
             text-align: left;
             letter-spacing: 1px;
@@ -81,6 +101,7 @@
         .btn:hover {
             background-color: #00ff66;
             color: #0b0f0d;
+            border-color: #00ff66;
             box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
         }
 
@@ -113,6 +134,7 @@
             color: #008833;
             margin-bottom: 15px;
             letter-spacing: 1px;
+            text-align: center;
         }
 
         .target-word {
@@ -122,6 +144,7 @@
             color: #ffffff;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             word-break: break-word;
+            text-align: center;
         }
 
         .target-hiragana {
@@ -129,6 +152,7 @@
             color: #00ff66;
             margin-bottom: 25px;
             letter-spacing: 1px;
+            text-align: center;
         }
 
         .footer-nav {
@@ -138,6 +162,7 @@
             cursor: pointer;
             letter-spacing: 1px;
             transition: color 0.2s;
+            text-align: center;
         }
 
         .footer-nav:hover {
@@ -157,9 +182,12 @@
         <div class="subtitle">// CYBER SYSTEM V1.0</div>
 
         <!-- MENU UTAMA -->
-        <div id="main-menu" class="card">
-            <div class="menu-title" id="menu-status">LOADING SYSTEM DATA...</div>
-            <div id="menu-buttons" class="hidden"></div>
+        <div id="main-menu">
+            <input type="text" id="search-input" class="search-box" placeholder="[ KETIK UNTUK CARI KATA / KATEGORI ]..." oninput="filterMenu()">
+            <div class="card">
+                <div class="menu-title" id="menu-status">LOADING SYSTEM DATA...</div>
+                <div id="menu-buttons" class="hidden"></div>
+            </div>
         </div>
 
         <!-- HALAMAN KUIS -->
@@ -188,6 +216,7 @@
         let score = 0;
         let selectedCategoryName = "";
         let isAnswered = false;
+        let groupedCategories = {};
 
         fetch('kotoba_data.json')
             .then(response => response.text())
@@ -210,7 +239,8 @@
 
                 if (allData.length > 0) {
                     document.getElementById('menu-status').innerText = 'SELECT MISSION MATERI:';
-                    generateMenu();
+                    processCategories();
+                    renderMenuButtons(groupedCategories);
                 } else {
                     document.getElementById('menu-status').innerText = 'ERROR: NO DATA PARSED';
                 }
@@ -220,18 +250,9 @@
                 document.getElementById('menu-status').innerText = 'ERROR: FAILED TO LOAD FILE';
             });
 
-        function generateMenu() {
-            const menuContainer = document.getElementById('menu-buttons');
-            menuContainer.innerHTML = '';
-
-            const btnAll = document.createElement('button');
-            btnAll.className = 'btn';
-            btnAll.innerHTML = `> // ALL KOTOBA (${allData.length} WORDS)`;
-            btnAll.onclick = () => startQuiz('ALL');
-            menuContainer.appendChild(btnAll);
-
+        function processCategories() {
             let rawCategories = [...new Set(allData.map(item => item.category))];
-            let groupedCategories = {};
+            groupedCategories = {};
 
             rawCategories.forEach(cat => {
                 let baseName = cat;
@@ -248,9 +269,21 @@
                 }
                 groupedCategories[baseName].push(cat);
             });
+        }
 
-            Object.keys(groupedCategories).forEach(baseName => {
-                let subCategories = groupedCategories[baseName];
+        function renderMenuButtons(categoriesToRender) {
+            const menuContainer = document.getElementById('menu-buttons');
+            menuContainer.innerHTML = '';
+
+            // Tombol All Kotoba selalu di atas
+            const btnAll = document.createElement('button');
+            btnAll.className = 'btn';
+            btnAll.innerHTML = `> // ALL KOTOBA (${allData.length} WORDS)`;
+            btnAll.onclick = () => startQuiz('ALL');
+            menuContainer.appendChild(btnAll);
+
+            Object.keys(categoriesToRender).forEach(baseName => {
+                let subCategories = categoriesToRender[baseName];
                 let totalWords = allData.filter(item => subCategories.includes(item.category)).length;
 
                 const btn = document.createElement('button');
@@ -263,19 +296,37 @@
             menuContainer.classList.remove('hidden');
         }
 
+        function filterMenu() {
+            let keyword = document.getElementById('search-input').value.toLowerCase();
+            if (keyword.trim() === "") {
+                renderMenuButtons(groupedCategories);
+                return;
+            }
+
+            // Filter kategori yang cocok dengan ketikan judul atau isi artinya
+            let filteredGroups = {};
+            Object.keys(groupedCategories).forEach(baseName => {
+                let subCategories = groupedCategories[baseName];
+                let matchedWords = allData.filter(item => 
+                    subCategories.includes(item.category) && 
+                    (item.meaning.toLowerCase().includes(keyword) || 
+                     item.jp.toLowerCase().includes(keyword) || 
+                     (item.hiragana && item.hiragana.toLowerCase().includes(keyword)) ||
+                     baseName.toLowerCase().includes(keyword))
+                );
+
+                if (matchedWords.length > 0 || baseName.toLowerCase().includes(keyword)) {
+                    filteredGroups[baseName] = subCategories;
+                }
+            });
+
+            renderMenuButtons(filteredGroups);
+        }
+
         function startQuizGroup(groupName, subCategories) {
             currentQuestions = allData.filter(item => subCategories.includes(item.category));
             selectedCategoryName = groupName;
-
-            currentQuestions.sort(() => Math.random() - 0.5);
-            currentIndex = 0;
-            score = 0;
-
-            document.getElementById('main-menu').classList.add('hidden');
-            document.getElementById('quiz-section').classList.remove('hidden');
-            document.getElementById('target-category').innerText = `// TARGET (${selectedCategoryName.toUpperCase()})`;
-            
-            loadQuestion();
+            initQuiz();
         }
 
         function startQuiz(category) {
@@ -283,7 +334,10 @@
                 currentQuestions = [...allData];
                 selectedCategoryName = "ALL KOTOBA";
             }
+            initQuiz();
+        }
 
+        function initQuiz() {
             currentQuestions.sort(() => Math.random() - 0.5);
             currentIndex = 0;
             score = 0;
@@ -310,21 +364,14 @@
             document.getElementById('target-word').innerText = currentObj.jp || "-";
             document.getElementById('target-hiragana').innerText = currentObj.hiragana ? `[ ${currentObj.hiragana} ]` : "";
 
-            // PILIHAN JAWABAN: Prioritaskan dari kelompok/kategori yang sama
             let options = [currentObj.meaning];
-            
-            // Ambil kandidat dari array soal aktif saat ini (kategori yang sedang dimainkan)
             let poolSameCategory = currentQuestions.filter(item => item.meaning !== currentObj.meaning);
-            
-            // Acak pool kategori yang sama
             poolSameCategory.sort(() => Math.random() - 0.5);
 
-            // Masukkan pilihan dari kategori yang sama sampai maksimal 4 pilihan
             for (let i = 0; i < poolSameCategory.length && options.length < 4; i++) {
                 options.push(poolSameCategory[i].meaning);
             }
 
-            // Jika kategori tersebut punya sedikit kata (kurang dari 4 pilihan), lengkapi dari allData umum
             if (options.length < 4) {
                 let poolGeneral = allData.filter(item => !options.includes(item.meaning));
                 poolGeneral.sort(() => Math.random() - 0.5);
@@ -376,6 +423,8 @@
         function backToMenu() {
             document.getElementById('quiz-section').classList.add('hidden');
             document.getElementById('main-menu').classList.remove('hidden');
+            document.getElementById('search-input').value = "";
+            renderMenuButtons(groupedCategories);
         }
     </script>
 </body>
