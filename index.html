@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>日本語クラス</title>
+    <title>Tes Bahasa Jepang N5 - N4</title>
     <style>
         * {
             box-sizing: border-box;
@@ -12,8 +12,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #f0f4f8;
-            color: #2d3748;
+            background-color: #f0f2f5;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,968 +22,209 @@
         .container {
             background: #ffffff;
             width: 100%;
-            max-width: 650px;
+            max-width: 550px;
             padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         h1 {
-            font-size: 1.6rem;
-            color: #1a365d;
+            font-size: 1.4rem;
+            color: #1a202c;
             text-align: center;
-            margin-bottom: 8px;
+            margin-bottom: 20px;
         }
-        .subtitle {
-            text-align: center;
-            color: #718096;
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-        }
-        /* Form Registrasi */
         .form-group {
             margin-bottom: 20px;
         }
         label {
             display: block;
-            font-weight: 600;
             margin-bottom: 8px;
+            font-weight: 600;
             color: #4a5568;
         }
-        input[type="text"], input[type="tel"] {
+        input[type="text"] {
             width: 100%;
-            padding: 12px 16px;
+            padding: 12px;
             border: 2px solid #e2e8f0;
             border-radius: 8px;
             font-size: 1rem;
             outline: none;
-            transition: border-color 0.2s;
         }
-        input[type="text"]:focus, input[type="tel"]:focus {
+        input[type="text"]:focus {
             border-color: #3182ce;
         }
-        .btn-primary {
+        .btn-start, .btn-wa {
             width: 100%;
-            padding: 14px;
-            background-color: #2b6cb0;
+            padding: 12px;
+            background-color: #3182ce;
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
         }
-        .btn-primary:hover {
-            background-color: #2c5282;
+        .btn-wa {
+            background-color: #25D366;
+            margin-top: 15px;
         }
-
-        /* Header Quiz */
-        .quiz-header {
+        .btn-start:hover { background-color: #2b6cb0; }
+        .btn-wa:hover { background-color: #1ebc57; }
+        
+        .header-quiz {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #edf2f7;
-        }
-        .user-badge {
-            font-weight: 600;
-            color: #2b6cb0;
-            background-color: #ebf8ff;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-        .progress-text {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #718096;
             font-weight: 600;
         }
-
-        /* Progress Bar */
-        .progress-bar-container {
-            width: 100%;
-            height: 8px;
-            background-color: #edf2f7;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            background-color: #3182ce;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        /* Question Box */
-        .category-tag {
-            display: inline-block;
-            background-color: #feebc8;
-            color: #744210;
-            font-size: 0.8rem;
-            font-weight: bold;
+        .timer {
+            color: #e53e3e;
+            background: #fff5f5;
             padding: 4px 10px;
             border-radius: 6px;
-            margin-bottom: 12px;
+            border: 1px solid #feb2b2;
         }
         .question {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: #2d3748;
             margin-bottom: 20px;
-            line-height: 1.6;
+            min-height: 50px;
+            line-height: 1.5;
             white-space: pre-line;
         }
         .options {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
         .btn-option {
             background-color: #f7fafc;
             border: 2px solid #e2e8f0;
-            padding: 14px 16px;
-            border-radius: 10px;
+            padding: 12px 15px;
+            border-radius: 8px;
             font-size: 1rem;
             text-align: left;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: background 0.2s ease;
             color: #4a5568;
-            line-height: 1.4;
         }
-        .btn-option:hover:not(:disabled) {
+        .btn-option:hover {
             background-color: #edf2f7;
             border-color: #cbd5e0;
         }
-        .btn-option.correct {
-            background-color: #c6f6d5 !important;
-            border-color: #38a169 !important;
-            color: #22543d !important;
-            font-weight: bold;
-        }
-        .btn-option.incorrect {
-            background-color: #fed7d7 !important;
-            border-color: #e53e3e !important;
-            color: #742a2a !important;
-        }
-
-        .explanation-box {
-            margin-top: 15px;
-            padding: 12px 15px;
-            background-color: #ebf8ff;
-            border-left: 4px solid #3182ce;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            color: #2c5282;
+        #quiz-screen, #result-screen {
             display: none;
         }
-
-        .btn-next {
-            width: 100%;
-            margin-top: 20px;
-            padding: 14px;
-            background-color: #3182ce;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            display: none;
-        }
-        .btn-next:hover {
-            background-color: #2b6cb0;
-        }
-
-        /* Result Screen */
         .result-screen {
-            display: none;
             text-align: center;
-        }
-        .score-box {
-            background-color: #f7fafc;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 1px solid #e2e8f0;
-        }
-        .score-display {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #2b6cb0;
-        }
-        .status-badge {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-        .status-pass {
-            background-color: #c6f6d5;
-            color: #22543d;
-        }
-        .status-fail {
-            background-color: #fed7d7;
-            color: #742a2a;
-        }
-
-        .btn-wa {
-            width: 100%;
-            padding: 14px;
-            background-color: #25D366;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.05rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-        .btn-wa:hover {
-            background-color: #1eb956;
-        }
-
-        .btn-restart {
-            width: 100%;
-            padding: 12px;
-            background-color: #718096;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .btn-restart:hover {
-            background-color: #4a5568;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- START SCREEN -->
+    <!-- Screen 1: Name Input -->
     <div id="start-screen">
-        <h1>日本語クラス</h1>
-        <p class="subtitle">kalo ga belajar sampe jepang langsung pulang</p>
-        
-        <form id="start-form" onsubmit="startQuiz(event)">
-            <div class="form-group">
-                <label for="user-name">あなたの名前 ？ *</label>
-                <input type="text" id="user-name" placeholder="..." required>
-            </div>
-            <div class="form-group">
-                <label for="wa-number">Kirim ke 081233624841</label>
-                <input type="tel" id="wa-number" placeholder="...">
-                <small style="color:#a0aec0; display:block; margin-top:4px;">がんばってくださいね</small>
-            </div>
-            <button type="submit" class="btn-primary">Mulai Tes </button>
-        </form>
+        <h1>Tes Bahasa Jepang (N5 - N4)</h1>
+        <div class="form-group">
+            <label for="username">Nama Lengkap Peserta:</label>
+            <input type="text" id="username" placeholder="Masukkan nama Anda..." required>
+        </div>
+        <button class="btn-start" onclick="startQuiz()">Mulai Tes (5 Menit)</button>
     </div>
 
-    <!-- QUIZ SCREEN -->
-    <div id="quiz-screen" style="display: none;">
-        <div class="quiz-header">
-            <span class="user-badge" id="display-user-name">Peserta</span>
-            <span class="progress-text" id="progress-text">Soal 1 / 50</span>
+    <!-- Screen 2: Quiz -->
+    <div id="quiz-screen">
+        <div class="header-quiz">
+            <span id="progress">Soal 1 dari 20</span>
+            <span class="timer" id="timer">05:00</span>
         </div>
-
-        <div class="progress-bar-container">
-            <div class="progress-bar-fill" id="progress-bar"></div>
-        </div>
-
-        <span class="category-tag" id="category-tag">Kategori</span>
-        <div class="question" id="question-text">Pertanyaan...</div>
-        <div class="options" id="options-container"></div>
-        
-        <div class="explanation-box" id="explanation-box"></div>
-
-        <button class="btn-next" id="next-btn" onclick="nextQuestion()">Soal Selanjutnya</button>
+        <div class="question" id="question">Pertanyaan...</div>
+        <div class="options" id="options"></div>
     </div>
 
-    <!-- RESULT SCREEN -->
-    <div id="result-screen" class="result-screen">
-        <h1>Hasil Tes JLPT N5</h1>
-        <p style="color: #718096; margin-top: 5px;">Selamat telah menyelesaikan tes!</p>
-
-        <div class="score-box">
-            <h3 id="result-user-name" style="color: #2d3748; margin-bottom: 10px;">-</h3>
-            <div class="score-display" id="final-score">0 / 50</div>
-            <div style="font-size: 1.1rem; color: #4a5568; margin-top: 5px;" id="percentage-score">(0%)</div>
-            <div id="status-badge" class="status-badge status-pass">LULUS</div>
-        </div>
-
-        <p id="feedback-text" style="margin-bottom: 20px; color: #4a5568; line-height: 1.5;"></p>
-
-        <!-- WhatsApp Direct Link -->
-        <a id="wa-share-btn" href="#" target="_blank" class="btn-wa">
-            💬 Kirim Hasil ke WhatsApp
-        </a>
-
-        <button class="btn-restart" onclick="restartQuiz()">Ulangi Tes</button>
+    <!-- Screen 3: Result & WA Redirect -->
+    <div class="result-screen" id="result-screen">
+        <h1>Tes Selesai!</h1>
+        <p style="margin-top: 10px; color: #4a5568;">Terima kasih telah menyelesaikan tes. Hasil jawaban Anda sedang dikirimkan ke WhatsApp.</p>
+        <a id="wa-link" href="#" target="_blank" class="btn-wa">Kirim Hasil ke WhatsApp Sekarang</a>
     </div>
 </div>
 
 <script>
-    const questions = [
-    {
-        "category": "Partikel (助詞)",
-        "question": "Isi titik-titik dengan partikel yang tepat:\nわたし ____ インドネシアじんです。",
-        "options": [
-            "は (ha)",
-            "が (ga)",
-            "を (wo)",
-            "に (ni)"
-        ],
-        "correct": 0,
-        "explanation": "Partikel は (ha) digunakan untuk menandai subjek/topik utama kalimat."
-    },
-    {
-        "category": "Kosakata (語彙)",
-        "question": "Apa arti dari kosakata 「たべもの」(Tabemono)?",
-        "options": [
-            "Minuman",
-            "Makanan",
-            "Pakaian",
-            "Kendaraan"
-        ],
-        "correct": 1,
-        "explanation": "たべもの (Tabemono) berarti Makanan. Berasal dari たべます (makan) + もの (benda)."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Bagaimana cara membaca Kanji 「日」 dalam kata 「日曜日」(Nichiyoubi)?",
-        "options": [
-            "ひ (Hi)",
-            "にち (Nichi)",
-            "び (Bi)",
-            "か (Ka)"
-        ],
-        "correct": 1,
-        "explanation": "Kanji 日 pertama pada 日曜日 dibaca にち (Nichi)."
-    },
-    {
-        "category": "Partikel (助詞)",
-        "question": "Isi titik-titik dengan partikel waktu yang tepat:\nまいあさ 6じ ____ おきます。",
-        "options": [
-            "で (de)",
-            "に (ni)",
-            "へ (he)",
-            "と (to)"
-        ],
-        "correct": 1,
-        "explanation": "Partikel に (ni) digunakan setelah keterangan waktu spesifik (seperti jam)."
-    },
-    {
-        "category": "Tata Bahasa (文法)",
-        "question": "Bentuk ~te (て形) dari kata kerja 「いきます」(Ikimasu) adalah...",
-        "options": [
-            "いきて (Ikite)",
-            "いいて (Iite)",
-            "いって (Itte)",
-            "いきち (Ikichi)"
-        ],
-        "correct": 2,
-        "explanation": "Ikimasu merupakan perkecualian khusus, bentuk ~te nya adalah いって (Itte)."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Bagaimana cara membaca Kanji 「山」?",
-        "options": [
-            "かわ (Kawa)",
-            "やま (Yama)",
-            "うみ (Umi)",
-            "そら (Sora)"
-        ],
-        "correct": 1,
-        "explanation": "Kanji 山 dibaca やま (Yama) yang berarti gunung."
-    },
-    {
-        "category": "Partikel (助詞)",
-        "question": "Pilih partikel metode/alat yang tepat:\nバス ____ がっこうへ いきます。",
-        "options": [
-            "で (de)",
-            "に (ni)",
-            "を (wo)",
-            "が (ga)"
-        ],
-        "correct": 0,
-        "explanation": "Partikel で (de) menandai alat atau sarana transportasi yang digunakan."
-    },
-    {
-        "category": "Kosakata (語彙)",
-        "question": "Apa arti dari kosakata 「きょう」(Kyou)?",
-        "options": [
-            "Kemarin",
-            "Besok",
-            "Hari ini",
-            "Lusa"
-        ],
-        "correct": 2,
-        "explanation": "きょう (Kyou) berarti Hari ini."
-    },
-    {
-        "category": "Tata Bahasa (文法)",
-        "question": "Bentuk negatif dari Adjektiva-i 「あついです」(Atsui desu) adalah...",
-        "options": [
-            "あつくないです (Atsukunai desu)",
-            "あつしくないです (Atsushikunai desu)",
-            "あつじゃないです (Atsu janai desu)",
-            "あつみません (Atsumimasen)"
-        ],
-        "correct": 0,
-        "explanation": "Untuk Negatif Adjektiva-i, akhiran 'i' diubah menjadi 'kunai desu'."
-    },
-    {
-        "category": "Partikel (助詞)",
-        "question": "Isi titik-titik dengan partikel objek:\nほん ____ よみます。",
-        "options": [
-            "は (ha)",
-            "を (wo)",
-            "に (ni)",
-            "で (de)"
-        ],
-        "correct": 1,
-        "explanation": "Partikel を (wo/o) menandai objek langsung dari kata kerja."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Manakah Kanji yang tepat untuk kata 「みず」(Mizu / Air)?",
-        "options": [
-            "木",
-            "水",
-            "火",
-            "土"
-        ],
-        "correct": 1,
-        "explanation": "Kanji 水 berarti air (Mizu)."
-    },
-    {
-        "category": "Kosakata (語彙)",
-        "question": "Apa arti dari kosakata 「きのう」(Kinou)?",
-        "options": [
-            "Kemarin",
-            "Hari ini",
-            "Besok",
-            "Minggu depan"
-        ],
-        "correct": 0,
-        "explanation": "きのう (Kinou) berarti Kemarin."
-    },
-    {
-        "category": "Tata Bahasa (文法)",
-        "question": "Bentuk lampau positif dari Adjektiva-na 「しずかです」(Shizuka desu) adalah...",
-        "options": [
-            "しずかかったです (Shizukakatta desu)",
-            "しずかでした (Shizuka deshita)",
-            "しずかなくて (Shizukanakute)",
-            "しずかます (Shizukamasu)"
-        ],
-        "correct": 1,
-        "explanation": "Adjektiva-na bentuk lampau positif menggunakan でした (deshita)."
-    },
-    {
-        "category": "Partikel (助詞)",
-        "question": "Isi titik-titik dengan partikel arah:\nどこ ____ も いきません。",
-        "options": [
-            "へ (he/e)",
-            "で (de)",
-            "を (wo)",
-            "が (ga)"
-        ],
-        "correct": 0,
-        "explanation": "Partikel へ (he/e) digunakan untuk menunjukkan arah tujuan."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Bagaimana cara membaca Kanji 「川」?",
-        "options": [
-            "やま (Yama)",
-            "かわ (Kawa)",
-            "いけ (Ike)",
-            "うみ (Umi)"
-        ],
-        "correct": 1,
-        "explanation": "Kanji 川 dibaca かわ (Kawa) yang berarti sungai."
-    },
-    {
-        "category": "Partikel (助詞)",
-        "question": "Isi titik-titik dengan partikel penyerta (bersama):\nともだち ____ えいがを みます。",
-        "options": [
-            "と (to)",
-            "に (ni)",
-            "で (de)",
-            "を (wo)"
-        ],
-        "correct": 0,
-        "explanation": "Partikel と (to) berarti 'bersama/dengan'."
-    },
-    {
-        "category": "Kosakata (語彙)",
-        "question": "Apa arti kata 「あした」(Ashita)?",
-        "options": [
-            "Besok",
-            "Kemarin",
-            "Hari ini",
-            "Bulan depan"
-        ],
-        "correct": 0,
-        "explanation": "あした (Ashita) berarti Besok."
-    },
-    {
-        "category": "Tata Bahasa (文法)",
-        "question": "Ungkapan keinginan (~tai):\n「つめたい ジュースが ____ です。」",
-        "options": [
-            "のみたい (Nomitai)",
-            "のむたい (Nomutai)",
-            "のんでたい (Nondetai)",
-            "のまない (Nomanai)"
-        ],
-        "correct": 0,
-        "explanation": "Bentuk ~tai dibuat dari masu-stem: のみます -> のみたい."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Apa arti dari Kanji 「人」?",
-        "options": [
-            "Orang",
-            "Pohon",
-            "Mulut",
-            "Mobil"
-        ],
-        "correct": 0,
-        "explanation": "Kanji 人 dibaca ひと (hito) atau じん (jin) yang berarti Orang."
-    },
-    {
-        "category": "Partikel (助詞)",
-        "question": "Pilih pasangan partikel dari-sampai (kara-made):\n9じ ____ 5じ ____ はたらきます。",
-        "options": [
-            "から / まで",
-            "まで / から",
-            "に / で",
-            "と / へ"
-        ],
-        "correct": 0,
-        "explanation": "から (kara) = dari, まで (made) = sampai."
-    },
-    {
-        "category": "Kosakata (語彙)",
-        "question": "Apa arti dari 「つくえ」(Tsukue)?",
-        "options": [
-            "Meja",
-            "Kursi",
-            "Lemari",
-            "Pintu"
-        ],
-        "correct": 0,
-        "explanation": "つくえ (Tsukue) berarti Meja."
-    },
-    {
-        "category": "Tata Bahasa (文法)",
-        "question": "Kalimat perintah halus (~te kudasai):\n「ここに なまえを ____ ください。」",
-        "options": [
-            "かきて (Kakite)",
-            "かいて (Kaite)",
-            "かく (Kaku)",
-            "かかない (Kakanai)"
-        ],
-        "correct": 1,
-        "explanation": "かきます (kaku) bentuk ~te nya adalah かいて (Kaite)."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Bagaimana cara membaca Kanji 「木」?",
-        "options": [
-            "き (Ki)",
-            "ひ (Hi)",
-            "みず (Mizu)",
-            "かね (Kane)"
-        ],
-        "correct": 0,
-        "explanation": "Kanji 木 dibaca き (Ki) yang berarti Pohon."
-    },
-    {
-        "category": "Partikel (助詞)",
-        "question": "Isi titik-titik dengan partikel 'juga':\nたなかさんは かいしゃいんです。わたし ____ かいしゃいんです。",
-        "options": [
-            "も (mo)",
-            "は (ha)",
-            "が (ga)",
-            "に (ni)"
-        ],
-        "correct": 0,
-        "explanation": "Partikel も (mo) digunakan untuk menyatakan 'juga'."
-    },
-    {
-        "category": "Kosakata (語彙)",
-        "question": "Apa arti dari kosakata 「いぬ」(Inu)?",
-        "options": [
-            "Kucing",
-            "Anjing",
-            "Burung",
-            "Ikan"
-        ],
-        "correct": 1,
-        "explanation": "いぬ (Inu) berarti Anjing."
-    },
-    {
-        "category": "Tata Bahasa (文法)",
-        "question": "Bentuk larangan halus (~naide kudasai):\n「ここで しゃしんを ____ ください。」",
-        "options": [
-            "とらないで (Toranaide)",
-            "とらない (Toranai)",
-            "とって (Totte)",
-            "とらなくて (Toranakute)"
-        ],
-        "correct": 0,
-        "explanation": "Larangan halus: Bentuk nai + でください (naide kudasai)."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Kanji 「金」 dalam kata 「金曜日」(Kinyoubi) dibaca...",
-        "options": [
-            "きん (Kin)",
-            "ぎん (Gin)",
-            "かね (Kane)",
-            "こん (Kon)"
-        ],
-        "correct": 0,
-        "explanation": "Kanji 金 dalam hari Jumat dibaca きん (Kin)."
-    },
-    {
-        "category": "Partikel (助詞)",
-        "question": "Isi titik-titik penanda keberadaan subjek:\nへやに テレビ ____ あります。",
-        "options": [
-            "が (ga)",
-            "を (wo)",
-            "は (ha)",
-            "で (de)"
-        ],
-        "correct": 0,
-        "explanation": "Partikel が (ga) menandai benda yang ada dalam pola keberadaan あります/います."
-    },
-    {
-        "category": "Kosakata (語彙)",
-        "question": "Apa arti dari kosakata 「いす」(Isu)?",
-        "options": [
-            "Kursi",
-            "Meja",
-            "Jendela",
-            "Pintu"
-        ],
-        "correct": 0,
-        "explanation": "いす (Isu) berarti Kursi."
-    },
-    {
-        "category": "Tata Bahasa (文法)",
-        "question": "Pilih kata keberadaan mahluk hidup yang tepat:\nにわに ねこが ____。",
-        "options": [
-            "います (Imasu)",
-            "あります (Arimasu)",
-            "です (Desu)",
-            "します (Shimasu)"
-        ],
-        "correct": 0,
-        "explanation": "Untuk mahluk bernyawa (manusia/hewan) menggunakan います (Imasu)."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Kanji 「本」 dibaca...",
-        "options": [
-            "ほん (Hon)",
-            "き (Ki)",
-            "ひと (Hito)",
-            "みず (Mizu)"
-        ],
-        "correct": 0,
-        "explanation": "Kanji 本 dibaca ほん (Hon) yang berarti Buku atau asal."
-    },
-    {
-        "category": "Partikel (助詞)",
-        "question": "Isi titik-titik penanda kepemilikan:\nこれ は わたし ____ かばんです。",
-        "options": [
-            "の (no)",
-            "は (ha)",
-            "が (ga)",
-            "に (ni)"
-        ],
-        "correct": 0,
-        "explanation": "Partikel の (no) menyatakan hubungan kepemilikan."
-    },
-    {
-        "category": "Kosakata (語彙)",
-        "question": "Apa arti dari Adjektiva-i 「たかい」(Takai)?",
-        "options": [
-            "Murah",
-            "Mahal / Tinggi",
-            "Pendek",
-            "Bagus"
-        ],
-        "correct": 1,
-        "explanation": "たかい (Takai) memiliki arti Mahal atau Tinggi."
-    },
-    {
-        "category": "Tata Bahasa (文法)",
-        "question": "Bentuk ajakan (~mashou):\n「いっしょに ごはんを ____。」",
-        "options": [
-            "たべましょう (Tabemashou)",
-            "たべます (Tabemasu)",
-            "たべました (Tabemashita)",
-            "たべたい (Tabetai)"
-        ],
-        "correct": 0,
-        "explanation": "Akhiran ~ましょう (~mashou) digunakan untuk mengajak/melakukan sesuatu bersama."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Kanji 「月」 dalam kata 「月曜日」(Getsuyoubi) dibaca...",
-        "options": [
-            "げつ (Getsu)",
-            "がつ (Gatsu)",
-            "つき (Tsuki)",
-            "にち (Nichi)"
-        ],
-        "correct": 0,
-        "explanation": "Kanji 月 pada nama hari Senin dibaca げつ (Getsu)."
-    },
-    {
-        "category": "Partikel (助詞)",
-        "question": "Isi titik-titik dengan partikel pertanyaan di akhir kalimat:\nこれ は あなた の かさ です ____。",
-        "options": [
-            "か (ka)",
-            "ね (ne)",
-            "よ (yo)",
-            "の (no)"
-        ],
-        "correct": 0,
-        "explanation": "Partikel か (ka) diletakkan di akhir kalimat untuk membuat pertanyaan."
-    },
-    {
-        "category": "Kosakata (語彙)",
-        "question": "Apa arti dari kosakata 「くるま」(Kuruma)?",
-        "options": [
-            "Sepeda",
-            "Mobil",
-            "Kereta",
-            "Pesawat"
-        ],
-        "correct": 1,
-        "explanation": "くるま (Kuruma) berarti Mobil."
-    },
-    {
-        "category": "Tata Bahasa (文法)",
-        "question": "Kalimat perbandingan:\n「にほん ____ インドネシア の ほうが おおきいです。」",
-        "options": [
-            "より (yori)",
-            "から (kara)",
-            "まで (made)",
-            "ほど (hodo)"
-        ],
-        "correct": 0,
-        "explanation": "Pola perbandingan A より B の ほうが (Dibandingkan A, B lebih...)."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Kanji 「学」 dalam kata 「学生」(Gakusei) dibaca...",
-        "options": [
-            "がく (Gaku)",
-            "まな (Mana)",
-            "せい (Sei)",
-            "こう (Kou)"
-        ],
-        "correct": 0,
-        "explanation": "Kanji 学 pada 学生 dibaca がく (Gaku)."
-    },
-    {
-        "category": "Partikel (助詞)",
-        "question": "Partikel 「ね」(ne) di akhir kalimat digunakan untuk...",
-        "options": [
-            "Meminta persetujuan/konfirmasi",
-            "Memberikan informasi baru",
-            "Membuat kalimat perintah",
-            "Menanyakan waktu"
-        ],
-        "correct": 0,
-        "explanation": "Partikel ね (ne) berfungsi untuk meminta konfirmasi/persetujuan ('kan? / ya?')."
-    },
-    {
-        "category": "Kosakata (語彙)",
-        "question": "Apa arti kata 「あさごはん」(Asagohan)?",
-        "options": [
-            "Makan Siang",
-            "Makan Malam",
-            "Makan Pagi / Sarapan",
-            "Camilan"
-        ],
-        "correct": 2,
-        "explanation": "あさごはん (Asagohan) berarti Makan pagi / Sarapan."
-    },
-    {
-        "category": "Tata Bahasa (文法)",
-        "question": "Urutan kegiatan (~te kara):\n「ごはんを ____ から、べんきょうします。」",
-        "options": [
-            "たべて (Tabete)",
-            "たべる (Taberu)",
-            "たべた (Tabeta)",
-            "たべない (Tabenai)"
-        ],
-        "correct": 0,
-        "explanation": "Pola ~te kara (setelah melakukan...) menggunakan kata kerja bentuk ~te."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Bagaimana cara membaca Kanji 「口」?",
-        "options": [
-            "くち (Kuchi)",
-            "め (Me)",
-            "みみ (Mimi)",
-            "て (Te)"
-        ],
-        "correct": 0,
-        "explanation": "Kanji 口 dibaca くち (Kuchi) yang berarti Mulut."
-    },
-    {
-        "category": "Kosakata (語彙)",
-        "question": "Apa arti kata 「やすみ」(Yasumi)?",
-        "options": [
-            "Ujian",
-            "Kerja",
-            "Libur / Istirahat",
-            "Sekolah"
-        ],
-        "correct": 2,
-        "explanation": "やすみ (Yasumi) berarti Libur, Istirahat, atau Hari libur."
-    },
-    {
-        "category": "Tata Bahasa (文法)",
-        "question": "Pola kemampuan (~koto ga dekimasu):\n「にほんごを はなす ことが ____。」",
-        "options": [
-            "できます (Dekimasu)",
-            "あります (Arimasu)",
-            "しんます (Shinmasu)",
-            "いきます (Ikimasu)"
-        ],
-        "correct": 0,
-        "explanation": "Pola kata kerja Kamus + ことが できます menyatakan kemampuan."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Kanji 「車」 dibaca...",
-        "options": [
-            "くるま (Kuruma)",
-            "せんしゃ (Sensha)",
-            "でんしゃ (Densha)",
-            "じどうしゃ (Jidousha)"
-        ],
-        "correct": 0,
-        "explanation": "Kanji 車 secara kun-yomi dibaca くるま (Kuruma)."
-    },
-    {
-        "category": "Partikel (助詞)",
-        "question": "Partikel 「よ」(yo) di akhir kalimat berfungsi untuk...",
-        "options": [
-            "Memberitahukan informasi baru / penekanan",
-            "Bertanya",
-            "Ragu-ragu",
-            "Mengajak"
-        ],
-        "correct": 0,
-        "explanation": "Partikel よ (yo) memberikan penekanan/informasi baru kepada lawan bicara."
-    },
-    {
-        "category": "Kosakata (語彙)",
-        "question": "Apa arti dari kosakata 「みせ」(Mise)?",
-        "options": [
-            "Toko",
-            "Rumah",
-            "Bank",
-            "Rumah Sakit"
-        ],
-        "correct": 0,
-        "explanation": "みせ (Mise) berarti Toko / Kedai."
-    },
-    {
-        "category": "Tata Bahasa (文法)",
-        "question": "Bentuk lampau negatif dari kata kerja 「たべます」(Tabemasu) adalah...",
-        "options": [
-            "たべませんでした (Tabemasen deshita)",
-            "たべません (Tabemasen)",
-            "たべなかったです (Tabenakatta desu)",
-            "たべまい (Tabemai)"
-        ],
-        "correct": 0,
-        "explanation": "Bentuk lampau negatif kata kerja sopan diakhiri dengan ませんでした (masen deshita)."
-    },
-    {
-        "category": "Kanji (漢字)",
-        "question": "Kanji 「生」 dalam kata 「先生」(Sensei) dibaca...",
-        "options": [
-            "せい (Sei)",
-            "なま (Nama)",
-            "うま (Uma)",
-            "い (I)"
-        ],
-        "correct": 0,
-        "explanation": "Kanji 生 dalam 先生 dibaca せい (Sei)."
-    }
-];
-
-    let currentQuestionIndex = 0;
-    let score = 0;
-    let answered = false;
+    const TARGET_WA = "6281233624841";
     let userName = "";
-    let targetWaNumber = "";
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+    let timeLeft = 300; // 5 menit = 300 detik
+    let timerInterval = null;
 
-    function startQuiz(event) {
-        event.preventDefault();
-        const nameInput = document.getElementById('user-name').value.trim();
-        const waInput = document.getElementById('wa-number').value.trim();
+    const questions = [
+        { question: "わたしは 毎朝 7時____ おきます。", options: ["に", "で", "を", "へ"], correct: 0 },
+        { question: "「友達」 cara bacanya adalah...", options: ["ともだち", "うち", "かぞく", "きょうだい"], correct: 0 },
+        { question: "ここで 写真を ____ ください。", options: ["とらないで", "とらなくて", "とらない", "とらないの"], correct: 0 },
+        { question: "「学校」 cara bacanya adalah...", options: ["がっこう", "がくせい", "きょうしつ", "かいしゃ"], correct: 0 },
+        { question: "デパート____ 本と ペンを 買いました。", options: ["で", "に", "を", "から"], correct: 0 },
+        { question: "あした 映画を ____ と 思います。", options: ["みよう", "みます", "みる", "みろ"], correct: 0 },
+        { question: "Apa arti dari kosakata 「きのう」?", options: ["Kemarin", "Besok", "Hari ini", "Lusa"], correct: 0 },
+        { question: "くすりを ____ なければなりません。", options: ["のま", "のみ", "のむ", "のんで"], correct: 0 },
+        { question: "兄____ 背が 高いです。", options: ["より", "ほう", "から", "まで"], correct: 0 },
+        { question: "「雨」 cara bacanya adalah...", options: ["あめ", "ゆき", "くも", "かぜ"], correct: 0 },
+        { question: "雨が ____、でかけません。", options: ["ふったら", "ふると", "ふれば", "ふって"], correct: 0 },
+        { question: "Apa arti dari kosakata 「つくえ」?", options: ["Meja", "Kursi", "Pintu", "Jendela"], correct: 0 },
+        { question: "先生に 本を ____。", options: ["いただきました", "あげました", "くれました", "やりました"], correct: 0 },
+        { question: "友達____ 一緒に 日本へ 行きます。", options: ["と", "に", "で", "を"], correct: 0 },
+        { question: "「病院」 cara bacanya adalah...", options: ["びょういん", "びよういん", "えいがかん", "たいしかん"], correct: 0 },
+        { question: "この 料理を ____ みます。", options: ["たべて", "たべ", "たべる", "たべた"], correct: 0 },
+        { question: "ラジオを ____ ながら 勉強します。", options: ["きき", "きく", "きいて", "きいた"], correct: 0 },
+        { question: "Apa arti dari kosakata 「たかい」?", options: ["Tinggi / Mahal", "Rendah / Murah", "Panjang", "Pendek"], correct: 0 },
+        { question: "「新幹線」 cara bacanya adalah...", options: ["しんかんせん", "ちかてつ", "ひこうき", "でんしゃ"], correct: 0 },
+        { question: "この 本は ____ やすいです。", options: ["よみ", "よむ", "よんで", "よんだ"], correct: 0 }
+    ];
 
-        if (!nameInput) {
-            alert("Harap masukkan nama Anda terlebih dahulu.");
+    function startQuiz() {
+        const inputName = document.getElementById('username').value.trim();
+        if (!inputName) {
+            alert("Silakan masukkan nama Anda terlebih dahulu!");
             return;
         }
-
-        userName = nameInput;
-        targetWaNumber = waInput.replace(/[^0-9]/g, '');
+        userName = inputName;
 
         document.getElementById('start-screen').style.display = 'none';
         document.getElementById('quiz-screen').style.display = 'block';
-        document.getElementById('display-user-name').innerText = userName;
 
-        currentQuestionIndex = 0;
-        score = 0;
+        startTimer();
         loadQuestion();
     }
 
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            document.getElementById('timer').innerText = 
+                `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                finishQuiz(true);
+            }
+        }, 1000);
+    }
+
     function loadQuestion() {
-        answered = false;
-        const nextBtn = document.getElementById('next-btn');
-        const expBox = document.getElementById('explanation-box');
-        nextBtn.style.display = 'none';
-        expBox.style.display = 'none';
-
         const q = questions[currentQuestionIndex];
-
-        // Update Progress
-        const total = questions.length;
-        document.getElementById('progress-text').innerText = "Soal " + (currentQuestionIndex + 1) + " / " + total;
-        document.getElementById('progress-bar').style.width = (((currentQuestionIndex + 1) / total) * 100) + "%";
-
-        document.getElementById('category-tag').innerText = q.category;
-        document.getElementById('question-text').innerText = q.question;
-
-        const optionsContainer = document.getElementById('options-container');
+        document.getElementById('progress').innerText = `Soal ${currentQuestionIndex + 1} dari ${questions.length}`;
+        document.getElementById('question').innerText = `${currentQuestionIndex + 1}. ${q.question}`;
+        
+        const optionsContainer = document.getElementById('options');
         optionsContainer.innerHTML = '';
 
         q.options.forEach((option, index) => {
@@ -997,88 +237,50 @@
     }
 
     function selectOption(selectedIndex) {
-        if (answered) return;
-        answered = true;
-
-        const q = questions[currentQuestionIndex];
-        const buttons = document.getElementById('options-container').children;
-        const expBox = document.getElementById('explanation-box');
-
-        if (selectedIndex === q.correct) {
-            buttons[selectedIndex].classList.add('correct');
-            score++;
-        } else {
-            buttons[selectedIndex].classList.add('incorrect');
-            buttons[q.correct].classList.add('correct');
-        }
-
-        // Tunjukkan Penjelasan
-        if (q.explanation) {
-            expBox.innerHTML = "<strong>Penjelasan:</strong> " + q.explanation;
-            expBox.style.display = 'block';
-        }
-
-        Array.from(buttons).forEach(btn => btn.disabled = true);
-        document.getElementById('next-btn').style.display = 'block';
-    }
-
-    function nextQuestion() {
+        userAnswers.push(selectedIndex);
         currentQuestionIndex++;
+
         if (currentQuestionIndex < questions.length) {
             loadQuestion();
         } else {
-            showResults();
+            clearInterval(timerInterval);
+            finishQuiz(false);
         }
     }
 
-    function showResults() {
+    function finishQuiz(isTimeout) {
         document.getElementById('quiz-screen').style.display = 'none';
-        const resultScreen = document.getElementById('result-screen');
-        resultScreen.style.display = 'block';
+        document.getElementById('result-screen').style.display = 'block';
 
-        const total = questions.length;
-        const percentage = Math.round((score / total) * 100);
-        const isPassed = percentage >= 60; // Standar kelulusan N5 ~60%
+        let correctCount = 0;
+        let details = "";
 
-        document.getElementById('result-user-name').innerText = userName;
-        document.getElementById('final-score').innerText = score + " / " + total;
-        document.getElementById('percentage-score').innerText = "(" + percentage + "%)";
+        questions.forEach((q, idx) => {
+            let userAnsIdx = userAnswers[idx];
+            let isCorrect = userAnsIdx === q.correct;
+            if (isCorrect) correctCount++;
+            
+            let userAnsText = userAnsIdx !== undefined ? q.options[userAnsIdx] : "Tidak Dijawab";
+            details += `${idx + 1}. Jawaban: ${userAnsText} (${isCorrect ? 'BENAR' : 'SALAH'})\n`;
+        });
 
-        const statusBadge = document.getElementById('status-badge');
-        const feedbackText = document.getElementById('feedback-text');
+        let timeUsed = 300 - timeLeft;
+        let usedMinutes = Math.floor(timeUsed / 60);
+        let usedSeconds = timeUsed % 60;
 
-        if (isPassed) {
-            statusBadge.innerText = "LULUS (合格)";
-            statusBadge.className = "status-badge status-pass";
-            feedbackText.innerText = "おめでとうございます (Selamat, " + userName + ")! Anda memenuhi standar kelulusan 日本語クラス dengan nilai " + percentage + "%.";
-        } else {
-            statusBadge.innerText = "BELUM LULUS (不合格)";
-            statusBadge.className = "status-badge status-fail";
-            feedbackText.innerText = "がんばってください (Tetap semangat, " + userName + ")! Nilai Anda " + percentage + "%. Pelajari lagi materi partikel, kanji, dan tata bahasa N5 lalu coba kembali.";
-        }
+        let message = `*HASIL TES BAHASA JEPANG (N5-N4)*\n\n`;
+        message += `Nama Peserta: ${userName}\n`;
+        message += `Status: ${isTimeout ? 'WAKTU HABIS' : 'SELESAI'}\n`;
+        message += `Waktu Pengerjaan: ${usedMinutes} m ${usedSeconds} s\n`;
+        message += `Skor Akhir: ${correctCount} / ${questions.length}\n\n`;
+        message += `*Rincian Jawaban:*\n${details}`;
 
-        // Format pesan WA
-        const now = new Date();
-        const dateStr = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        let waUrl = `https://api.whatsapp.com/send?phone=${TARGET_WA}&text=${encodeURIComponent(message)}`;
+        
+        document.getElementById('wa-link').href = waUrl;
 
-        let waText = "*HASIL TES BAHASA JEPANG JLPT N5*%0A%0A";
-        waText += "👤 *Nama Peserta:* " + encodeURIComponent(userName) + "%0A";
-        waText += "📅 *Tanggal:* " + encodeURIComponent(dateStr) + "%0A";
-        waText += "📊 *Skor Akhir:* " + score + " / " + total + " ( *" + percentage + "%* )%0A";
-        waText += "🎯 *Status:* " + encodeURIComponent(isPassed ? "✅ LULUS (合格)" : "❌ BELUM LULUS (不合格)") + "%0A%0A";
-
-        const waBtn = document.getElementById('wa-share-btn');
-        if (targetWaNumber) {
-            waBtn.href = "https://wa.me/" + targetWaNumber + "?text=" + waText;
-        } else {
-            waBtn.href = "https://api.whatsapp.com/send?text=" + waText;
-        }
-    }
-
-    function restartQuiz() {
-        document.getElementById('result-screen').style.display = 'none';
-        document.getElementById('start-screen').style.display = 'block';
-        document.getElementById('start-form').reset();
+        // Otomatis mengarahkan ke WhatsApp
+        window.location.href = waUrl;
     }
 </script>
 
