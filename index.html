@@ -3,398 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Kotoba Jepang</title>
+    <title>Aplikasi Tes JLPT N5</title>
     <style>
-        :root {
-            --accent-blue: #007aff;
-            --bg-color: #f5f5f7;
-            --card-bg: #ffffff;
-            --text-color: #333333;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
+            background-color: #f0f2f5;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
         .container {
+            background: #ffffff;
             width: 100%;
-            max-width: 500px;
-            background: var(--card-bg);
-            padding: 20px;
+            max-width: 550px;
+            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        .hidden {
-            display: none !important;
+        h1 {
+            font-size: 1.5rem;
+            color: #1a202c;
+            text-align: center;
+            margin-bottom: 20px;
         }
-        .btn {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
+        .progress-bar {
             font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .btn:hover {
-            border-color: var(--accent-blue);
-            background: rgba(0, 122, 255, 0.02);
-        }
-        .btn.correct {
-            background: #10b981 !important;
-            color: white;
-            border-color: #10b981;
-        }
-        .btn.wrong {
-            background: #ef4444 !important;
-            color: white;
-            border-color: #ef4444;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
+            color: #718096;
             margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-sizing: border-box;
         }
-        .result-item {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-            font-size: 0.85rem;
+        .question {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+            min-height: 50px;
+            line-height: 1.5;
         }
-        .quiz-header {
+        .options {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn-option {
+            background-color: #f7fafc;
+            border: 2px solid #e2e8f0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #4a5568;
+        }
+        .btn-option:hover:not(:disabled) {
+            background-color: #edf2f7;
+            border-color: #cbd5e0;
+        }
+        .btn-option.correct {
+            background-color: #c6f6d5;
+            border-color: #38a169;
+            color: #22543d;
             font-weight: bold;
-            margin-bottom: 15px;
-            font-size: 0.85rem;
-            color: #666;
+        }
+        .btn-option.incorrect {
+            background-color: #fed7d7;
+            border-color: #e53e3e;
+            color: #742a2a;
+        }
+        .btn-next {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #3182ce;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: none;
+        }
+        .btn-next:hover {
+            background-color: #2b6cb0;
+        }
+        .result-screen {
+            display: none;
+            text-align: center;
+        }
+        .score-display {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2b6cb0;
+            margin: 15px 0;
+        }
+        .btn-restart {
+            padding: 12px 25px;
+            background-color: #38a169;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-restart:hover {
+            background-color: #2f855a;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- TAMPILAN MENU UTAMA -->
-        <div id="main-menu">
-            <h2>Aplikasi Kotoba</h2>
-            <input type="text" id="search-input" placeholder="Cari kata (arti / kanji / romaji)..." oninput="handleSearch()">
-            
-            <!-- Elemen Status yang wajib ada agar JS tidak null -->
-            <h3 id="menu-status" style="font-size: 0.9rem; color: #555; margin-top: 15px;">Memuat data...</h3>
-            
-            <div id="menu-buttons" style="margin-top: 10px;"></div>
-        </div>
-
-        <!-- TAMPILAN KUIS -->
-        <div id="quiz-section" class="hidden">
-            <div id="target-category" style="font-size: 0.8rem; font-weight: bold; color: var(--accent-blue); margin-bottom: 5px;"></div>
-            <div class="quiz-header">
-                <span id="node-counter">SOAL: 0 / 0</span>
-                <span id="score-counter">SKOR: 0</span>
-            </div>
-
-            <div style="text-align: center; margin: 25px 0;">
-                <h1 id="target-word" style="font-size: 2.5rem; margin: 0;">-</h1>
-                <div id="target-hiragana" style="color: #666; font-size: 1.1rem; margin-top: 5px;"></div>
-            </div>
-
-            <div id="options-container"></div>
-
-            <button class="btn" style="justify-content: center; margin-top: 20px; background: #f3f4f6;" onclick="backToMenu()">⬅ Keluar ke Menu</button>
-        </div>
+<div class="container">
+    <div id="quiz-screen">
+        <h1>Tes Bahasa Jepang N5</h1>
+        <div class="progress-bar" id="progress">Soal 1 dari 5</div>
+        <div class="question" id="question">Pertanyaan...</div>
+        <div class="options" id="options"></div>
+        <button class="btn-next" id="next-btn" onclick="nextQuestion()">Soal Selanjutnya</button>
     </div>
 
-    <!-- Panggil file data JavaScript yang sudah dibuat -->
-    <script src="kotoba_data.js"></script>
+    <div class="result-screen" id="result-screen">
+        <h1>Hasil Tes Anda</h1>
+        <div class="score-display" id="final-score">0 / 5</div>
+        <p id="feedback-text" style="margin-bottom: 20px; color: #4a5568;"></p>
+        <button class="btn-restart" onclick="restartQuiz()">Coba Lagi</button>
+    </div>
+</div>
 
-    <script>
-        let allData = [];
-        let currentQuestions = [];
-        let currentIndex = 0;
-        let score = 0;
-        let selectedCategoryName = "";
-        let isAnswered = false;
-        let groupedCategories = {};
-
-        function initApp() {
-            let rawData = typeof allKotobaData !== 'undefined' ? allKotobaData : [];
-                
-            let seenKeys = new Set();
-            allData = [];
-            rawData.forEach(item => {
-                if (!item) return;
-                let jp = (item.jp || item.kanji || '').trim();
-                let meaning = (item.meaning || item.arti || '').trim();
-                let category = (item.category || item.kategori || 'UMUM').trim();
-                
-                let uniqueKey = `${jp}_${meaning.toLowerCase()}`;
-                if (jp && meaning && !seenKeys.has(uniqueKey)) {
-                    seenKeys.add(uniqueKey);
-                    allData.push({
-                        jp: jp,
-                        hiragana: item.hiragana || item.read || '',
-                        romaji: item.romaji || '',
-                        meaning: meaning,
-                        category: category
-                    });
-                }
-            });
-
-            if (allData.length > 0) {
-                document.getElementById('menu-status').innerText = `PILIH KATEGORI (${allData.length} KATA TERSEDIA):`;
-                processMassCategories();
-                renderMenuButtons(groupedCategories);
-            } else {
-                document.getElementById('menu-status').innerText = 'DATA KOSONG / VARIABEL ALLKOTOBADATA TIDAK DITEMUKAN';
-            }
-        }
-
-        window.onload = initApp;
-// FUNGSI PENGELOMPOKKAN OTOMATIS BERDASARKAN ARTI & KATA
-function processMassCategories() {
-    groupedCategories = {};
-
-    allData.forEach(item => {
-        let cat = (item.category || "").toUpperCase();
-        let meaning = (item.meaning || "").toLowerCase();
-        let jp = (item.jp || "");
-        let macroGroup = "📦 KOTOBA UMUM";
-
-        // 1. Jika data dari file memiliki kategori asli dan valid
-        if (cat && cat !== "UMUM" && cat !== "") {
-            if (cat.includes('KERJA') || cat.includes('VERB') || cat.includes('U-VERBS') || cat.includes('RU-VERBS')) {
-                macroGroup = '⚡ KATA KERJA (VERBS)';
-            } else if (cat.includes('SIFAT') || cat.includes('ADJECTIVE')) {
-                macroGroup = '✨ KATA SIFAT (ADJECTIVES)';
-            } else if (cat.includes('BENDA') || cat.includes('ALAT') || cat.includes('RUMAH') || cat.includes('MAKANAN') || cat.includes('MINUMAN') || cat.includes('PAKAIAN') || cat.includes('TUBUH') || cat.includes('OBJEK') || cat.includes('TEMPAT') || cat.includes('KOTA')) {
-                macroGroup = '📦 BENDA & OBJEK SEKITAR';
-            } else if (cat.includes('WAKTU') || cat.includes('HARI') || cat.includes('BULAN') || cat.includes('TANGGAL') || cat.includes('ANGKA') || cat.includes('JUMLAH') || cat.includes('KETERANGAN')) {
-                macroGroup = '⏳ WAKTU, ANGKA & KETERANGAN';
-            } else if (cat.includes('SOSIAL') || cat.includes('KELUARGA') || cat.includes('ORANG') || cat.includes('PERASAAN') || cat.includes('EMOSI') || cat.includes('PROFESI') || cat.includes('PEKERJAAN')) {
-                macroGroup = '👥 SOSIAL, ORANG & PERASAAN';
-            } else {
-                macroGroup = cat.replace(/-?\s*BAGIAN\s*\d+/i, '').replace(/-\s*\d+$/, '').trim();
-            }
-        } 
-        // 2. Jika kategori kosong, deteksi otomatis lewat kata kunci Arti Bahasa Indonesia
-        else {
-            if (meaning.match(/(makan|minum|tidur|pergi|datang|melihat|membaca|menulis|beli|jual|pulang|berbicara|belajar|kerja|jalan|bangun|duduk|berdiri)/)) {
-                macroGroup = '⚡ KATA KERJA (VERBS)';
-            } else if (meaning.match(/(besar|kecil|panjang|pendek|baik|buruk|mahal|murah|panas|dingin|baru|lama|cantik|pintar|sulit|mudah)/)) {
-                macroGroup = '✨ KATA SIFAT (ADJECTIVES)';
-            } else if (meaning.match(/(hari|bulan|tahun|jam|menit|detik|senin|selasa|rabu|kamis|jumat|sabtu|minggu|pagi|siang|malam|satu|dua|tiga|empat|lima)/)) {
-                macroGroup = '⏳ WAKTU, ANGKA & KETERANGAN';
-            } else if (meaning.match(/(ayah|ibu|kakak|adik|orang|teman|guru|dokter|polisi|keluarga|anak|laki|perempuan)/)) {
-                macroGroup = '👥 SOSIAL, ORANG & PERASAAN';
-            } else if (meaning.match(/(rumah|sekolah|kantor|jalan|kota|kamar|buku|meja|kursi|air|nasi|baju|sepatu|uang|telepon|mobil)/)) {
-                macroGroup = '📦 BENDA & OBJEK SEKITAR';
-            } else {
-                macroGroup = '📦 KOTOBA UMUM';
-            }
-            
-            // Simpan kembali hasil deteksi otomatis ke item data
-            item.category = macroGroup;
-        }
-
-        if (!groupedCategories[macroGroup]) {
-            groupedCategories[macroGroup] = [];
-        }
-        if (!groupedCategories[macroGroup].includes(item.category)) {
-            groupedCategories[macroGroup].push(item.category);
-        }
-    });
-}
-        }
-
-        function renderMenuButtons(categoriesToRender) {
-            const menuContainer = document.getElementById('menu-buttons');
-            menuContainer.innerHTML = '';
-
-            const btnAll = document.createElement('button');
-            btnAll.className = 'btn';
-            btnAll.innerHTML = `<span>🎮 SEMUA KOTOBA (TOTAL)</span> <span style="font-size: 0.7rem; background: rgba(0, 122, 255, 0.1); color: var(--accent-blue); padding: 2px 7px; border-radius: 6px; font-weight: 700;">${allData.length}</span>`;
-            btnAll.onclick = () => startQuiz('ALL');
-            menuContainer.appendChild(btnAll);
-
-            Object.keys(categoriesToRender).sort().forEach(groupName => {
-                let subCategories = categoriesToRender[groupName];
-                let totalWords = allData.filter(item => subCategories.includes(item.category)).length;
-
-                const btn = document.createElement('button');
-                btn.className = 'btn';
-                btn.innerHTML = `<span>📂 ${groupName}</span> <span style="font-size: 0.7rem; background: rgba(0, 122, 255, 0.08); color: var(--accent-blue); padding: 2px 6px; border-radius: 6px;">${totalWords}</span>`;
-                btn.onclick = () => startQuizGroup(groupName, subCategories);
-                menuContainer.appendChild(btn);
-            });
-
-            menuContainer.classList.remove('hidden');
-        }
-
-        function handleSearch() {
-            let keyword = document.getElementById('search-input').value.toLowerCase().trim();
-            const menuContainer = document.getElementById('menu-buttons');
-            
-            if (keyword === "") {
-                document.getElementById('menu-status').innerText = `PILIH KATEGORI (${allData.length} KATA TERSEDIA):`;
-                renderMenuButtons(groupedCategories);
-                return;
-            }
-
-            let matchedWords = allData.filter(item => 
-                (item.meaning && item.meaning.toLowerCase().includes(keyword)) || 
-                (item.jp && item.jp.toLowerCase().includes(keyword)) || 
-                (item.hiragana && item.hiragana.toLowerCase().includes(keyword)) ||
-                (item.romaji && item.romaji.toLowerCase().includes(keyword))
-            );
-
-            let uniqueWords = [];
-            let seenMeanings = new Set();
-            
-            matchedWords.forEach(item => {
-                let cleanMeaning = item.meaning.toLowerCase().trim();
-                if (!seenMeanings.has(cleanMeaning)) {
-                    seenMeanings.add(cleanMeaning);
-                    uniqueWords.push(item);
-                }
-            });
-
-            document.getElementById('menu-status').innerText = `HASIL PENCARIAN (${uniqueWords.length} KATA):`;
-            menuContainer.innerHTML = '';
-
-            if (uniqueWords.length === 0) {
-                menuContainer.innerHTML = `<div style="color: var(--accent-blue); text-align: center; padding: 12px; font-size: 0.85rem; font-weight: 600;">KATA TIDAK DITEMUKAN</div>`;
-                return;
-            }
-
-            uniqueWords.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'result-item';
-                div.innerHTML = `
-                    <div class="result-info">
-                        <strong>${item.jp}</strong> [ ${item.hiragana || '-'} ]<br>
-                        <span style="color: var(--accent-blue);">Romaji:</span> ${item.romaji || '-'}<br>
-                        <span style="color: #059669; font-weight: 600;">Arti:</span> ${item.meaning}
-                    </div>
-                `;
-                menuContainer.appendChild(div);
-            });
-        }
-
-        function startQuizGroup(groupName, subCategories) {
-            currentQuestions = allData.filter(item => subCategories.includes(item.category));
-            selectedCategoryName = groupName;
-            initQuiz();
-        }
-
-        function startQuiz(category) {
-            if (category === 'ALL') {
-                currentQuestions = [...allData];
-                selectedCategoryName = "SEMUA KOTOBA";
-            }
-            initQuiz();
-        }
-
-        function initQuiz() {
-            currentQuestions.sort(() => Math.random() - 0.5);
-            currentIndex = 0;
-            score = 0;
-
-            document.getElementById('main-menu').classList.add('hidden');
-            document.getElementById('quiz-section').classList.remove('hidden');
-            document.getElementById('target-category').innerText = `KATEGORI: ${selectedCategoryName.toUpperCase()}`;
-            
-            loadQuestion();
-        }
-
-        function loadQuestion() {
-            isAnswered = false;
-            if (currentIndex >= currentQuestions.length) {
-                alert(`🎮 Latihan Selesai!\nSkor Akhir Anda: ${score}`);
-                backToMenu();
-                return;
-            }
-
-            const currentObj = currentQuestions[currentIndex];
-            
-            document.getElementById('node-counter').innerText = `SOAL: ${currentIndex + 1} / ${currentQuestions.length}`;
-            document.getElementById('score-counter').innerText = `SKOR: ${score}`;
-            document.getElementById('target-word').innerText = currentObj.jp || "-";
-            document.getElementById('target-hiragana').innerText = currentObj.hiragana ? `[ ${currentObj.hiragana} ]` : "";
-
-            let options = [currentObj.meaning];
-            let poolSameCategory = currentQuestions.filter(item => item.meaning !== currentObj.meaning);
-            poolSameCategory.sort(() => Math.random() - 0.5);
-
-            for (let i = 0; i < poolSameCategory.length && options.length < 4; i++) {
-                options.push(poolSameCategory[i].meaning);
-            }
-
-            if (options.length < 4) {
-                let poolGeneral = allData.filter(item => !options.includes(item.meaning));
-                poolGeneral.sort(() => Math.random() - 0.5);
-                for (let i = 0; i < poolGeneral.length && options.length < 4; i++) {
-                    options.push(poolGeneral[i].meaning);
-                }
-            }
-
-            options.sort(() => Math.random() - 0.5);
-
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = '';
-
-            options.forEach(optionText => {
-                const btn = document.createElement('button');
-                btn.className = 'btn';
-                btn.innerText = optionText;
-                btn.onclick = () => checkAnswer(btn, optionText, currentObj.meaning);
-                optionsContainer.appendChild(btn);
-            });
-        }
-
-        function checkAnswer(buttonElement, selected, correct) {
-            if (isAnswered) return;
-            isAnswered = true;
-
-            const allButtons = document.querySelectorAll('#options-container .btn');
-
-            if (selected === correct) {
-                score += 10;
-                buttonElement.classList.add('correct');
-            } else {
-                buttonElement.classList.add('wrong');
-                allButtons.forEach(btn => {
-                    if (btn.innerText === correct) {
-                        btn.classList.add('correct');
-                    }
-                });
-            }
-
-            document.getElementById('score-counter').innerText = `SKOR: ${score}`;
-
-            setTimeout(() => {
-                currentIndex++;
-                loadQuestion();
-            }, 800);
-        }
-
-        function backToMenu() {
-            document.getElementById('quiz-section').classList.add('hidden');
-            document.getElementById('main-menu').classList.remove('hidden');
-            document.getElementById('search-input').value = "";
-            document.getElementById('menu-status').innerText = `PILIH KATEGORI (${allData.length} KATA TERSEDIA):`;
-            renderMenuButtons(groupedCategories);
-        }
-    </script>
-</body>
-</html>
+<script>
+    const questions =
