@@ -5,117 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplikasi Tes JLPT N5</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            background: #ffffff;
-            width: 100%;
-            max-width: 550px;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 1.5rem;
-            color: #1a202c;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .progress-bar {
-            font-size: 0.9rem;
-            color: #718096;
-            margin-bottom: 15px;
-        }
-        .question {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 20px;
-            min-height: 50px;
-            line-height: 1.5;
-        }
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .btn-option {
-            background-color: #f7fafc;
-            border: 2px solid #e2e8f0;
-            padding: 12px 15px;
-            border-radius: 8px;
-            font-size: 1rem;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: #4a5568;
-        }
-        .btn-option:hover:not(:disabled) {
-            background-color: #edf2f7;
-            border-color: #cbd5e0;
-        }
-        .btn-option.correct {
-            background-color: #c6f6d5;
-            border-color: #38a169;
-            color: #22543d;
-            font-weight: bold;
-        }
-        .btn-option.incorrect {
-            background-color: #fed7d7;
-            border-color: #e53e3e;
-            color: #742a2a;
-        }
-        .btn-next {
-            width: 100%;
-            margin-top: 20px;
-            padding: 12px;
-            background-color: #3182ce;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            display: none;
-        }
-        .btn-next:hover {
-            background-color: #2b6cb0;
-        }
-        .result-screen {
-            display: none;
-            text-align: center;
-        }
-        .score-display {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #2b6cb0;
-            margin: 15px 0;
-        }
-        .btn-restart {
-            padding: 12px 25px;
-            background-color: #38a169;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .btn-restart:hover {
-            background-color: #2f855a;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+        body { background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .container { background: #ffffff; width: 100%; max-width: 550px; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        h1 { font-size: 1.5rem; color: #1a202c; text-align: center; margin-bottom: 20px; }
+        .progress-bar { font-size: 0.9rem; color: #718096; margin-bottom: 15px; }
+        .question { font-size: 1.15rem; font-weight: 600; color: #2d3748; margin-bottom: 20px; min-height: 50px; line-height: 1.5; white-space: pre-line; }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .btn-option { background-color: #f7fafc; border: 2px solid #e2e8f0; padding: 12px 15px; border-radius: 8px; font-size: 1rem; text-align: left; cursor: pointer; transition: all 0.2s ease; color: #4a5568; }
+        .btn-option:hover:not(:disabled) { background-color: #edf2f7; border-color: #cbd5e0; }
+        .btn-option.correct { background-color: #c6f6d5; border-color: #38a169; color: #22543d; font-weight: bold; }
+        .btn-option.incorrect { background-color: #fed7d7; border-color: #e53e3e; color: #742a2a; }
+        .btn-next { width: 100%; margin-top: 20px; padding: 12px; background-color: #3182ce; color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; display: none; }
+        .btn-next:hover { background-color: #2b6cb0; }
+        .result-screen { display: none; text-align: center; }
+        .score-display { font-size: 2.5rem; font-weight: bold; color: #2b6cb0; margin: 15px 0; }
+        .btn-restart { padding: 12px 25px; background-color: #38a169; color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -123,8 +28,8 @@
 <div class="container">
     <div id="quiz-screen">
         <h1>Tes Bahasa Jepang N5</h1>
-        <div class="progress-bar" id="progress">Soal 1 dari 5</div>
-        <div class="question" id="question">Pertanyaan...</div>
+        <div class="progress-bar" id="progress">Loading...</div>
+        <div class="question" id="question">Loading...</div>
         <div class="options" id="options"></div>
         <button class="btn-next" id="next-btn" onclick="nextQuestion()">Soal Selanjutnya</button>
     </div>
@@ -138,4 +43,118 @@
 </div>
 
 <script>
-    const questions =
+    document.addEventListener("DOMContentLoaded", function () {
+        const questions = [
+            {
+                question: `Isi titik-titik dengan partikel yang tepat:\nわたし ____ たなかです。`,
+                options: ["は (ha)", "が (ga)", "を (wo)", "に (ni)"],
+                correct: 0
+            },
+            {
+                question: `Apa arti dari kosakata 「本」(ほん)?`,
+                options: ["Mobil", "Buku", "Tas", "Rumah"],
+                correct: 1
+            },
+            {
+                question: `Bagaimana cara membaca Kanji 「水」?`,
+                options: ["き (Ki)", "ひ (Hi)", "みず (Mizu)", "つち (Tsuchi)"],
+                correct: 2
+            },
+            {
+                question: `Pilih partikel waktu yang tepat:\nまいにち 7じ ____ おきます。`,
+                options: ["で (de)", "に (ni)", "へ (he)", "と (to)"],
+                correct: 1
+            },
+            {
+                question: `Bentuk lampau positif dari kata kerja 「たべます」 adalah...`,
+                options: ["たべません (Tabemasen)", "たべました (Tabemashita)", "たべましょう (Tabemashou)", "たべたい (Tabetai)"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answered = false;
+
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const questionText = document.getElementById('question');
+        const optionsContainer = document.getElementById('options');
+        const progressText = document.getElementById('progress');
+        const nextBtn = document.getElementById('next-btn');
+        const finalScore = document.getElementById('final-score');
+        const feedbackText = document.getElementById('feedback-text');
+
+        function loadQuestion() {
+            answered = false;
+            nextBtn.style.display = 'none';
+            const q = questions[currentQuestionIndex];
+            progressText.innerText = `Soal ${currentQuestionIndex + 1} dari ${questions.length}`;
+            questionText.innerText = q.question;
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.classList.add('btn-option');
+                btn.innerText = option;
+                btn.onclick = () => selectOption(index);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectOption(selectedIndex) {
+            if (answered) return;
+            answered = true;
+
+            const q = questions[currentQuestionIndex];
+            const buttons = optionsContainer.children;
+
+            if (selectedIndex === q.correct) {
+                buttons[selectedIndex].classList.add('correct');
+                score++;
+            } else {
+                buttons[selectedIndex].classList.add('incorrect');
+                buttons[q.correct].classList.add('correct');
+            }
+
+            Array.from(buttons).forEach(btn => btn.disabled = true);
+            nextBtn.style.display = 'block';
+        }
+
+        window.nextQuestion = function () {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        };
+
+        function showResults() {
+            quizScreen.style.display = 'none';
+            resultScreen.style.display = 'block';
+            finalScore.innerText = `${score} / ${questions.length}`;
+
+            if (score === questions.length) {
+                feedbackText.innerText = "Sempurna! Kamu menguasai materi ini! (素晴らしい!)";
+            } else if (score >= 3) {
+                feedbackText.innerText = "Bagus! Kamu lulus latihan ini. (よくできました!)";
+            } else {
+                feedbackText.innerText = "Jangan menyerah, ayo belajar lagi! (がんばってください!)";
+            }
+        }
+
+        window.restartQuiz = function () {
+            currentQuestionIndex = 0;
+            score = 0;
+            resultScreen.style.display = 'none';
+            quizScreen.style.display = 'block';
+            loadQuestion();
+        };
+
+        loadQuestion();
+    });
+</script>
+
+</body>
+</html>
